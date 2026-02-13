@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WorkoutTrackerAPP.MainPage">
+    
+    
+    
+    <Grid   RowDefinitions="*,*"
+            RowSpacing="150">
+
+        <Label Grid.Row="0"
+               Text="Welcome"
+               VerticalOptions="End"
+               HorizontalOptions="Center"
+               FontSize="Large">
+
+
+        </Label>
+        <Button Grid.Row="1"
+                Text="Click"
+                VerticalOptions="Start"
+                HorizontalOptions="Center"/>
+
+
+
+
+    </Grid>
+    
+
+</ContentPage>
