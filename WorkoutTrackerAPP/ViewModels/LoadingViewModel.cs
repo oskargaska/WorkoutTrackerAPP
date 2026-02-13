@@ -8,6 +8,8 @@ using CommunityToolkit.Maui;
 using CommunityToolkit.Mvvm;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using WorkoutTrackerAPP.Models;
+using System.Diagnostics;
 
 
 
@@ -22,13 +24,15 @@ namespace WorkoutTrackerAPP.ViewModels
 
         public LoadingViewModel(IExercises exercises)
         {
+            
             _exercises = exercises;
-            AppearingCommand = new AsyncRelayCommand(InitializeAsync);
+            
+            
 
         }
 
-
-        public ICommand AppearingCommand { get; }
+        public ObservableCollection<ExerciseDTO> Exercises => _exercises.Exercises;
+        
 
         [RelayCommand]
         public async Task InitializeAsync()

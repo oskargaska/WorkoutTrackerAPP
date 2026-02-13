@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rsz8ZY8Z1bc=",
+  "dgSpecHash": "LzgcUTKjcCQ=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Oskar Gaska\\source\\repos\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\WorkoutTrackerAPP.csproj",
+  "projectFilePath": "C:\\Users\\Oskar Gaska\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\WorkoutTrackerAPP.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Oskar Gaska\\.nuget\\packages\\communitytoolkit.maui\\14.0.0\\communitytoolkit.maui.14.0.0.nupkg.sha512",
     "C:\\Users\\Oskar Gaska\\.nuget\\packages\\communitytoolkit.maui.core\\14.0.0\\communitytoolkit.maui.core.14.0.0.nupkg.sha512",

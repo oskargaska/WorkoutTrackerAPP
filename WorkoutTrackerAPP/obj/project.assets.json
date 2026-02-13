@@ -34327,11 +34327,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Oskar Gaska\\source\\repos\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\WorkoutTrackerAPP.csproj",
+      "projectUniqueName": "C:\\Users\\Oskar Gaska\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\WorkoutTrackerAPP.csproj",
       "projectName": "WorkoutTrackerAPP",
-      "projectPath": "C:\\Users\\Oskar Gaska\\source\\repos\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\WorkoutTrackerAPP.csproj",
+      "projectPath": "C:\\Users\\Oskar Gaska\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\WorkoutTrackerAPP.csproj",
       "packagesPath": "C:\\Users\\Oskar Gaska\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Oskar Gaska\\source\\repos\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\obj\\",
+      "outputPath": "C:\\Users\\Oskar Gaska\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\obj\\",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "fallbackFolders": [

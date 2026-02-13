@@ -1,4 +1,4 @@
-﻿namespace WorkoutTrackerAPP
+﻿namespace WorkoutTrackerAPP.Views
 {
     public partial class MainPage : ContentPage
     {

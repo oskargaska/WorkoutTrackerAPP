@@ -7,12 +7,7 @@ namespace WorkoutTrackerAPP.Interfaces
 {
     public interface IDatabase
     {
-
-
-
-        Task InitializeAsync();
+        
         Task<List<ExerciseDTO>> GetExercisesAsync();
-
-
     }
 }

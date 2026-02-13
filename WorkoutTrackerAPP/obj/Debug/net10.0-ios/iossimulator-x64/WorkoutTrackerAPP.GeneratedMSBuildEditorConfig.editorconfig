@@ -25,13 +25,13 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = WorkoutTrackerAPP
-build_property.ProjectDir = C:\Users\Oskar Gaska\source\repos\WorkoutTrackerAPP\WorkoutTrackerAPP\
+build_property.ProjectDir = C:\Users\Oskar Gaska\Documents\GitHub\WorkoutTrackerAPP\WorkoutTrackerAPP\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/Oskar Gaska/source/repos/WorkoutTrackerAPP/WorkoutTrackerAPP/App.xaml]
+[C:/Users/Oskar Gaska/Documents/GitHub/WorkoutTrackerAPP/WorkoutTrackerAPP/App.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = WorkoutTrackerAPP.App.xaml
 build_metadata.AdditionalFiles.TargetPath = App.xaml
@@ -41,7 +41,7 @@ build_metadata.AdditionalFiles.NoWarn =
 build_metadata.AdditionalFiles.EnableDiagnostics = 
 build_metadata.AdditionalFiles.LineInfo = 
 
-[C:/Users/Oskar Gaska/source/repos/WorkoutTrackerAPP/WorkoutTrackerAPP/AppShell.xaml]
+[C:/Users/Oskar Gaska/Documents/GitHub/WorkoutTrackerAPP/WorkoutTrackerAPP/AppShell.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = WorkoutTrackerAPP.AppShell.xaml
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
@@ -51,7 +51,7 @@ build_metadata.AdditionalFiles.NoWarn =
 build_metadata.AdditionalFiles.EnableDiagnostics = 
 build_metadata.AdditionalFiles.LineInfo = 
 
-[C:/Users/Oskar Gaska/source/repos/WorkoutTrackerAPP/WorkoutTrackerAPP/Resources/Styles/Colors.xaml]
+[C:/Users/Oskar Gaska/Documents/GitHub/WorkoutTrackerAPP/WorkoutTrackerAPP/Resources/Styles/Colors.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = WorkoutTrackerAPP.Resources.Styles.Colors.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
@@ -61,7 +61,7 @@ build_metadata.AdditionalFiles.NoWarn =
 build_metadata.AdditionalFiles.EnableDiagnostics = 
 build_metadata.AdditionalFiles.LineInfo = 
 
-[C:/Users/Oskar Gaska/source/repos/WorkoutTrackerAPP/WorkoutTrackerAPP/Resources/Styles/Styles.xaml]
+[C:/Users/Oskar Gaska/Documents/GitHub/WorkoutTrackerAPP/WorkoutTrackerAPP/Resources/Styles/Styles.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = WorkoutTrackerAPP.Resources.Styles.Styles.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
@@ -71,7 +71,7 @@ build_metadata.AdditionalFiles.NoWarn =
 build_metadata.AdditionalFiles.EnableDiagnostics = 
 build_metadata.AdditionalFiles.LineInfo = 
 
-[C:/Users/Oskar Gaska/source/repos/WorkoutTrackerAPP/WorkoutTrackerAPP/Views/LoadingView.xaml]
+[C:/Users/Oskar Gaska/Documents/GitHub/WorkoutTrackerAPP/WorkoutTrackerAPP/Views/LoadingView.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = WorkoutTrackerAPP.Views.LoadingView.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\LoadingView.xaml
@@ -81,7 +81,7 @@ build_metadata.AdditionalFiles.NoWarn =
 build_metadata.AdditionalFiles.EnableDiagnostics = 
 build_metadata.AdditionalFiles.LineInfo = 
 
-[C:/Users/Oskar Gaska/source/repos/WorkoutTrackerAPP/WorkoutTrackerAPP/Views/MainView.xaml]
+[C:/Users/Oskar Gaska/Documents/GitHub/WorkoutTrackerAPP/WorkoutTrackerAPP/Views/MainView.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = WorkoutTrackerAPP.Views.MainView.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\MainView.xaml

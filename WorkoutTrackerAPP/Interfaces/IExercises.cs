@@ -7,8 +7,9 @@ using WorkoutTrackerAPP.Models;
 
 namespace WorkoutTrackerAPP.Interfaces
 {
-    public interface IExercises
+    public interface IExercises  
     {
+        
         ObservableCollection<ExerciseDTO> Exercises { get; }
         Task LoadFromDatabaseAsync();
     }
