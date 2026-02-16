@@ -1,30 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WorkoutTrackerAPP.Views.MainPage">
-    
-    
-    
-    <Grid   RowDefinitions="*,*"
-            RowSpacing="150">
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewModels="clr-namespace:WorkoutTrackerAPP.ViewModels"
+             x:Class="WorkoutTrackerAPP.Views.MainView"
+             x:DataType="viewModels:MainViewModel">
+
+
+
+    <Grid RowDefinitions="Auto,*" 
+          RowSpacing="20"
+          Padding="20">
 
         <Label Grid.Row="0"
                Text="Welcome"
-               VerticalOptions="End"
+               VerticalOptions="Center"
                HorizontalOptions="Center"
-               FontSize="Large">
+               FontSize="32"
+               FontAttributes="Bold"/>
 
+        <VerticalStackLayout Grid.Row="1"
+                            Spacing="15"
+                            VerticalOptions="Center">
 
-        </Label>
-        <Button Grid.Row="1"
-                Text="Click"
-                VerticalOptions="Start"
-                HorizontalOptions="Center"/>
+            <Button Text="Start Workout"
+                    WidthRequest="250"
+                    HeightRequest="50"
+                    Command="{Binding NavigateToWorkoutsCommand}"/>
 
+            <Button Text="Exercise Library"
+                    WidthRequest="250"
+                    HeightRequest="50"
+                    Command="{Binding NavigateToExercisesCommand}"/>
 
+            <Button Text="History"
+                    WidthRequest="250"
+                    HeightRequest="50"/>
 
+        </VerticalStackLayout>
 
     </Grid>
-    
+
 
 </ContentPage>

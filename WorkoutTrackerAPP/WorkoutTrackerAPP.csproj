@@ -68,13 +68,16 @@
 	  <Compile Update="Views\MainView.xaml.cs">
 	    <DependentUpon>MainView.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\LoadingView.xaml.cs">
-	    <DependentUpon>LoadingView.xaml</DependentUpon>
+	  <Compile Update="Views\ExerciseLibraryView.xaml.cs">
+	    <DependentUpon>ExerciseLibraryView.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\LoadingView.xaml">
+	  <MauiXaml Update="Views\ExerciseLibraryView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\WorkoutLibraryView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

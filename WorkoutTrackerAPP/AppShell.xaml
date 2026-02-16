@@ -3,10 +3,19 @@
     x:Class="WorkoutTrackerAPP.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:views="clr-namespace:WorkoutTrackerAPP.Views">
+    xmlns:views="clr-namespace:WorkoutTrackerAPP.Views"
+    FlyoutBehavior="Disabled">
 
-    <ShellContent
-        ContentTemplate="{DataTemplate views:LoadingView}"
-        Route="MainPage" />
+    
+
+    <ShellContent 
+        Route="main"
+        ContentTemplate="{DataTemplate views:MainView}" />
+    <ShellContent 
+        Route="exercises"
+        ContentTemplate="{DataTemplate views:ExerciseLibraryView}" />
+    <ShellContent 
+        Route="workouts"
+        ContentTemplate="{DataTemplate views:WorkoutLibraryView}" />
 
 </Shell>

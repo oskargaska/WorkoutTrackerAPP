@@ -4,14 +4,53 @@
         <name>WorkoutTrackerAPP</name>
     </assembly>
     <members>
-        <member name="T:WorkoutTrackerAPP.ViewModels.LoadingViewModel">
+        <member name="T:WorkoutTrackerAPP.Models.FilterOption">
             <inheritdoc/>
         </member>
-        <member name="F:WorkoutTrackerAPP.ViewModels.LoadingViewModel.initializeCommand">
-            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.LoadingViewModel.InitializeCommand"/>.</summary>
+        <member name="P:WorkoutTrackerAPP.Models.FilterOption.Name">
+            <inheritdoc cref="F:WorkoutTrackerAPP.Models.FilterOption.name"/>
         </member>
-        <member name="P:WorkoutTrackerAPP.ViewModels.LoadingViewModel.InitializeCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.LoadingViewModel.InitializeAsync"/>.</summary>
+        <member name="P:WorkoutTrackerAPP.Models.FilterOption.IsSelected">
+            <inheritdoc cref="F:WorkoutTrackerAPP.Models.FilterOption.isSelected"/>
+        </member>
+        <member name="P:WorkoutTrackerAPP.Models.FilterOption.Category">
+            <inheritdoc cref="F:WorkoutTrackerAPP.Models.FilterOption.category"/>
+        </member>
+        <member name="T:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel">
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.IsFilterPanelVisible">
+            <inheritdoc cref="F:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.isFilterPanelVisible"/>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.loadMoreItemsCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.LoadMoreItemsCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.LoadMoreItemsCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.LoadMoreItems"/>.</summary>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.toggleFiltersCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.ToggleFiltersCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.ToggleFiltersCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.ToggleFilters"/>.</summary>
+        </member>
+        <member name="T:WorkoutTrackerAPP.ViewModels.MainViewModel">
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.MainViewModel.navigateToExercisesCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.MainViewModel.NavigateToExercisesCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.MainViewModel.NavigateToExercisesCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.MainViewModel.NavigateToExercises"/>.</summary>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.MainViewModel.navigateToWorkoutsCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.MainViewModel.NavigateToWorkoutsCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.MainViewModel.NavigateToWorkoutsCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.MainViewModel.NavigateToWorkouts"/>.</summary>
         </member>
         <member name="T:WorkoutTrackerAPP.Resource">
             <summary>
@@ -216,6 +255,42 @@
         </member>
         <member name="F:CommunityToolkit.Maui.AccessModifier.None">
             <summary>Generates no code</summary>
+        </member>
+        <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs">
+            <summary>
+            A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instances
+            for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
+            </summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Name">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Name" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsSelected">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsSelected" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Category">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Category" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsFilterPanelVisible">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsFilterPanelVisible" generated properties.</summary>
+        </member>
+        <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs">
+            <summary>
+            A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instances
+            for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
+            </summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Name">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Name" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsSelected">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsSelected" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Category">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Category" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsFilterPanelVisible">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsFilterPanelVisible" generated properties.</summary>
         </member>
     </members>
 </doc>

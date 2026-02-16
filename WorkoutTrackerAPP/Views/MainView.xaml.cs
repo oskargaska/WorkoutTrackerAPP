@@ -1,12 +1,15 @@
-﻿namespace WorkoutTrackerAPP.Views
-{
-    public partial class MainPage : ContentPage
-    {
-        
+﻿using WorkoutTrackerAPP.ViewModels;
 
-        public MainPage()
+namespace WorkoutTrackerAPP.Views
+{
+    public partial class MainView : ContentPage
+    {
+
+        public MainView(MainViewModel mainViewModel)
         {
+
             InitializeComponent();
+            BindingContext = mainViewModel;
         }
 
         

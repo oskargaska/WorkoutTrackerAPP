@@ -1,7 +1,8 @@
-﻿using Java.Net;
+﻿
 using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
 using WorkoutTrackerAPP.DatabaseEntities;
@@ -10,64 +11,93 @@ using WorkoutTrackerAPP.Interfaces;
 
 namespace WorkoutTrackerAPP.Services
 {
-    public class DatabaseConnectionService : IDatabaseConnection
+    internal class DatabaseConnectionService : IDatabaseConnection
     {
-        private SQLiteAsyncConnection _connection;
-        private readonly SemaphoreSlim _initLock = new(1, 1);
+        private SQLiteAsyncConnection? _connection;
 
         public async Task InitializeAsync()
         {
-            await _initLock.WaitAsync();
+            Debug.WriteLine("InitializedAsync started");
+
             try
             {
                 if (_connection != null) return;
 
+                
                 var dataDir = FileSystem.AppDataDirectory;
                 var databasePath = Path.Combine(dataDir, "WorkoutTracker.db");
 
-                // Copy from assets if needed
+
+                // Checks if database is populated. Delets if is empty
+                if (File.Exists(databasePath))
+                {
+                    // Check if database has exercises before deleting
+                    var tempConnection = new SQLiteAsyncConnection(databasePath);
+                    var count = await tempConnection.ExecuteScalarAsync<int>("SELECT COUNT(*) FROM Exercises");
+
+                    Debug.WriteLine($"Database has {count} exercises");
+
+                    if (count == 0)
+                    {
+                        Debug.WriteLine("Database is empty, deleting...");
+                        File.Delete(databasePath);
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Database has data, keeping it");
+                    }
+                }
+                
+                // If database doesn't exist create a new one and copy the data to it from RAW file.
                 if (!File.Exists(databasePath))
                 {
+                    Debug.WriteLine("Database didn't exist, copied from RAW");
                     using var stream = await FileSystem.OpenAppPackageFileAsync("WorkoutTracker.db");
                     using var fileStream = File.Create(databasePath);
                     await stream.CopyToAsync(fileStream);
                 }
-
+                
+                
                 var options = new SQLiteConnectionString(databasePath, true);
                 _connection = new SQLiteAsyncConnection(options);
-
-                // Verify it works
-                await _connection.CreateTableAsync<ExerciseEntity>();
+                
+                
                 
             }
             catch (Exception ex)
             {
-
-                throw;
+                Debug.WriteLine(ex.Message);
+                throw new InvalidOperationException("Cannot initialize the database");
             }
-            finally
-            {
-                _initLock.Release();
-            }
+            
         }
 
         public async Task<SQLiteAsyncConnection> GetConnectionAsync()
         {
-            if (_connection == null)
-                throw new InvalidOperationException("Database not initialized");
-
-            // Optional: Test connection validity
-            try
+            // Dangerous because of infinite loops. Will stay for now. Not necessarily needed for local database. It never looses conneciton.
+            /*
+            while(_connection == null)
             {
-                await _connection.ExecuteScalarAsync<int>("SELECT 1");
-            }
-            catch (Exception ex)
-            {
+                await InitializeAsync();
                 
-                throw new InvalidOperationException("Database connection is broken", ex);
             }
+            */
 
+            if (_connection != null)
+            {
+                return _connection;
+            }
+            else
+            {
+                await InitializeAsync();
+                
+            }
+            if (_connection == null)
+            {
+                throw new InvalidOperationException("Failed to initialize database connection");
+            }
             return _connection;
+
         }
     }
 }

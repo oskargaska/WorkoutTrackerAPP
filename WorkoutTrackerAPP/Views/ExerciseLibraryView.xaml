@@ -1,0 +1,143 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewModels="clr-namespace:WorkoutTrackerAPP.ViewModels"
+             xmlns:models="clr-namespace:WorkoutTrackerAPP.Models"
+             xmlns:converters="clr-namespace:WorkoutTrackerAPP.Converters"
+             x:Class="WorkoutTrackerAPP.Views.ExerciseLibraryView"          
+             x:DataType="viewModels:ExerciseLibraryViewModel">
+
+    <ContentPage.Resources>
+        <converters:ListToStringConverter x:Key="ListToStringConverter"/>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto, *">
+        <!-- Expander with filter content -->
+        <toolkit:Expander   Grid.Column="1"
+                    IsExpanded="{Binding IsFilterPanelVisible}">
+
+            <!-- Header (what you click to expand) -->
+            <toolkit:Expander.Header>
+                <Label Text="Filters" Padding="15" BackgroundColor="#2196F3" TextColor="White"/>
+            </toolkit:Expander.Header>
+
+            <!-- Content (what slides down) -->
+            <Border BackgroundColor="#F5F5F5"
+            Padding="10"
+            Margin="10,0">
+                <ScrollView MaximumHeightRequest="30">
+                    <VerticalStackLayout Spacing="15">
+
+                        <!-- All your filter sections here -->
+                        <!-- Equipment, Level, Muscles, Clear button -->
+
+                    </VerticalStackLayout>
+                </ScrollView>
+            </Border>
+
+        </toolkit:Expander>
+
+
+        <!-- Exercise list -->
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding FilteredExercises}"
+                        SelectionMode="Single"
+                        RemainingItemsThreshold="5"
+                        RemainingItemsThresholdReachedCommand="{Binding LoadMoreItemsCommand}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:ExerciseDTO">
+                    <Border Padding="15" 
+                            Margin="0,5"
+                            StrokeThickness="0"
+                            BackgroundColor="White">
+                        
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10"/>
+                        </Border.StrokeShape>
+
+                        <Grid RowDefinitions="Auto,Auto,Auto" 
+                              ColumnDefinitions="*,Auto">
+
+                            <!-- Exercise name -->
+                            <Label Grid.Row="0" Grid.Column="0"
+                               Text="{Binding Name}"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="#333"/>
+
+                            <!-- Level badge -->
+                            <Border Grid.Row="0" Grid.Column="1"
+                                    Padding="8,4"
+                                    BackgroundColor="#E3F2FD"
+                                    StrokeThickness="0"
+                                    HeightRequest="30">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="12"/>
+                                </Border.StrokeShape>
+                                <Label Text="{Binding Level}"
+                                       FontSize="12"
+                                       TextColor="#1976D2"
+                                       VerticalTextAlignment="Center"/>
+                            </Border>
+
+                            <!-- Equipment & Mechanic -->
+                            <HorizontalStackLayout Grid.Row="1" Grid.ColumnSpan="2"
+                                              Spacing="10"
+                                              Margin="0,5,0,0">
+                                <Label Text="{Binding Equipment}"
+                                       FontSize="14"
+                                       TextColor="#666"/>
+                                <Label Text="•"
+                                       FontSize="14"
+                                       TextColor="#666"/>
+                                <Label Text="{Binding Mechanic}"
+                                       FontSize="14"
+                                       TextColor="#666"/>
+                            </HorizontalStackLayout>
+
+                            <!-- Primary muscles -->
+                            <Label Grid.Row="2" Grid.ColumnSpan="2"
+                                   FontSize="13"
+                                   TextColor="#888"
+                                   Margin="0,5,0,0">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="💪 "/>
+                                        <Span Text="{Binding PrimaryMuscles, Converter={StaticResource ListToStringConverter}}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Grid.Row="1"
+                Text="&lt;"
+                FontSize="Large"
+                HeightRequest="50"
+                WidthRequest="50"
+                CornerRadius="50"
+                VerticalOptions="End"
+                HorizontalOptions="Start"
+                Margin="20">
+            
+            
+        </Button>
+        <Button Grid.Row="1"
+                Text="+"
+                FontSize="Large"
+                HeightRequest="50"
+                WidthRequest="50"
+                CornerRadius="50"
+                VerticalOptions="End"
+                HorizontalOptions="End"
+                Margin="20">
+            
+
+
+        </Button>
+
+    </Grid>
+</ContentPage>

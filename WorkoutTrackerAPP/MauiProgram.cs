@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using WorkoutTrackerAPP.Interfaces;
 using WorkoutTrackerAPP.Services;
 using WorkoutTrackerAPP.ViewModels;
+using WorkoutTrackerAPP.Views;
 
 
 namespace WorkoutTrackerAPP
@@ -11,6 +12,7 @@ namespace WorkoutTrackerAPP
     {
         public static MauiApp CreateMauiApp()
         {
+            
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
@@ -21,16 +23,37 @@ namespace WorkoutTrackerAPP
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
             builder.Services.AddSingleton<IExercises, ExercisesService>();
+            builder.Services.AddSingleton<IDatabaseConnection, DatabaseConnectionService>();
             builder.Services.AddSingleton<IDatabase, DatabaseService>();
+            
             builder.Services.AddTransient<MainViewModel>();
-            builder.Services.AddTransient<LoadingViewModel>();
+            builder.Services.AddTransient<MainView>();
+
+            builder.Services.AddTransient<ExerciseLibraryViewModel>();
+            builder.Services.AddTransient<ExerciseLibraryView>();
+
+            builder.Services.AddTransient<WorkoutLibraryViewModel>();
+            builder.Services.AddTransient<WorkoutLibraryView>();
+
 
 
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
 
-            return builder.Build();
+            var app = builder.Build();
+
+            // Pre-initialize database on background thread
+            _ = Task.Run(async () =>
+            {
+                var database = app.Services.GetRequiredService<IDatabaseConnection>();
+                var exercises = app.Services.GetRequiredService<IExercises>();
+                await database.InitializeAsync();
+                await exercises.LoadFromDatabaseAsync();
+
+            });
+
+            return app;
         }
     }
 }
