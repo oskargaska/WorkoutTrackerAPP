@@ -12,5 +12,8 @@ namespace WorkoutTrackerAPP.Interfaces
         
         ObservableCollection<ExerciseDTO> Exercises { get; }
         Task LoadFromDatabaseAsync();
+        Task AddExerciseAsync(ExerciseDTO exercise);
+        Task UpdateExerciseAsync(ExerciseDTO exercise);
+        Task DeleteWorkoutAsync(int id);
     }
 }

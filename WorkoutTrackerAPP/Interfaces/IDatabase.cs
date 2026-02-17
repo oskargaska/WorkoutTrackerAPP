@@ -9,5 +9,13 @@ namespace WorkoutTrackerAPP.Interfaces
     {
         
         Task<List<ExerciseDTO>> GetExercisesAsync();
+
+        Task<List<WorkoutDTO>> GetWorkoutsAsync();
+
+        // AddExercise
+
+        // RemoveExercise
+
+        // 
     }
 }

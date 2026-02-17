@@ -1,5 +1,4 @@
-﻿using AndroidX.Lifecycle;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
@@ -24,10 +23,28 @@ namespace WorkoutTrackerAPP.ViewModels
         public ExerciseLibraryViewModel(IExercises exercises)
         {
             _exercises = exercises;
-            _ = LoadMoreItems();
+            _ = LoadMoreItems();  // Loads first 20 items
 
             
         }
+
+        [RelayCommand]
+        async Task GoBack()
+        {
+            await Shell.Current.GoToAsync("//main");
+
+        }
+
+        [RelayCommand]
+        async Task AddNewExercise()
+        {
+
+            App.Current.Windows[0].Page.DisplayAlertAsync("Add New Exercise", "Button has been pressed", "Close");
+            
+            //await Shell.Current.GoToAsync("..");
+
+        }
+
 
         [ObservableProperty]
         private bool isFilterPanelVisible = false;

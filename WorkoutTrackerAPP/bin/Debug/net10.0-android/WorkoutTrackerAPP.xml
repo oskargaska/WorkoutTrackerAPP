@@ -20,9 +20,23 @@
             <inheritdoc/>
             <inheritdoc/>
             <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
         </member>
         <member name="P:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.IsFilterPanelVisible">
             <inheritdoc cref="F:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.isFilterPanelVisible"/>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.goBackCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.GoBackCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.GoBackCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.GoBack"/>.</summary>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.addNewExerciseCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.AddNewExerciseCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.AddNewExerciseCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.AddNewExercise"/>.</summary>
         </member>
         <member name="F:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.loadMoreItemsCommand">
             <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.LoadMoreItemsCommand"/>.</summary>

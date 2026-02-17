@@ -28,7 +28,7 @@ namespace WorkoutTrackerAPP.Services
                 var databasePath = Path.Combine(dataDir, "WorkoutTracker.db");
 
 
-                // Checks if database is populated. Delets if is empty
+                // Checks if database is populated. Deletes if it is empty
                 if (File.Exists(databasePath))
                 {
                     // Check if database has exercises before deleting

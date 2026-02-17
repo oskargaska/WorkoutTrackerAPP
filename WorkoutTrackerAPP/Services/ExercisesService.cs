@@ -42,5 +42,19 @@ namespace WorkoutTrackerAPP.Services
                 //Debug.WriteLine($"{exercise.Name}");
             }           
         }
+
+        public async Task AddExerciseAsync(ExerciseDTO exercise)
+        {
+
+        }
+        public async Task UpdateExerciseAsync(ExerciseDTO exercise)
+        {
+
+        }
+        public async Task DeleteWorkoutAsync(int id)
+        {
+
+
+        }
     }
 }

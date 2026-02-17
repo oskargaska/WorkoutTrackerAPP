@@ -20,8 +20,6 @@ namespace WorkoutTrackerAPP.Services
         {
             _databaseConnection = databaseConnection;
 
-
-
         }
 
         
@@ -34,27 +32,45 @@ namespace WorkoutTrackerAPP.Services
 
             if(entities == null)
             {
-                Debug.WriteLine("Database querry returned empty list of entities");
+                Debug.WriteLine("Database querry returned empty list of exercise entities");
+                throw new InvalidOperationException("Empty database");
             }
             foreach (var entity in entities)
             {
+                if (entity.Json == null) continue;
                 
+                var dto = JsonSerializer.Deserialize<ExerciseDTO>(entity.Json);
+                
+                if (dto == null) continue; 
 
-                if (entity.Json == null)
-                {
-                    continue;
-                }
-                else
-                {
-                    exercise.Add(JsonSerializer.Deserialize<ExerciseDTO>(entity.Json));
-                    //Debug.WriteLine($"{exercise.Last().Name}");
-                    //Debug.WriteLine($"{entity.Json}");
-                    
-                }
+                exercise.Add(dto);
             }
             return exercise;
 
 
+        }
+
+        public async Task<List<WorkoutDTO>> GetWorkoutsAsync()
+        {
+            var connection = await _databaseConnection.GetConnectionAsync();
+            var entities = await connection.Table<WorkoutEntity>().ToListAsync();
+            var workouts = new List<WorkoutDTO>();
+
+            if (entities == null)
+            {
+                Debug.WriteLine("Database querry returned empty list of workout entities");
+            }
+            foreach (var entity in entities)
+            {
+                if (entity.Json == null) continue;
+                
+                var dto = JsonSerializer.Deserialize<WorkoutDTO>(entity.Json);
+
+                if (dto == null) continue; // also check if deserialization returned null
+
+                workouts.Add(dto);
+            }
+            return workouts;
         }
     }
 }

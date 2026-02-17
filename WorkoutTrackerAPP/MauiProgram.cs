@@ -23,6 +23,7 @@ namespace WorkoutTrackerAPP
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
             builder.Services.AddSingleton<IExercises, ExercisesService>();
+            builder.Services.AddSingleton<IWorkouts, WorkoutsService>();
             builder.Services.AddSingleton<IDatabaseConnection, DatabaseConnectionService>();
             builder.Services.AddSingleton<IDatabase, DatabaseService>();
             
@@ -48,8 +49,10 @@ namespace WorkoutTrackerAPP
             {
                 var database = app.Services.GetRequiredService<IDatabaseConnection>();
                 var exercises = app.Services.GetRequiredService<IExercises>();
+                var workouts = app.Services.GetRequiredService<IWorkouts>();
                 await database.InitializeAsync();
                 await exercises.LoadFromDatabaseAsync();
+                await workouts.LoadFromDatabaseAsync();
 
             });
 
