@@ -16,6 +16,10 @@ namespace WorkoutTrackerAPP.Interfaces
 
         // RemoveExercise
 
-        // 
+        Task AddWorkoutAsync(WorkoutDTO workout);
+
+        // UpdateWorkout
+
+        // RemoveWorkout
     }
 }

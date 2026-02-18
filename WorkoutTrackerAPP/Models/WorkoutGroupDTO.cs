@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace WorkoutTrackerAPP.Models
@@ -7,6 +8,6 @@ namespace WorkoutTrackerAPP.Models
     public class WorkoutGroupDTO
     {
         public string Name { get; set; }                          // "Chest", "Stretching" etc
-        public List<WorkoutExerciseDTO> Items { get; set; } = new(); // exercises + breaks in order
+        public ObservableCollection<WorkoutExerciseDTO> Items { get; set; } = new();
     }
 }

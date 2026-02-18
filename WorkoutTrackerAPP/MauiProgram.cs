@@ -22,6 +22,7 @@ namespace WorkoutTrackerAPP
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+
             builder.Services.AddSingleton<IExercises, ExercisesService>();
             builder.Services.AddSingleton<IWorkouts, WorkoutsService>();
             builder.Services.AddSingleton<IDatabaseConnection, DatabaseConnectionService>();
@@ -35,6 +36,12 @@ namespace WorkoutTrackerAPP
 
             builder.Services.AddTransient<WorkoutLibraryViewModel>();
             builder.Services.AddTransient<WorkoutLibraryView>();
+
+            builder.Services.AddTransient<CreateWorkoutViewModel>();
+            builder.Services.AddTransient<CreateWorkoutView>();
+
+            builder.Services.AddTransient<ExercisePickerView>();
+            builder.Services.AddTransient<ExercisePickerViewModel>();
 
 
 

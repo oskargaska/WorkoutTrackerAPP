@@ -1,12 +1,165 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WorkoutTrackerAPP.Views.WorkoutLibraryView"
-             Title="WorkoutLibraryView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewModels="clr-namespace:WorkoutTrackerAPP.ViewModels"
+             xmlns:models="clr-namespace:WorkoutTrackerAPP.Models"
+             xmlns:converters="clr-namespace:WorkoutTrackerAPP.Converters"
+             x:Class="WorkoutTrackerAPP.Views.WorkoutLibraryView"          
+             x:DataType="viewModels:WorkoutLibraryViewModel">
+    
+    <Grid RowDefinitions="Auto,*">
+        <Grid   Grid.Row="0"
+                ColumnDefinitions="3,*,3"
+                VerticalOptions="Start"
+                HeightRequest="50">
+
+            <Button Grid.Column="0"
+                    Text="&lt;"
+                    FontSize="Large"
+                    HeightRequest="20"
+                    WidthRequest="70"
+                    CornerRadius="10"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Start"
+                    Margin="5"
+                    Padding="0"
+                    Command="{Binding GoBackCommand}">
+            </Button>
+
+            <Label  Grid.Column="1"
+                    Text="Workout Library"
+                    FontSize="Large"
+                    FontAttributes="Bold"
+                    TextColor="Black"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"/>
+
+            <Button Grid.Column="2"
+                    Text="+"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    HeightRequest="20"
+                    WidthRequest="70"
+                    CornerRadius="10"
+                    VerticalOptions="Center"
+                    HorizontalOptions="End"
+                    Margin="5"
+                    Padding="0"
+                    Command="{Binding AddNewWorkoutCommand}">
+            </Button>
+        </Grid>
+
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding Workouts}"
+                        SelectionMode="Single"
+                        SelectionChangedCommand="{Binding WorkoutSelectedCommand}"
+                        SelectionChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}"
+                        Margin="10,0">
+
+            <CollectionView.EmptyView>
+                <VerticalStackLayout HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    Spacing="10">
+                    <Label Text="No workouts yet"
+                           FontSize="20"
+                           TextColor="#999"
+                           HorizontalOptions="Center"/>
+                    <Label Text="Tap the + above to create your first workout"
+                           FontSize="14"
+                           TextColor="#BBB"
+                           HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:WorkoutDTO">
+                    <SwipeView>
+                        <!-- Swipe actions -->
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Edit"
+                                          BackgroundColor="#2196F3"
+                                          Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:WorkoutLibraryViewModel}}, Path=EditWorkoutCommand}"
+                                          CommandParameter="{Binding .}"/>
+                                <SwipeItem Text="Delete"
+                                          BackgroundColor="#F44336"
+                                          Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:WorkoutLibraryViewModel}}, Path=DeleteWorkoutCommand}"
+                                          CommandParameter="{Binding .}"/>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+
+                        <!-- Workout card -->
+                        <Border Padding="15"
+                                Margin="0,5"
+                                StrokeThickness="1"
+                                Stroke="#E0E0E0"
+                                BackgroundColor="White">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10"/>
+                            </Border.StrokeShape>
+
+                            <Grid RowDefinitions="Auto,Auto,Auto"
+                                  ColumnDefinitions="*,Auto">
+
+                                <!-- Workout name -->
+                                <Label Grid.Row="0"
+                                       Grid.Column="0"
+                                       Text="{Binding Name}"
+                                       FontSize="20"
+                                       FontAttributes="Bold"
+                                       TextColor="#333"/>
+
+                                <!-- Group count badge -->
+                                <Border Grid.Row="0"
+                                        Grid.Column="1"
+                                        Padding="8,4"
+                                        BackgroundColor="#E3F2FD"
+                                        StrokeThickness="0">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="12"/>
+                                    </Border.StrokeShape>
+                                    <Label FontSize="12"
+                                           TextColor="#1976D2"
+                                           VerticalTextAlignment="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding Groups.Count}"/>
+                                                <Span Text=" groups"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </Border>
+
+                                <!-- Total exercises count -->
+                                <Label Grid.Row="1"
+                                       Grid.ColumnSpan="2"
+                                       Margin="0,5,0,0"
+                                       FontSize="14"
+                                       TextColor="#666">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="💪 "/>
+                                            <Span Text="{Binding TotalExercises}"/>
+                                            <Span Text=" exercises"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                                <!-- Group names preview -->
+                                <Label Grid.Row="2"
+                                       Grid.ColumnSpan="2"
+                                       Text="{Binding GroupNamesPreview}"
+                                       FontSize="13"
+                                       TextColor="#888"
+                                       Margin="0,5,0,0"
+                                       LineBreakMode="TailTruncation"/>
+
+                            </Grid>
+                        </Border>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
 </ContentPage>

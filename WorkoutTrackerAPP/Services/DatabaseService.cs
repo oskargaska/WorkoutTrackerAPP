@@ -72,5 +72,18 @@ namespace WorkoutTrackerAPP.Services
             }
             return workouts;
         }
+
+        public async Task AddWorkoutAsync(WorkoutDTO workout)
+        {
+            /*
+             * Get DB Connection
+             * Serialize the WorkoutDTO 
+             * Send it to the DB
+             * 
+             * Custom function for serialization is needed. Can't use DTO since the objects are very different each time
+             * 
+             * 
+             * */
+        }
     }
 }

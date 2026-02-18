@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WorkoutTrackerAPP.Models
 {
-    public enum WorkoutItemType
+    public enum EWorkoutItemType
     {
         Exercise,
         Timer

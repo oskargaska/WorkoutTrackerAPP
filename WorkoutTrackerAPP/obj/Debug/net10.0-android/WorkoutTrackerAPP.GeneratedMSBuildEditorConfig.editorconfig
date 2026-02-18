@@ -71,11 +71,31 @@ build_metadata.AdditionalFiles.NoWarn =
 build_metadata.AdditionalFiles.EnableDiagnostics = 
 build_metadata.AdditionalFiles.LineInfo = 
 
+[C:/Users/Oskar Gaska/Documents/GitHub/WorkoutTrackerAPP/WorkoutTrackerAPP/Views/CreateWorkoutView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = WorkoutTrackerAPP.Views.CreateWorkoutView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\CreateWorkoutView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\CreateWorkoutView.xaml
+build_metadata.AdditionalFiles.Inflator = Runtime
+build_metadata.AdditionalFiles.NoWarn = 
+build_metadata.AdditionalFiles.EnableDiagnostics = 
+build_metadata.AdditionalFiles.LineInfo = 
+
 [C:/Users/Oskar Gaska/Documents/GitHub/WorkoutTrackerAPP/WorkoutTrackerAPP/Views/ExerciseLibraryView.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = WorkoutTrackerAPP.Views.ExerciseLibraryView.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\ExerciseLibraryView.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\ExerciseLibraryView.xaml
+build_metadata.AdditionalFiles.Inflator = Runtime
+build_metadata.AdditionalFiles.NoWarn = 
+build_metadata.AdditionalFiles.EnableDiagnostics = 
+build_metadata.AdditionalFiles.LineInfo = 
+
+[C:/Users/Oskar Gaska/Documents/GitHub/WorkoutTrackerAPP/WorkoutTrackerAPP/Views/ExercisePickerView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = WorkoutTrackerAPP.Views.ExercisePickerView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\ExercisePickerView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\ExercisePickerView.xaml
 build_metadata.AdditionalFiles.Inflator = Runtime
 build_metadata.AdditionalFiles.NoWarn = 
 build_metadata.AdditionalFiles.EnableDiagnostics = 

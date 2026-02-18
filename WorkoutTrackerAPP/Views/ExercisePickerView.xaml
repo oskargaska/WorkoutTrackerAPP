@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:WorkoutTrackerAPP.ViewModels"
+             xmlns:models="clr-namespace:WorkoutTrackerAPP.Models"
+             x:Class="WorkoutTrackerAPP.Views.ExercisePickerView"
+             x:DataType="viewModels:ExercisePickerViewModel"
+             Title="Select Exercise">
+    <Grid RowDefinitions="Auto,*">
+
+        <!-- Search Bar -->
+        <SearchBar Grid.Row="0"
+                   Placeholder="Search exercises..."
+                   Text="{Binding SearchText}"
+                   Margin="10"/>
+
+        <!-- Exercise List -->
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding FilteredExercises}"
+                        SelectionMode="Single"
+                        SelectionChangedCommand="{Binding SelectExerciseCommand}"
+                        SelectionChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:ExerciseDTO">
+                    <Border Padding="15"
+                            Margin="10,5"
+                            StrokeThickness="1"
+                            Stroke="#E0E0E0"
+                            BackgroundColor="White">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8"/>
+                        </Border.StrokeShape>
+
+                        <VerticalStackLayout Spacing="5">
+                            <Label Text="{Binding Name}"
+                                   FontSize="16"
+                                   FontAttributes="Bold"/>
+                            <Label Text="{Binding Equipment}"
+                                   FontSize="12"
+                                   TextColor="#666"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
+</ContentPage>

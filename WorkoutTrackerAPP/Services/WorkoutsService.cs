@@ -31,7 +31,8 @@ namespace WorkoutTrackerAPP.Services
 
         public async Task AddWorkoutAsync(WorkoutDTO workout)
         {
-            
+            if (workout == null) return;
+            Workouts.Add(workout);
         }
         public async Task UpdateWorkoutAsync(WorkoutDTO workout)
         {

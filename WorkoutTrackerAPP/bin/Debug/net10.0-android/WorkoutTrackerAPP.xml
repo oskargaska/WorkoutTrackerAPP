@@ -16,6 +16,82 @@
         <member name="P:WorkoutTrackerAPP.Models.FilterOption.Category">
             <inheritdoc cref="F:WorkoutTrackerAPP.Models.FilterOption.category"/>
         </member>
+        <member name="T:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel">
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.WorkoutName">
+            <inheritdoc cref="F:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.workoutName"/>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.goBackCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.GoBackCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.GoBackCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.GoBack"/>.</summary>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.addGroupCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.AddGroupCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.AddGroupCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.AddGroup"/>.</summary>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.addItemToGroupCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.AddItemToGroupCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.AddItemToGroupCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.AddItemToGroup(WorkoutTrackerAPP.Models.WorkoutGroupDTO)"/>.</summary>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.removeGroupCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.RemoveGroupCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.RemoveGroupCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand`1"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.RemoveGroup(WorkoutTrackerAPP.Models.WorkoutGroupDTO)"/>.</summary>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.removeItemFromGroupCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.RemoveItemFromGroupCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.RemoveItemFromGroupCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand`1"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.RemoveItemFromGroup(System.ValueTuple{WorkoutTrackerAPP.Models.WorkoutGroupDTO,WorkoutTrackerAPP.Models.WorkoutExerciseDTO})"/>.</summary>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.saveWorkoutCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.SaveWorkoutCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.SaveWorkoutCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.SaveWorkout"/>.</summary>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.moveGroupUpCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.MoveGroupUpCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.MoveGroupUpCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand`1"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.MoveGroupUp(WorkoutTrackerAPP.Models.WorkoutGroupDTO)"/>.</summary>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.moveGroupDownCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.MoveGroupDownCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.MoveGroupDownCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand`1"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.MoveGroupDown(WorkoutTrackerAPP.Models.WorkoutGroupDTO)"/>.</summary>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.moveItemUpCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.MoveItemUpCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.MoveItemUpCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand`1"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.MoveItemUp(System.ValueTuple{WorkoutTrackerAPP.Models.WorkoutGroupDTO,WorkoutTrackerAPP.Models.WorkoutExerciseDTO})"/>.</summary>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.moveItemDownCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.MoveItemDownCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.MoveItemDownCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand`1"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.MoveItemDown(System.ValueTuple{WorkoutTrackerAPP.Models.WorkoutGroupDTO,WorkoutTrackerAPP.Models.WorkoutExerciseDTO})"/>.</summary>
+        </member>
         <member name="T:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel">
             <inheritdoc/>
             <inheritdoc/>
@@ -50,6 +126,24 @@
         <member name="P:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.ToggleFiltersCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.ToggleFilters"/>.</summary>
         </member>
+        <member name="T:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel">
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.SearchText">
+            <inheritdoc cref="F:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.searchText"/>
+        </member>
+        <member name="M:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.OnSearchTextChanged(System.String)">
+            <summary>Executes the logic for when <see cref="P:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.SearchText"/> just changed.</summary>
+            <param name="value">The new property value that was set.</param>
+            <remarks>This method is invoked right after the value of <see cref="P:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.SearchText"/> is changed.</remarks>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.selectExerciseCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.SelectExerciseCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.SelectExerciseCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.SelectExercise(WorkoutTrackerAPP.Models.ExerciseDTO)"/>.</summary>
+        </member>
         <member name="T:WorkoutTrackerAPP.ViewModels.MainViewModel">
             <inheritdoc/>
             <inheritdoc/>
@@ -65,6 +159,22 @@
         </member>
         <member name="P:WorkoutTrackerAPP.ViewModels.MainViewModel.NavigateToWorkoutsCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.MainViewModel.NavigateToWorkouts"/>.</summary>
+        </member>
+        <member name="T:WorkoutTrackerAPP.ViewModels.WorkoutLibraryViewModel">
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.WorkoutLibraryViewModel.goBackCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.WorkoutLibraryViewModel.GoBackCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.WorkoutLibraryViewModel.GoBackCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.WorkoutLibraryViewModel.GoBack"/>.</summary>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.WorkoutLibraryViewModel.addNewWorkoutCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.WorkoutLibraryViewModel.AddNewWorkoutCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.WorkoutLibraryViewModel.AddNewWorkoutCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.WorkoutLibraryViewModel.AddNewWorkout"/>.</summary>
         </member>
         <member name="T:WorkoutTrackerAPP.Resource">
             <summary>
@@ -285,8 +395,14 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Category">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Category" generated properties.</summary>
         </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.WorkoutName">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "WorkoutName" generated properties.</summary>
+        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsFilterPanelVisible">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsFilterPanelVisible" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SearchText">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SearchText" generated properties.</summary>
         </member>
         <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs">
             <summary>
@@ -303,8 +419,14 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Category">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Category" generated properties.</summary>
         </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.WorkoutName">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "WorkoutName" generated properties.</summary>
+        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsFilterPanelVisible">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsFilterPanelVisible" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SearchText">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SearchText" generated properties.</summary>
         </member>
     </members>
 </doc>

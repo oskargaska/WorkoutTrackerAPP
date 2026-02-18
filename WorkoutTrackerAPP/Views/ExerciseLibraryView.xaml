@@ -13,43 +13,55 @@
 
     <Grid RowDefinitions="Auto, Auto, *">
 
-        <Button Grid.Row="0"
-                Text="&lt;"
-                FontSize="Large"
-                HeightRequest="20"
-                WidthRequest="70"
-                CornerRadius="10"
-                VerticalOptions="Center"
-                HorizontalOptions="Start"
-                Margin="5"
-                Padding="0"
-                Command="{Binding GoBackCommand}">
+
+        <!-- Grid with buttons on top -->
+        <Grid   Grid.Row="0"
+                ColumnDefinitions="3,*,3"
+                VerticalOptions="Start"
+                HeightRequest="50">
+            
+            <Button Grid.Column="0"
+                    Text="&lt;"
+                    FontSize="Large"
+                    HeightRequest="20"
+                    WidthRequest="70"
+                    CornerRadius="10"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Start"
+                    Margin="5"
+                    Padding="0"
+                    Command="{Binding GoBackCommand}">
 
 
-        </Button>
-        <Label  Grid.Row="0"
-                Text="Library"
-                FontSize="Large"
-                FontAttributes="Bold"
-                TextColor="Black"
-                VerticalOptions="Center"
-                HorizontalOptions="Center"/>
-        <Button Grid.Row="0"
-                Text="+"
-                FontAttributes="Bold"
-                FontSize="Medium"
-                HeightRequest="20"
-                WidthRequest="70"
-                CornerRadius="10"
-                VerticalOptions="Center"
-                HorizontalOptions="End"
-                Margin="5"
-                Padding="0"
-                Command="{Binding AddNewExerciseCommand}">
+            </Button>
+            <Label  Grid.Column="1"
+                    Text="Exercise Library"
+                    FontSize="Large"
+                    FontAttributes="Bold"
+                    TextColor="Black"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"/>
+            <Button Grid.Column="2"
+                    Text="+"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    HeightRequest="20"
+                    WidthRequest="70"
+                    CornerRadius="10"
+                    VerticalOptions="Center"
+                    HorizontalOptions="End"
+                    Margin="5"
+                    Padding="0"
+                    Command="{Binding AddNewExerciseCommand}">
 
 
 
-        </Button>
+            </Button>
+
+
+        </Grid>
+
+        
 
         <!-- Expander with filter content -->
         <toolkit:Expander   Grid.Row="1"
