@@ -73,17 +73,44 @@ namespace WorkoutTrackerAPP.Services
             return workouts;
         }
 
-        public async Task AddWorkoutAsync(WorkoutDTO workout)
+        public async Task<int> AddWorkoutAsync(WorkoutDTO workout)
         {
-            /*
-             * Get DB Connection
-             * Serialize the WorkoutDTO 
-             * Send it to the DB
-             * 
-             * Custom function for serialization is needed. Can't use DTO since the objects are very different each time
-             * 
-             * 
-             * */
+            
+            var connection = await _databaseConnection.GetConnectionAsync();
+
+            var entity = new WorkoutEntity
+            {
+                Name = workout.Name,
+                Json = JsonSerializer.Serialize(workout)
+                
+            };
+            Debug.WriteLine($"{workout.Name}");
+            await connection.InsertAsync(entity);
+            Debug.WriteLine($"{entity.Id}");
+            return entity.Id;
+
         }
+
+        public async Task UpdateWorkoutAsync(WorkoutDTO workout)
+        {
+            var connection = await _databaseConnection.GetConnectionAsync();
+
+            var entity = new WorkoutEntity
+            {
+                Id = (int)workout.Id,
+                Name = workout.Name,
+                Json = JsonSerializer.Serialize(workout)
+            };
+
+            await connection.UpdateAsync(entity);
+        }
+
+        public async Task DeleteWorkoutAsync(int id)
+        {
+            var connection = await _databaseConnection.GetConnectionAsync();
+
+            await connection.DeleteAsync<WorkoutEntity>(id);
+        }
+
     }
 }

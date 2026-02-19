@@ -7,7 +7,7 @@ namespace WorkoutTrackerAPP.Models
 {
     public class WorkoutGroupDTO
     {
-        public string Name { get; set; }                          // "Chest", "Stretching" etc
+        public string Name { get; set; }                          
         public ObservableCollection<WorkoutExerciseDTO> Items { get; set; } = new();
     }
 }

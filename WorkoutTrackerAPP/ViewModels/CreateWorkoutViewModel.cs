@@ -14,6 +14,7 @@ using WorkoutTrackerAPP.Views;
 
 namespace WorkoutTrackerAPP.ViewModels
 {
+    [QueryProperty(nameof(WorkoutId), "WorkoutId")]
     public partial class CreateWorkoutViewModel : ObservableObject
     {
 
@@ -24,6 +25,11 @@ namespace WorkoutTrackerAPP.ViewModels
         [ObservableProperty]
         private string workoutName = "";
 
+        [ObservableProperty]
+        private string pageTitle = "Create Workout";
+
+        private int? _editingWorkoutId;
+
         public ObservableCollection<WorkoutGroupDTO> Groups { get; } = new();
 
         public CreateWorkoutViewModel(IExercises exercises, IWorkouts workouts)
@@ -32,12 +38,29 @@ namespace WorkoutTrackerAPP.ViewModels
             _exercises = exercises;
             _workouts = workouts;
 
-            WeakReferenceMessenger.Default.Register<ExerciseSelectedMessage>(this, (recipient, message) =>
+            
+
+            
+
+            
+
+            WeakReferenceMessenger.Default.Register<MExerciseSelectedMessage>(this, (recipient, message) =>
             {
 
                 OnExerciseSelected(message.Exercise);
-                Debug.WriteLine($"{message.Exercise.Name}");
+                //Debug.WriteLine($"{message.Exercise.Name}");
             });
+            Debug.WriteLine($"{Groups.Count}");
+            
+        }
+
+        public int WorkoutId
+        {
+            set
+            {
+                LoadWorkoutForEditing(value);
+                PageTitle = "Edit Workout";
+            }
         }
 
         [RelayCommand]
@@ -103,7 +126,10 @@ namespace WorkoutTrackerAPP.ViewModels
                     ExerciseId = exercise.Id,
                     Name = exercise.Name,
                     Type = EWorkoutItemType.Exercise,
-                    Reps = 0
+                    Reps = 0,
+                    Duration = null,
+                    ParentGroup = _currentGroup
+                    
                 };
                 _currentGroup.Items.Add(item);
             }
@@ -114,7 +140,10 @@ namespace WorkoutTrackerAPP.ViewModels
                     ExerciseId = exercise.Id,
                     Name = exercise.Name,
                     Type = EWorkoutItemType.Exercise,
-                    Duration = TimeSpan.FromSeconds(30)
+                    Reps = null,
+                    Duration = TimeSpan.FromSeconds(30),
+                    ParentGroup = _currentGroup
+                    
                 };
                 _currentGroup.Items.Add(item);
             }
@@ -129,7 +158,9 @@ namespace WorkoutTrackerAPP.ViewModels
                 ExerciseId = null,
                 Name = "Rest",
                 Type = EWorkoutItemType.Timer,
-                Duration = TimeSpan.FromSeconds(60)
+                Duration = TimeSpan.FromSeconds(60),
+                ParentGroup = group
+                
             };
             group.Items.Add(breakItem);
         }
@@ -141,9 +172,47 @@ namespace WorkoutTrackerAPP.ViewModels
         }
 
         [RelayCommand]
-        void RemoveItemFromGroup((WorkoutGroupDTO group, WorkoutExerciseDTO item) parameters)
+        void RemoveItemFromGroup(WorkoutExerciseDTO item)
         {
-            parameters.group.Items.Remove(parameters.item);
+            item.ParentGroup?.Items.Remove(item);
+        }
+
+        
+        private void LoadWorkoutForEditing(int workoutId)
+        {
+            var workout = _workouts.Workouts.FirstOrDefault(w => w.Id == workoutId);
+            if (workout == null) return;
+
+            _editingWorkoutId = workout.Id;
+            WorkoutName = workout.Name;
+            //Debug.WriteLine($"{WorkoutName}");
+            Groups.Clear();
+            foreach (var group in workout.Groups)
+            {
+                // Deep copy to avoid editing the original
+                var groupCopy = new WorkoutGroupDTO
+                {
+                    Name = group.Name
+                };
+
+                foreach (var item in group.Items)
+                {
+                    var itemCopy = new WorkoutExerciseDTO
+                    {
+                        ExerciseId = item.ExerciseId,
+                        Name = item.Name,
+                        Type = item.Type,
+                        Reps = item.Reps,
+                        Duration = item.Duration,
+                        ParentGroup = groupCopy
+                    };
+                    groupCopy.Items.Add(itemCopy);
+                }
+
+                Groups.Add(groupCopy);
+            }
+            //Debug.WriteLine($"{Groups.Count}");
+
         }
 
         [RelayCommand]
@@ -155,9 +224,9 @@ namespace WorkoutTrackerAPP.ViewModels
                 return;
             }
 
-            if(Groups.Count == 0)
+            if (Groups.Count == 0)
             {
-                await App.Current.Windows[0].Page.DisplayAlertAsync("Error", "Please add an exercise", "OK");
+                await App.Current.Windows[0].Page.DisplayAlertAsync("Error", "Add at least one group", "OK");
                 return;
             }
 
@@ -167,8 +236,19 @@ namespace WorkoutTrackerAPP.ViewModels
                 Groups = Groups.ToList()
             };
 
-            await _workouts.AddWorkoutAsync(workout);
-            Debug.WriteLine($"{_workouts.Workouts.Count}");
+            if (_editingWorkoutId.HasValue)
+            {
+                workout.Id = _editingWorkoutId.Value;
+                await _workouts.UpdateWorkoutAsync(workout);
+            }
+            else
+            {
+                await _workouts.AddWorkoutAsync(workout);
+            }
+                
+
+            _editingWorkoutId = null;
+
             await Shell.Current.GoToAsync("//workouts");
         }
 
@@ -193,24 +273,32 @@ namespace WorkoutTrackerAPP.ViewModels
         }
 
         [RelayCommand]
-        void MoveItemUp((WorkoutGroupDTO group, WorkoutExerciseDTO item) parameters)
+        void MoveItemUp(WorkoutExerciseDTO item)
         {
-            var index = parameters.group.Items.IndexOf(parameters.item);
-            if(index > 0)
+            var group = item.ParentGroup;
+            if (group == null) return;
+
+            var index = group.Items.IndexOf(item);
+            if (index > 0)
             {
-                parameters.group.Items.Move(index, index - 1);
+                group.Items.Move(index, index - 1);
             }
         }
 
         [RelayCommand]
-        void MoveItemDown((WorkoutGroupDTO group, WorkoutExerciseDTO item) parameters)
+        void MoveItemDown(WorkoutExerciseDTO item)
         {
-            var index = parameters.group.Items.IndexOf(parameters.item);
-            if (index < parameters.group.Items.Count -1)
+            var group = item.ParentGroup;
+            if (group == null) return;
+
+            var index = group.Items.IndexOf(item);
+            if (index < group.Items.Count - 1)
             {
-                parameters.group.Items.Move(index, index + 1);
+                group.Items.Move(index, index + 1);
             }
         }
+
+        
 
 
     }

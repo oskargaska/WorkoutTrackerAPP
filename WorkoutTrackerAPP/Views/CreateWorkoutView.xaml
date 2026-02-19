@@ -8,6 +8,7 @@
              x:Class="WorkoutTrackerAPP.Views.CreateWorkoutView"          
              x:DataType="viewModels:CreateWorkoutViewModel">
     
+
     <Grid RowDefinitions="Auto,*">
         
         <Grid   Grid.Row="0"
@@ -29,7 +30,7 @@
             </Button>
 
             <Label  Grid.Column="1"
-                    Text="Create Workout"
+                    Text="{Binding PageTitle}"
                     FontSize="Large"
                     FontAttributes="Bold"
                     TextColor="Black"
@@ -65,17 +66,17 @@
                 CornerRadius="8"
                 Command="{Binding AddGroupCommand}"/>
 
-            <!-- Groups List -->
+        <!-- Groups List -->
             <ScrollView Grid.Row="2">
                 <VerticalStackLayout Spacing="10"
-                        Padding="10"
-                        BindableLayout.ItemsSource="{Binding Groups}">
+                                     Padding="10"
+                                     BindableLayout.ItemsSource="{Binding Groups}">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate x:DataType="models:WorkoutGroupDTO">
                             <Border Padding="10"
-                        StrokeThickness="2"
-                        Stroke="#2196F3"
-                        BackgroundColor="#F5F5F5">
+                                    StrokeThickness="2"
+                                    Stroke="#2196F3"
+                                    BackgroundColor="#F5F5F5">
                                 <Border.StrokeShape>
                                     <RoundRectangle CornerRadius="12"/>
                                 </Border.StrokeShape>
@@ -83,62 +84,127 @@
                                 <VerticalStackLayout Spacing="10">
 
                                     <!-- Group Header -->
-                                    <Grid ColumnDefinitions="*,Auto,Auto,Auto">
+                                    <Grid ColumnDefinitions="*,Auto,Auto,Auto"
+                                          ColumnSpacing="1">
                                         <Entry Grid.Column="0"
-                                   Text="{Binding Name}"
-                                   FontSize="16"
-                                   FontAttributes="Bold"
-                                   BackgroundColor="Transparent"/>
+                                               Text="{Binding Name}"
+                                               FontSize="16"
+                                               FontAttributes="Bold"
+                                               BackgroundColor="Transparent"/>
 
                                         <Button Grid.Column="1"
-                                                Text="Up"
-                                                WidthRequest="40"
-                                                HeightRequest="40"
+                                                Text="↑"
+                                                FontAttributes="Bold"
+                                                FontSize="Large"
+                                                WidthRequest="20"
+                                                HeightRequest="20"
+                                                Padding="0" 
                                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=MoveGroupUpCommand}"
                                                 CommandParameter="{Binding .}"/>
 
                                         <Button Grid.Column="2"
-                                                Text="Down"
-                                                WidthRequest="40"
-                                                HeightRequest="40"
+                                                Text="↓"
+                                                FontSize="Large"
+                                                FontAttributes="Bold"
+                                                WidthRequest="20"
+                                                HeightRequest="20"
+                                                Padding="0"
                                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=MoveGroupDownCommand}"
                                                 CommandParameter="{Binding .}"/>
 
                                         <Button Grid.Column="3"
-                                                Text="X"
-                                                WidthRequest="40"
-                                                HeightRequest="40"
+                                                Text="🗑"
+                                                FontSize="Large"
+                                                WidthRequest="20"
+                                                HeightRequest="20"
+                                                Padding="0"
                                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=RemoveGroupCommand}"
                                                 CommandParameter="{Binding .}"/>
                                     </Grid>
 
                                     <!-- Items in Group -->
                                     <VerticalStackLayout Spacing="5"
-                                            BindableLayout.ItemsSource="{Binding Items}">
+                                                         BindableLayout.ItemsSource="{Binding Items}">
                                         <BindableLayout.ItemTemplate>
                                             <DataTemplate x:DataType="models:WorkoutExerciseDTO">
                                                 <Border Padding="10"
-                                            Margin="5,0"
-                                            StrokeThickness="1"
-                                            Stroke="#DDD"
-                                            BackgroundColor="White">
+                                                        Margin="5,0"
+                                                        StrokeThickness="1"
+                                                        Stroke="#DDD"
+                                                        BackgroundColor="White">
                                                     <Border.StrokeShape>
                                                         <RoundRectangle CornerRadius="8"/>
                                                     </Border.StrokeShape>
 
                                                     <VerticalStackLayout Spacing="5">
+                                                        <Grid ColumnDefinitions="*,Auto,Auto,Auto"
+                                                              ColumnSpacing="1">
+                                                            <Label  Grid.Column="0"
+                                                                    Text="{Binding Name}"
+                                                                    FontSize="14"
+                                                                    FontAttributes="Bold"/>
 
-                                                        <Label Text="{Binding Name}"
-                                                   FontSize="14"
-                                                   FontAttributes="Bold"/>
+                                                            <Button Grid.Column="1"
+                                                                    Text="↑"
+                                                                    FontSize="Large"
+                                                                    FontAttributes="Bold"
+                                                                    WidthRequest="20"
+                                                                    HeightRequest="20"
+                                                                    Padding="0"                                                                  
+                                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=MoveItemUpCommand}"
+                                                                    CommandParameter="{Binding .}"/>
 
-                                                        <Label Text="{Binding Reps}"
-                                                   FontSize="12"
-                                                   TextColor="#666"/>
+                                                            <Button Grid.Column="2"
+                                                                    Text="↓"
+                                                                    FontSize="Large"
+                                                                    FontAttributes="Bold"
+                                                                    WidthRequest="20"
+                                                                    HeightRequest="20"
+                                                                    Padding="0"
+                                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=MoveItemDownCommand}"
+                                                                    CommandParameter="{Binding .}"/>
 
-                                                        <Label Text="{Binding Duration}"
-                                                   FontSize="12"
-                                                   TextColor="#666"/>
+                                                            <Button Grid.Column="3"
+                                                                    Text="🗑"
+                                                                    FontSize="Large"
+                                                                    WidthRequest="00"
+                                                                    HeightRequest="20"
+                                                                    Padding="0"
+                                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=RemoveItemFromGroupCommand}"
+                                                                    CommandParameter="{Binding .}"/>
+
+                                                        </Grid>
+
+                                                        <HorizontalStackLayout Spacing="5" 
+                                                                               IsEnabled="{Binding IsRepsVisible}"
+                                                                               IsVisible="{Binding IsRepsVisible}">
+                                                            <Label Text="Reps:"
+                                                                   VerticalOptions="Center"/>
+                                                            <Entry  Text="{Binding Reps}"
+                                                                    Keyboard="Numeric"
+                                                                    WidthRequest="10"
+                                                                    HorizontalOptions="Center"
+                                                                    HorizontalTextAlignment="Center"/>
+
+                                                        </HorizontalStackLayout>
+                                                        <HorizontalStackLayout Spacing="5" 
+                                                                               IsEnabled="{Binding IsDurationVisible}"
+                                                                               IsVisible="{Binding IsDurationVisible}">
+                                                            <Label Text="Duration:"
+                                                                   VerticalOptions="Center"/>
+                                                            <Entry  Text="{Binding DurationInSeconds}"
+                                                                    Keyboard="Numeric"
+                                                                    WidthRequest="10"
+                                                                    HorizontalOptions="Center"
+                                                                    HorizontalTextAlignment="Center"/>
+                                                            <Label Text="{Binding DurationDisplay}"
+                                                                    FontSize="12"
+                                                                    TextColor="#666"/>
+                                                            
+
+                                                        </HorizontalStackLayout>
+                                                        
+                                                        
 
                                                     </VerticalStackLayout>
                                                 </Border>
@@ -147,11 +213,11 @@
                                     </VerticalStackLayout>
 
                                     <Button Text="Add Exercise or Break"
-                                BackgroundColor="#4CAF50"
-                                TextColor="White"
-                                Margin="5,5,5,0"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=AddItemToGroupCommand}"
-                                CommandParameter="{Binding .}"/>
+                                            BackgroundColor="#4CAF50"
+                                            TextColor="White"
+                                            Margin="5,5,5,0"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=AddItemToGroupCommand}"
+                                            CommandParameter="{Binding .}"/>
 
                                 </VerticalStackLayout>
                             </Border>

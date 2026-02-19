@@ -124,7 +124,7 @@
                                            VerticalTextAlignment="Center">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="{Binding Groups.Count}"/>
+                                                <Span Text="{Binding Id}"/>
                                                 <Span Text=" groups"/>
                                             </FormattedString>
                                         </Label.FormattedText>

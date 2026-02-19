@@ -12,6 +12,6 @@ namespace WorkoutTrackerAPP.Interfaces
         Task LoadFromDatabaseAsync();
         Task AddWorkoutAsync(WorkoutDTO workout);
         Task UpdateWorkoutAsync(WorkoutDTO workout);
-        Task DeleteWorkoutAsync(int id);
+        Task DeleteWorkoutAsync(WorkoutDTO workout);
     }
 }

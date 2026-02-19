@@ -11,6 +11,7 @@ namespace WorkoutTrackerAPP.Services
     {
         private readonly IDatabase _database;
         private bool _isLoaded = false;
+        
 
         public ObservableCollection<WorkoutDTO> Workouts { get; } = new();
 
@@ -27,20 +28,50 @@ namespace WorkoutTrackerAPP.Services
             var workouts = await _database.GetWorkoutsAsync();
             foreach (var workout in workouts)
                 Workouts.Add(workout);
+
+            await Task.CompletedTask;
         }
 
         public async Task AddWorkoutAsync(WorkoutDTO workout)
         {
             if (workout == null) return;
+
+            var id = await _database.AddWorkoutAsync(workout);
+            
+            workout.Id = id;
             Workouts.Add(workout);
+
+            await Task.CompletedTask;
         }
+
         public async Task UpdateWorkoutAsync(WorkoutDTO workout)
         {
+            if (workout == null) return;
+            await _database.UpdateWorkoutAsync(workout);
+
+            var existing = Workouts.FirstOrDefault(w => w.Id == workout.Id);
+            if (existing != null)
+            {
+                var index = Workouts.IndexOf(existing);
+                Workouts[index] = workout;
+            }
+
+            
+
+            await Task.CompletedTask;
 
         }
-        public async Task DeleteWorkoutAsync(int id)
-        {
 
+
+        public async Task DeleteWorkoutAsync(WorkoutDTO workout)
+        {
+            await _database.DeleteWorkoutAsync((int)workout.Id);
+            var existing = Workouts.FirstOrDefault(w => w.Id == workout.Id);
+            if(existing != null)
+            {
+                Workouts.Remove(existing);
+            }
+            await Task.CompletedTask;
 
         }
     }

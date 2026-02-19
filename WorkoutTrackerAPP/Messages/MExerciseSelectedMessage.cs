@@ -5,7 +5,7 @@ using WorkoutTrackerAPP.Models;
 
 namespace WorkoutTrackerAPP.Messages
 {
-    public class ExerciseSelectedMessage
+    public class MExerciseSelectedMessage
     {
         public ExerciseDTO Exercise { get; set; }
     }

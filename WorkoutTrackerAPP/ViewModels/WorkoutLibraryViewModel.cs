@@ -1,10 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Text;
 using WorkoutTrackerAPP.Interfaces;
+using WorkoutTrackerAPP.Messages;
 using WorkoutTrackerAPP.Models;
 
 namespace WorkoutTrackerAPP.ViewModels
@@ -37,6 +40,41 @@ namespace WorkoutTrackerAPP.ViewModels
 
             await Shell.Current.GoToAsync("///createWorkout");
 
+        }
+
+        [RelayCommand]
+        async Task EditWorkout(WorkoutDTO workout)
+        {
+            //Debug.WriteLine("Called EditWorkout");
+            //Debug.WriteLine($"{workout.Id}");
+
+            await Shell.Current.GoToAsync(
+            "///createWorkout",
+            new Dictionary<string, object>
+            {
+                ["WorkoutId"] = workout.Id
+            });
+
+        }
+
+
+        [RelayCommand]
+        async Task DeleteWorkout(WorkoutDTO workout)
+        {
+            var choice = await App.Current.Windows[0].Page.DisplayActionSheetAsync(
+                "Do you really want to remove that workout?",
+                "Cancel",
+                null,
+                "Yes",
+                "No");
+
+            if(choice == "Yes")
+            {
+                await _workouts.DeleteWorkoutAsync(workout);
+                
+                return;
+            }
+            return;
         }
     }
 }

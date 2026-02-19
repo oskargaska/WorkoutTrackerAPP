@@ -52,7 +52,7 @@ namespace WorkoutTrackerAPP.ViewModels
         async Task SelectExercise(ExerciseDTO exercise)
         {
             // Send selected exercise back
-            WeakReferenceMessenger.Default.Send(new ExerciseSelectedMessage { Exercise = exercise });
+            WeakReferenceMessenger.Default.Send(new MExerciseSelectedMessage { Exercise = exercise });
             await Shell.Current.Navigation.PopAsync();  
             //Debug.WriteLine("Should go back");
 

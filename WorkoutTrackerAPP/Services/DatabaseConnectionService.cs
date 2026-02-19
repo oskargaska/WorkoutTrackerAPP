@@ -27,6 +27,10 @@ namespace WorkoutTrackerAPP.Services
                 var dataDir = FileSystem.AppDataDirectory;
                 var databasePath = Path.Combine(dataDir, "WorkoutTracker.db");
 
+                if (File.Exists(databasePath))
+                {
+                    File.Delete(databasePath);
+                }
 
                 // Checks if database is populated. Deletes if it is empty
                 if (File.Exists(databasePath))
@@ -99,5 +103,7 @@ namespace WorkoutTrackerAPP.Services
             return _connection;
 
         }
+
+
     }
 }
