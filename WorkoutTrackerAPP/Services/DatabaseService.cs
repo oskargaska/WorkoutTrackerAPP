@@ -68,6 +68,8 @@ namespace WorkoutTrackerAPP.Services
 
                 if (dto == null) continue; // also check if deserialization returned null
 
+                dto.Id = entity.Id;
+
                 workouts.Add(dto);
             }
             return workouts;

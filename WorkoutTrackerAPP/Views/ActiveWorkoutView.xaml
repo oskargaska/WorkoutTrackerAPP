@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewModels="clr-namespace:WorkoutTrackerAPP.ViewModels"
+             xmlns:models="clr-namespace:WorkoutTrackerAPP.Models"
+             xmlns:converters="clr-namespace:WorkoutTrackerAPP.Converters"
+             x:Class="WorkoutTrackerAPP.Views.ActiveWorkoutView"          
+             x:DataType="viewModels:ActiveWorkoutViewModel">
+
+    <Grid RowDefinitions="Auto, *, Auto">
+        <Grid   Grid.Row="0"
+                ColumnDefinitions="3,*"
+                VerticalOptions="Start"
+                HeightRequest="50">
+
+            <Button Grid.Column="0"
+                    Text="&lt;"
+                    FontSize="Large"
+                    HeightRequest="20"
+                    WidthRequest="70"
+                    CornerRadius="10"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Start"
+                    Margin="5"
+                    Padding="0"
+                    Command="{Binding GoBackCommand}"/>
+
+
+            <Label  Grid.Column="1"
+                    Text="{Binding PageTitle}"
+                    FontSize="Large"
+                    FontAttributes="Bold"
+                    TextColor="Black"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"/>
+
+            <Button Grid.Column="2"
+                    Text="Edit"
+                    FontSize="Large"
+                    HeightRequest="20"
+                    WidthRequest="70"
+                    CornerRadius="10"
+                    VerticalOptions="Center"
+                    HorizontalOptions="End"
+                    Margin="5"
+                    Padding="0"
+                    Command="{Binding ToggleEditModeCommand}"
+                    IsVisible="{Binding IsViewMode}"/>
+
+            <Button Grid.Column="2"
+                    Text="Cancel"
+                    FontSize="Large"
+                    HeightRequest="20"
+                    WidthRequest="70"
+                    CornerRadius="10"
+                    VerticalOptions="Center"
+                    HorizontalOptions="End"
+                    Margin="5"
+                    Padding="0" 
+                    IsVisible="{Binding IsEditMode}"
+                    Command="{Binding CancelEditCommand}"/>
+
+        </Grid>
+        <Grid   Grid.Row="1"
+        RowDefinitions="Auto,Auto,*,Auto">
+
+            <!-- Workout Name -->
+            <Border Grid.Row="0"
+        Padding="15"
+        Margin="10,10,10,5"
+        StrokeThickness="1"
+        Stroke="#E0E0E0"
+        BackgroundColor="White">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8"/>
+                </Border.StrokeShape>
+                <Entry Placeholder="Workout Name"
+                       Text="{Binding WorkoutName}"
+                       FontSize="18"
+                       Grid.Column="0"
+                       FontAttributes="Bold"
+                       Margin="8"
+                       IsReadOnly="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=IsViewMode}"/>
+            </Border>
+
+            <!-- Add Group Button -->
+            <Button Grid.Row="1"
+                    Text="+ Add Group"
+                    BackgroundColor="#2196F3"
+                    TextColor="White"
+                    Margin="10,5"
+                    CornerRadius="8"
+                    IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=IsEditMode}"
+                    Command="{Binding AddGroupCommand}"/>
+
+            <!-- Groups List -->
+            <ScrollView Grid.Row="2">
+                <VerticalStackLayout Spacing="10"
+                             Padding="10"
+                             BindableLayout.ItemsSource="{Binding Groups}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="models:WorkoutGroupDTO">
+                            <Border Padding="10"
+                            StrokeThickness="2"
+                            Stroke="#2196F3"
+                            BackgroundColor="#F5F5F5">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="12"/>
+                                </Border.StrokeShape>
+
+                                <VerticalStackLayout Spacing="10">
+
+                                    <!-- Group Header -->
+                                    <Grid ColumnDefinitions="*,Auto,Auto,Auto"
+                                            ColumnSpacing="1">
+                                        <Entry Grid.Column="0"
+                                               Text="{Binding Name}"
+                                               FontSize="16"
+                                               FontAttributes="Bold"
+                                               Margin="8"
+                                               IsReadOnly="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=IsViewMode}"/>
+
+                                        <Button Grid.Column="1"
+                                                Text="↑"
+                                                FontAttributes="Bold"
+                                                FontSize="Large"
+                                                WidthRequest="20"
+                                                HeightRequest="20"
+                                                Padding="0" 
+                                                IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=IsEditMode}"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=MoveGroupUpCommand}"
+                                                CommandParameter="{Binding .}"/>
+
+                                        <Button Grid.Column="2"
+                                                Text="↓"
+                                                FontSize="Large"
+                                                FontAttributes="Bold"
+                                                WidthRequest="20"
+                                                HeightRequest="20"
+                                                Padding="0"
+                                                IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=IsEditMode}"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=MoveGroupDownCommand}"
+                                                CommandParameter="{Binding .}"/>
+
+                                        <Button Grid.Column="3"
+                                                Text="🗑"
+                                                FontSize="Large"
+                                                WidthRequest="20"
+                                                HeightRequest="20"
+                                                Padding="0"
+                                                IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=IsEditMode}"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=RemoveGroupCommand}"
+                                                CommandParameter="{Binding .}"/>
+                                    </Grid>
+
+                                    <!-- Items in Group -->
+                                    <VerticalStackLayout Spacing="5"
+                                                 BindableLayout.ItemsSource="{Binding Items}">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate x:DataType="models:WorkoutExerciseDTO">
+                                                <Border Padding="10"
+                                                Margin="5,0"
+                                                StrokeThickness="1"
+                                                Stroke="#DDD"
+                                                BackgroundColor="White">
+                                                    <Border.StrokeShape>
+                                                        <RoundRectangle CornerRadius="8"/>
+                                                    </Border.StrokeShape>
+
+                                                    <VerticalStackLayout Spacing="5">
+                                                        <Grid ColumnDefinitions="*,Auto,Auto,Auto"
+                                                                ColumnSpacing="1">
+                                                            <Label  Grid.Column="0"
+                                                                    Text="{Binding Name}"
+                                                                    FontSize="14"
+                                                                    FontAttributes="Bold"/>
+
+                                                            <Button Grid.Column="1"
+                                                                    Text="↑"
+                                                                    FontSize="Large"
+                                                                    FontAttributes="Bold"
+                                                                    WidthRequest="20"
+                                                                    HeightRequest="20"
+                                                                    Padding="0"
+                                                                    IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=IsEditMode}"
+                                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=MoveItemUpCommand}"
+                                                                    CommandParameter="{Binding .}"/>
+
+                                                            <Button Grid.Column="2"
+                                                                    Text="↓"
+                                                                    FontSize="Large"
+                                                                    FontAttributes="Bold"
+                                                                    WidthRequest="20"
+                                                                    HeightRequest="20"
+                                                                    Padding="0"
+                                                                    IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=IsEditMode}"
+                                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=MoveItemDownCommand}"
+                                                                    CommandParameter="{Binding .}"/>
+
+                                                            <Button Grid.Column="3"
+                                                                    Text="🗑"
+                                                                    FontSize="Large"
+                                                                    WidthRequest="00"
+                                                                    HeightRequest="20"
+                                                                    Padding="0"
+                                                                    IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=IsEditMode}"
+                                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=RemoveItemFromGroupCommand}"
+                                                                    CommandParameter="{Binding .}"/>
+
+                                                        </Grid>
+
+                                                        <HorizontalStackLayout Spacing="5" 
+                                                                               
+                                                                               IsVisible="{Binding IsRepsVisible}">
+                                                            <Label Text="Reps:"
+                                                                   VerticalOptions="Center"/>
+                                                            <Entry  Text="{Binding Reps}"
+                                                                    Keyboard="Numeric"
+                                                                    WidthRequest="10"
+                                                                    HorizontalOptions="Center"
+                                                                    HorizontalTextAlignment="Center"/>
+
+                                                        </HorizontalStackLayout>
+                                                        <HorizontalStackLayout Spacing="5" 
+                                                                               
+                                                                               IsVisible="{Binding IsDurationVisible}">
+                                                            <Label Text="Duration:"
+                                                                    VerticalOptions="Center"/>
+                                                            <Entry  Text="{Binding DurationInSeconds}"
+                                                                    Keyboard="Numeric"
+                                                                    WidthRequest="10"
+                                                                    HorizontalOptions="Center"
+                                                                    HorizontalTextAlignment="Center"/>
+                                                            <Label Text="{Binding DurationDisplay}"
+                                                                    FontSize="12"
+                                                                    TextColor="#666"/>
+
+
+                                                        </HorizontalStackLayout>
+
+
+
+                                                    </VerticalStackLayout>
+                                                </Border>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </VerticalStackLayout>
+
+                                    <Button Text="Add Exercise or Break"
+                                            BackgroundColor="#4CAF50"
+                                            TextColor="White"
+                                            Margin="5,5,5,0"
+                                            IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=IsEditMode}"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=AddItemToGroupCommand}"
+                                            CommandParameter="{Binding .}"/>
+
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+            </ScrollView>
+
+            <!-- Save Button -->
+            <Button Grid.Row="3"
+                    Text="Save"
+                    FontSize="Large"
+                    HeightRequest="20"
+                    WidthRequest="300"
+                    CornerRadius="10"
+                    VerticalOptions="End"
+                    HorizontalOptions="Center"
+                    Margin="5"
+                    Padding="0" 
+                    IsVisible="{Binding IsEditMode}"
+                    Command="{Binding SaveChangesCommand}"/>
+
+            <!-- Start Button -->
+            <Button Grid.Row="3"
+                    Text="Start"
+                    FontSize="Large"
+                    HeightRequest="20"
+                    WidthRequest="300"
+                    CornerRadius="10"
+                    VerticalOptions="End"
+                    HorizontalOptions="Center"
+                    Margin="5"
+                    Padding="0" 
+                    IsVisible="{Binding IsViewMode}"
+                    Command="{Binding StartWorkoutCommand}"/>
+
+        </Grid>
+
+        
+
+        
+        
+        
+
+
+
+
+    </Grid>
+    
+    
+</ContentPage>

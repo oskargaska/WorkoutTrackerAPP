@@ -71,6 +71,9 @@
 	  <Compile Update="Views\ExerciseLibraryView.xaml.cs">
 	    <DependentUpon>ExerciseLibraryView.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\ActiveWorkoutView.xaml.cs">
+	    <DependentUpon>ActiveWorkoutView.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -84,6 +87,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\WorkoutLibraryView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ActiveWorkoutView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

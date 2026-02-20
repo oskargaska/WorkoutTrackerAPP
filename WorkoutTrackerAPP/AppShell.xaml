@@ -23,5 +23,8 @@
     <ShellContent 
         Route="exercisepicker"
         ContentTemplate="{DataTemplate views:ExercisePickerView}" />
+    <ShellContent 
+        Route="workout"
+        ContentTemplate="{DataTemplate views:ActiveWorkoutView}" />
 
 </Shell>

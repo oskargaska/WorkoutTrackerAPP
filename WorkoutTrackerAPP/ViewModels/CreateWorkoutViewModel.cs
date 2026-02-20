@@ -50,7 +50,6 @@ namespace WorkoutTrackerAPP.ViewModels
                 OnExerciseSelected(message.Exercise);
                 //Debug.WriteLine($"{message.Exercise.Name}");
             });
-            Debug.WriteLine($"{Groups.Count}");
             
         }
 

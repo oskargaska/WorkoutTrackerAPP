@@ -76,5 +76,16 @@ namespace WorkoutTrackerAPP.ViewModels
             }
             return;
         }
+
+        [RelayCommand]
+        async Task WorkoutSelected(WorkoutDTO workout)
+        {
+            await Shell.Current.GoToAsync(
+            "///workout",
+            new Dictionary<string, object>
+            {
+                ["WorkoutId"] = workout.Id
+            });
+        }
     }
 }

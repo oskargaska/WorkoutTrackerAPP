@@ -27,7 +27,9 @@ namespace WorkoutTrackerAPP
             builder.Services.AddSingleton<IWorkouts, WorkoutsService>();
             builder.Services.AddSingleton<IDatabaseConnection, DatabaseConnectionService>();
             builder.Services.AddSingleton<IDatabase, DatabaseService>();
-            
+            builder.Services.AddSingleton<ISessions, SessionsService>();
+
+
             builder.Services.AddTransient<MainViewModel>();
             builder.Services.AddTransient<MainView>();
 
@@ -42,6 +44,9 @@ namespace WorkoutTrackerAPP
 
             builder.Services.AddTransient<ExercisePickerView>();
             builder.Services.AddTransient<ExercisePickerViewModel>();
+
+            builder.Services.AddTransient<ActiveWorkoutView>();
+            builder.Services.AddTransient<ActiveWorkoutViewModel>();
 
 
 
