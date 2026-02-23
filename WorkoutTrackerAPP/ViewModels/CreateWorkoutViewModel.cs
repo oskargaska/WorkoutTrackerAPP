@@ -38,14 +38,9 @@ namespace WorkoutTrackerAPP.ViewModels
             _exercises = exercises;
             _workouts = workouts;
 
-            
-
-            
-
-            
-
             WeakReferenceMessenger.Default.Register<MExerciseSelectedMessage>(this, (recipient, message) =>
             {
+                Debug.WriteLine("OnExerciseSelected");
 
                 OnExerciseSelected(message.Exercise);
                 //Debug.WriteLine($"{message.Exercise.Name}");
@@ -57,8 +52,10 @@ namespace WorkoutTrackerAPP.ViewModels
         {
             set
             {
-                LoadWorkoutForEditing(value);
-                PageTitle = "Edit Workout";
+                if (Groups.Count != 0) return;
+                var workout = _workouts.Workouts.FirstOrDefault(w => w.Id == value);
+                if (workout == null) return;
+                LoadWorkoutForEditing(workout);
             }
         }
 
@@ -177,10 +174,8 @@ namespace WorkoutTrackerAPP.ViewModels
         }
 
         
-        private void LoadWorkoutForEditing(int workoutId)
+        private void LoadWorkoutForEditing(WorkoutDTO workout)
         {
-            var workout = _workouts.Workouts.FirstOrDefault(w => w.Id == workoutId);
-            if (workout == null) return;
 
             _editingWorkoutId = workout.Id;
             WorkoutName = workout.Name;
@@ -210,7 +205,7 @@ namespace WorkoutTrackerAPP.ViewModels
 
                 Groups.Add(groupCopy);
             }
-            //Debug.WriteLine($"{Groups.Count}");
+            Debug.WriteLine("LoadWorkout");
 
         }
 

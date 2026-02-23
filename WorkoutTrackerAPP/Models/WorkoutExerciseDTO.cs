@@ -6,16 +6,22 @@ using System.Text.Json.Serialization;
 
 namespace WorkoutTrackerAPP.Models
 {
-    public class WorkoutExerciseDTO
+    public partial class WorkoutExerciseDTO : ObservableObject
     {
         public string ExerciseId { get; set; }    // links to DB exercise
         public string Name { get; set; }          // display name
         public EWorkoutItemType Type { get; set; } // Repetition or Timer (break)
 
         // Only one will be set depending on Type
-        public int? Reps { get; set; }    
+        [ObservableProperty]
+        public int? reps;
 
-        public TimeSpan? Duration { get; set; }   // if timer based or a break
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(RemainingTimeDisplay))]
+        public TimeSpan? duration;   // if timer based or a break
+
+
+
 
         [JsonIgnore]
         public bool IsRepsVisible => Reps.HasValue;
@@ -26,19 +32,12 @@ namespace WorkoutTrackerAPP.Models
         [JsonIgnore]
         public WorkoutGroupDTO ParentGroup { get; set; }
 
+        [ObservableProperty]
+        [JsonIgnore]  
+        private bool isActive = false;
 
         [JsonIgnore]
-        public string DurationInSeconds
-        {
-            get => Duration.HasValue ? ((int)Duration.Value.TotalSeconds).ToString() : "";
-            set
-            {
-                if (int.TryParse(value, out int seconds) && seconds > 0)
-                    Duration = TimeSpan.FromSeconds(seconds);
-                else
-                    Duration = null;
-            }
-        }
+        public string RemainingTimeDisplay => Duration?.ToString(@"mm\:ss") ?? "00:00";
 
     }
 }
