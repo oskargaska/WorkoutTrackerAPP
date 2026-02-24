@@ -42,20 +42,7 @@ namespace WorkoutTrackerAPP.ViewModels
 
         }
 
-        [RelayCommand]
-        async Task EditWorkout(WorkoutDTO workout)
-        {
-            //Debug.WriteLine("Called EditWorkout");
-            //Debug.WriteLine($"{workout.Id}");
-
-            await Shell.Current.GoToAsync(
-            "///createWorkout",
-            new Dictionary<string, object>
-            {
-                ["WorkoutId"] = workout.Id
-            });
-
-        }
+        
 
 
         [RelayCommand]

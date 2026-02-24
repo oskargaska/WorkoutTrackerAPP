@@ -4,11 +4,11 @@ using CommunityToolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Text;
 using WorkoutTrackerAPP.Interfaces;
-using WorkoutTrackerAPP.Models;
 using WorkoutTrackerAPP.Messages;
-using System.Diagnostics;
+using WorkoutTrackerAPP.Models;
 
 
 namespace WorkoutTrackerAPP.ViewModels
@@ -16,16 +16,26 @@ namespace WorkoutTrackerAPP.ViewModels
     public partial class ExercisePickerViewModel : ObservableObject
     {
         private readonly IExercises _exercises;
+        
+
+        
 
         [ObservableProperty]
         private string searchText = "";
 
+
+        private const int PageSize = 20;
+        private int _currentPage = 0;
+
         public ObservableCollection<ExerciseDTO> FilteredExercises { get; } = new();
+
+        private bool _isLoadingMore;
 
         public ExercisePickerViewModel(IExercises exercises)
         {
             _exercises = exercises;
-            ApplyFilter();
+            _ =  LoadMoreItems();
+            //ApplyFilter();
         }
 
         partial void OnSearchTextChanged(string value)
@@ -42,20 +52,63 @@ namespace WorkoutTrackerAPP.ViewModels
                 filtered = filtered.Where(e =>
                     e.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase));
             }
+            else
+            {
+                FilteredExercises.Clear();
+                _currentPage = 0;
+                _ = LoadMoreItems();
+                return;
+            }
 
-            FilteredExercises.Clear();
+
+                FilteredExercises.Clear();
             foreach (var exercise in filtered)
                 FilteredExercises.Add(exercise);
         }
 
-        [RelayCommand]
-        async Task SelectExercise(ExerciseDTO exercise)
+        public void ToggleExercise(ExerciseDTO item)
         {
-            // Send selected exercise back
-            WeakReferenceMessenger.Default.Send(new MExerciseSelectedMessage { Exercise = exercise });
-            await Shell.Current.Navigation.PopAsync();  
-            //Debug.WriteLine("Should go back");
-
+            //item.IsExpanded = !item.IsExpanded;
         }
+
+        [RelayCommand]
+        async Task AddExerciseWithReps(ExerciseDTO exercise)
+        {
+            WeakReferenceMessenger.Default.Send(new MExerciseSelectedMessage { Exercise = exercise, IsReps = true });
+            await Shell.Current.Navigation.PopAsync();
+        }
+
+        [RelayCommand]
+        async Task AddExerciseWithDuration(ExerciseDTO exercise)
+        {
+            WeakReferenceMessenger.Default.Send(new MExerciseSelectedMessage { Exercise = exercise, IsReps = false });
+            await Shell.Current.Navigation.PopAsync();
+        }
+
+
+        [RelayCommand]
+        async Task LoadMoreItems()
+        {
+            if (_isLoadingMore) return;
+
+            _isLoadingMore = true;
+
+            var itemsToLoad = await Task.Run(() => _exercises.Exercises
+                            .Skip(_currentPage * PageSize)
+                            .Take(PageSize)
+                            .ToList()
+                    );
+
+            foreach (var item in itemsToLoad)
+            {
+                FilteredExercises.Add(item);
+                //Debug.WriteLine($"{item.Name}");
+            }
+
+            _currentPage++;
+            _isLoadingMore = false;
+        }
+
+        
     }
 }

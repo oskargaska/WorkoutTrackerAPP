@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+
              xmlns:viewModels="clr-namespace:WorkoutTrackerAPP.ViewModels"
              xmlns:models="clr-namespace:WorkoutTrackerAPP.Models"
              x:Class="WorkoutTrackerAPP.Views.ExercisePickerView"
@@ -12,14 +13,21 @@
         <SearchBar Grid.Row="0"
                    Placeholder="Search exercises..."
                    Text="{Binding SearchText}"
-                   Margin="10"/>
+                   Margin="10">
+            
+            
+            
+        </SearchBar>
 
-        <!-- Exercise List -->
+            <!-- Exercise List -->
         <CollectionView Grid.Row="1"
                         ItemsSource="{Binding FilteredExercises}"
                         SelectionMode="Single"
+                        SelectedItem="{Binding SelectedItem}"
                         SelectionChangedCommand="{Binding SelectExerciseCommand}"
-                        SelectionChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}">
+                        SelectionChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}"
+                        RemainingItemsThreshold="5"
+                        RemainingItemsThresholdReachedCommand="{Binding LoadMoreItemsCommand}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:ExerciseDTO">
                     <Border Padding="15"
@@ -38,7 +46,59 @@
                             <Label Text="{Binding Equipment}"
                                    FontSize="12"
                                    TextColor="#666"/>
+                            <Grid   ColumnDefinitions="Auto,Auto,Auto"
+                                    x:Name="Buttons"
+                                    IsVisible="False"
+                                    ColumnSpacing="30">
+                                <Label  Grid.Column="0"
+                                        Text="Add with:"
+                                        FontSize="12"
+                                        HorizontalOptions="Start"
+                                        VerticalOptions="Center"/>
+
+                                <Button Grid.Column="1"
+                                        Text="Timer"
+                                        FontSize="12"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Center"
+                                        WidthRequest="70"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ExercisePickerViewModel}}, Path=AddExerciseWithDurationCommand}"
+                                        CommandParameter="{Binding .}"/>
+                                <Button Grid.Column="2"
+                                        Text="Reps"
+                                        FontSize="12"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Center"
+                                        WidthRequest="70"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ExercisePickerViewModel}}, Path=AddExerciseWithRepsCommand}"
+                                        CommandParameter="{Binding .}"/>
+                            </Grid>
                         </VerticalStackLayout>
+                        
+                        
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+
+                                <VisualState Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter TargetName="Buttons"
+                                                Property="IsVisible"
+                                                Value="False" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter TargetName="Buttons"
+                                                Property="IsVisible"
+                                                Value="True" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        
+                        
                     </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

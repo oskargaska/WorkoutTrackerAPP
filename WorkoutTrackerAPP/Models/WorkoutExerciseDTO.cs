@@ -20,9 +20,6 @@ namespace WorkoutTrackerAPP.Models
         [NotifyPropertyChangedFor(nameof(RemainingTimeDisplay))]
         public TimeSpan? duration;   // if timer based or a break
 
-
-
-
         [JsonIgnore]
         public bool IsRepsVisible => Reps.HasValue;
 

@@ -16,5 +16,6 @@ namespace WorkoutTrackerAPP.Models
 
         [JsonIgnore]
         public string GroupNamesPreview => string.Join(" • ", Groups.Select(g => g.Name));
-    }
+
+    }       
 }

@@ -137,74 +137,143 @@
                                                     </Border.StrokeShape>
 
                                                     <VerticalStackLayout Spacing="5">
+
+
                                                         <Grid ColumnDefinitions="*,Auto,Auto,Auto"
                                                               ColumnSpacing="1">
                                                             <Label  Grid.Column="0"
-                                                                    Text="{Binding Name}"
-                                                                    FontSize="14"
-                                                                    FontAttributes="Bold"/>
-
+                                                                     Text="{Binding Name}"
+                                                                     FontSize="14"
+                                                                     TextColor="Black"
+                                                                     FontAttributes="Bold"/>
                                                             <Button Grid.Column="1"
-                                                                    Text="↑"
-                                                                    FontSize="Large"
-                                                                    FontAttributes="Bold"
-                                                                    WidthRequest="20"
-                                                                    HeightRequest="20"
-                                                                    Padding="0"                                                                  
-                                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=MoveItemUpCommand}"
-                                                                    CommandParameter="{Binding .}"/>
+                                                                     Text="↑"
+                                                                     FontSize="Large"
+                                                                     FontAttributes="Bold"
+                                                                     WidthRequest="20"
+                                                                     HeightRequest="20"
+                                                                     Padding="0"
+                                                                     IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=IsEditMode}"
+                                                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=MoveItemUpCommand}"
+                                                                     CommandParameter="{Binding .}"/>
 
                                                             <Button Grid.Column="2"
-                                                                    Text="↓"
-                                                                    FontSize="Large"
-                                                                    FontAttributes="Bold"
-                                                                    WidthRequest="20"
-                                                                    HeightRequest="20"
-                                                                    Padding="0"
-                                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=MoveItemDownCommand}"
-                                                                    CommandParameter="{Binding .}"/>
+                                                                     Text="↓"
+                                                                     FontSize="Large"
+                                                                     FontAttributes="Bold"
+                                                                     WidthRequest="20"
+                                                                     HeightRequest="20"
+                                                                     Padding="0"
+                                                                     IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=IsEditMode}"
+                                                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=MoveItemDownCommand}"
+                                                                     CommandParameter="{Binding .}"/>
 
                                                             <Button Grid.Column="3"
-                                                                    Text="🗑"
-                                                                    FontSize="Large"
-                                                                    WidthRequest="00"
-                                                                    HeightRequest="20"
-                                                                    Padding="0"
-                                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=RemoveItemFromGroupCommand}"
-                                                                    CommandParameter="{Binding .}"/>
+                                                                     Text="🗑"
+                                                                     FontSize="Large"
+                                                                     WidthRequest="00"
+                                                                     HeightRequest="20"
+                                                                     Padding="0"
+                                                                     IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=IsEditMode}"
+                                                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=RemoveItemFromGroupCommand}"
+                                                                     CommandParameter="{Binding .}"/>
+
+                                                        </Grid>
+                                                        <Grid>
+                                                            <HorizontalStackLayout Spacing="5"                   
+                                                                                    IsVisible="{Binding IsRepsVisible}">
+                                                                <Label Text="Reps:"
+                                                                        WidthRequest="70"
+                                                                        VerticalOptions="Center"/>
+                                                                <Button Text="-1"
+                                                                         FontSize="Small"
+                                                                         Padding="0"
+                                                                         HeightRequest="30"
+                                                                         WidthRequest="40"
+                                                                         CornerRadius="15"
+                                                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=RemoveRepsCommand}"
+                                                                         CommandParameter="{Binding .}"/>
+                                                                <Label  Text="{Binding Reps}"
+                                                                         WidthRequest="60"
+                                                                         HorizontalOptions="Center"
+                                                                         HorizontalTextAlignment="Center"
+                                                                         VerticalOptions="Center"/>
+                                                                <Button Text="+1"
+                                                                         FontSize="Small"
+                                                                         Padding="0"
+                                                                         HeightRequest="30"
+                                                                         WidthRequest="40"
+                                                                         CornerRadius="15"
+                                                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=AddRepsCommand}"
+                                                                         CommandParameter="{Binding .}"/>
+
+                                                            </HorizontalStackLayout>
+                                                            <HorizontalStackLayout Spacing="5"                                                                              
+                                                                                   IsVisible="{Binding IsDurationVisible}">
+
+                                                                <Label  Text="Duration:"
+                                                                         WidthRequest="70"
+                                                                         VerticalOptions="Center"/>
+                                                                <Button Text="-10"
+                                                                         FontSize="Small"
+                                                                         Padding="0"
+                                                                         HeightRequest="30"
+                                                                         WidthRequest="40"
+                                                                         CornerRadius="15"
+                                                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=RemoveSecondsCommand}"
+                                                                         CommandParameter="{Binding .}"/>
+
+                                                                <Label  Text="{Binding RemainingTimeDisplay}"                                                                    
+                                                                         TextColor="#666"
+                                                                         WidthRequest="60"
+                                                                         VerticalOptions="Center"
+                                                                         HorizontalTextAlignment="Center"
+                                                                         HorizontalOptions="Center"/>
+
+                                                                <Button Text="+10"
+                                                                         FontSize="Small"
+                                                                         Padding="0"
+                                                                         HeightRequest="30"
+                                                                         WidthRequest="40"
+                                                                         CornerRadius="15"
+                                                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=AddSecondsCommand}"
+                                                                         CommandParameter="{Binding .}"/>
+
+
+                                                            </HorizontalStackLayout>
+                                                            <Grid   ColumnDefinitions="Auto,Auto"
+                                                                     Grid.Column="1"
+                                                                     HorizontalOptions="End"
+                                                                     VerticalOptions="Center"
+                                                                     IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=IsViewMode}">
+                                                                <Button Grid.Column="0"
+                                                                         Text="&lt;"
+                                                                         IsVisible="{Binding IsActive}"
+                                                                         HeightRequest="40"
+                                                                         WidthRequest="40"
+                                                                         HorizontalOptions="End"
+                                                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=PreviousExerciseCommand}"
+                                                                         CommandParameter="{Binding .}">
+
+                                                                </Button>
+                                                                <Button Grid.Column="1"
+                                                                         Text="✔"
+                                                                         IsVisible="{Binding IsActive}"
+                                                                         HeightRequest="40"
+                                                                         WidthRequest="40"
+                                                                         HorizontalOptions="End"
+                                                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=NextExerciseCommand}"
+                                                                         CommandParameter="{Binding .}">
+
+                                                                </Button>
+                                                            </Grid>
+
+
 
                                                         </Grid>
 
-                                                        <HorizontalStackLayout Spacing="5" 
-                                                                               IsEnabled="{Binding IsRepsVisible}"
-                                                                               IsVisible="{Binding IsRepsVisible}">
-                                                            <Label Text="Reps:"
-                                                                   VerticalOptions="Center"/>
-                                                            <Entry  Text="{Binding Reps}"
-                                                                    Keyboard="Numeric"
-                                                                    WidthRequest="10"
-                                                                    HorizontalOptions="Center"
-                                                                    HorizontalTextAlignment="Center"/>
 
-                                                        </HorizontalStackLayout>
-                                                        <HorizontalStackLayout Spacing="5" 
-                                                                               IsEnabled="{Binding IsDurationVisible}"
-                                                                               IsVisible="{Binding IsDurationVisible}">
-                                                            <Label Text="Duration:"
-                                                                   VerticalOptions="Center"/>
-                                                            <Entry  Text="{Binding DurationInSeconds}"
-                                                                    Keyboard="Numeric"
-                                                                    WidthRequest="10"
-                                                                    HorizontalOptions="Center"
-                                                                    HorizontalTextAlignment="Center"/>
-                                                            <Label Text="{Binding DurationDisplay}"
-                                                                    FontSize="12"
-                                                                    TextColor="#666"/>
-                                                            
 
-                                                        </HorizontalStackLayout>
-                                                        
-                                                        
 
                                                     </VerticalStackLayout>
                                                 </Border>
@@ -212,12 +281,32 @@
                                         </BindableLayout.ItemTemplate>
                                     </VerticalStackLayout>
 
-                                    <Button Text="Add Exercise or Break"
-                                            BackgroundColor="#4CAF50"
-                                            TextColor="White"
-                                            Margin="5,5,5,0"
-                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=AddItemToGroupCommand}"
-                                            CommandParameter="{Binding .}"/>
+                                    <Grid ColumnDefinitions="Auto,Auto"
+                                          HorizontalOptions="Center"
+                                          VerticalOptions="Center">
+                                        <Button Grid.Column="0"
+                                                Text="Add Exercise"
+                                                BackgroundColor="#4CAF50"
+                                                TextColor="White"
+                                                Margin="5,5,5,0"
+                                                WidthRequest="130"
+                                                HorizontalOptions="Start"                                               
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=AddExerciseToGroupCommand}"
+                                                CommandParameter="{Binding .}"/>
+
+                                        <Button Grid.Column="1"
+                                                Text="Add Break"
+                                                BackgroundColor="#4CAF50"
+                                                TextColor="White"
+                                                Margin="5,5,5,0"
+                                                WidthRequest="130"
+                                                HorizontalOptions="End"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=AddBreakToGroupCommand}"
+                                                CommandParameter="{Binding .}"/>
+
+
+
+                                    </Grid>
 
                                 </VerticalStackLayout>
                             </Border>

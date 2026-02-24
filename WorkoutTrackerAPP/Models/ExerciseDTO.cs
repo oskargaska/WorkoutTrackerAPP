@@ -39,5 +39,10 @@ namespace WorkoutTrackerAPP.Models
 
         [JsonPropertyName("images")]
         public List<string> Images { get; set; }
+
+        
     }
+
+
 }
+

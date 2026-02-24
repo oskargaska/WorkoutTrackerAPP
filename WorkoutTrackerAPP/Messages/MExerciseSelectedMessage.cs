@@ -8,5 +8,6 @@ namespace WorkoutTrackerAPP.Messages
     public class MExerciseSelectedMessage
     {
         public ExerciseDTO Exercise { get; set; }
+        public bool IsReps { get; set; }
     }
 }

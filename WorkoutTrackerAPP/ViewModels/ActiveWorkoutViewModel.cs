@@ -23,7 +23,7 @@ namespace WorkoutTrackerAPP.ViewModels
         private WorkoutExerciseDTO _currentExercise;
         private int _currentGroupIndex;
         private int _currentItemIndex;
-        private List<WorkoutGroupDTO> _originalWorkoutGroups = new();
+        
 
         [ObservableProperty]
         private bool isWorkoutActive = false;
@@ -48,6 +48,7 @@ namespace WorkoutTrackerAPP.ViewModels
         public string pageTitle = "Active Workout";
 
         public ObservableCollection<WorkoutGroupDTO> Groups { get; } = new();
+        private readonly List<WorkoutGroupDTO> _originalGroups = new();
 
 
         public ActiveWorkoutViewModel(IExercises exercises, IWorkouts workouts)
@@ -57,7 +58,7 @@ namespace WorkoutTrackerAPP.ViewModels
 
             WeakReferenceMessenger.Default.Register<MExerciseSelectedMessage>(this, (recipient, message) =>
             {
-                OnExerciseSelected(message.Exercise);
+                OnExerciseSelected(message.Exercise, message.IsReps);
                 //Debug.WriteLine($"{message.Exercise.Name}");
             });
 
@@ -81,7 +82,8 @@ namespace WorkoutTrackerAPP.ViewModels
             WorkoutName = workout.Name;
             //Debug.WriteLine($"{WorkoutName}");
             Groups.Clear();
-            _originalWorkoutGroups.Clear();
+            _originalGroups.Clear();
+
             foreach (var group in workout.Groups)
             {
                 // Deep copy to avoid editing the original
@@ -103,10 +105,33 @@ namespace WorkoutTrackerAPP.ViewModels
                     };
                     groupCopy.Items.Add(itemCopy);
                 }
-                _originalWorkoutGroups.Add(groupCopy);
+                _originalGroups.Add(groupCopy);
+            }
+
+            foreach (var group in workout.Groups)
+            {
+                // Deep copy to avoid editing the original
+                var groupCopy = new WorkoutGroupDTO
+                {
+                    Name = group.Name
+                };
+
+                foreach (var item in group.Items)
+                {
+                    var itemCopy = new WorkoutExerciseDTO
+                    {
+                        ExerciseId = item.ExerciseId,
+                        Name = item.Name,
+                        Type = item.Type,
+                        Reps = item.Reps,
+                        Duration = item.Duration,
+                        ParentGroup = groupCopy
+                    };
+                    groupCopy.Items.Add(itemCopy);
+                }
                 Groups.Add(groupCopy);
             }
-            
+
 
         }
 
@@ -142,14 +167,18 @@ namespace WorkoutTrackerAPP.ViewModels
             if (_timer != null)
             {
                 _timer.Start();
-
+                
             }
+            await ResetGroups();
+        }
+
+        async Task ResetGroups()
+        {
             Groups.Clear();
-            foreach(var group in _originalWorkoutGroups)
+            foreach (var group in _originalGroups)
             {
                 Groups.Add(group);
             }
-            await Task.CompletedTask;
         }
 
 
@@ -303,8 +332,19 @@ namespace WorkoutTrackerAPP.ViewModels
         [RelayCommand]
         void RemoveSeconds(WorkoutExerciseDTO exercise)
         {
-            if (exercise.Duration.HasValue && exercise.Duration.Value.TotalSeconds >= 10)
-                exercise.Duration = exercise.Duration.Value.Subtract(TimeSpan.FromSeconds(10));
+            if (exercise.Duration.HasValue)
+            {
+                if (exercise.Duration.Value.TotalSeconds >= 10)
+                {
+                    exercise.Duration = exercise.Duration.Value.Subtract(TimeSpan.FromSeconds(10));
+                } else if (exercise.Duration.Value.TotalSeconds < 10 && exercise.Duration.Value.TotalSeconds > 0)
+                {
+                    exercise.Duration = exercise.Duration.Value.Subtract(exercise.Duration.Value);
+
+                }
+
+            }
+           
         }
 
         [RelayCommand]
@@ -353,28 +393,23 @@ namespace WorkoutTrackerAPP.ViewModels
             if (choice == "Exercise")
                 await AddExerciseToGroup(group);
             else if (choice == "Break Timer")
-                AddBreakToGroup(group);
+                await AddBreakToGroup(group);
         }
 
-        private async Task AddExerciseToGroup(WorkoutGroupDTO group)
+        [RelayCommand]
+        async Task AddExerciseToGroup(WorkoutGroupDTO group)
         {
             _currentGroup = group;
             var picker = App.Current.Handler.MauiContext.Services.GetRequiredService<ExercisePickerView>();
             await Shell.Current.Navigation.PushAsync(picker);
         }
 
-        private async void OnExerciseSelected(ExerciseDTO exercise)
+        private async void OnExerciseSelected(ExerciseDTO exercise, bool isReps)
         {
             if (_currentGroup == null) return;
 
-            var choice = await App.Current.Windows[0].Page.DisplayActionSheetAsync(
-                $"How to track {exercise.Name}?",
-                "Cancel",
-                null,
-                "Reps",
-                "Timer");
 
-            if (choice == "Reps")
+            if (isReps == true)
             {
                 var item = new WorkoutExerciseDTO
                 {
@@ -388,7 +423,7 @@ namespace WorkoutTrackerAPP.ViewModels
                 };
                 _currentGroup.Items.Add(item);
             }
-            else if (choice == "Timer")
+            else if (isReps == false)
             {
                 var item = new WorkoutExerciseDTO
                 {
@@ -406,7 +441,8 @@ namespace WorkoutTrackerAPP.ViewModels
             _currentGroup = null;
         }
 
-        private void AddBreakToGroup(WorkoutGroupDTO group)
+        [RelayCommand]
+        async Task AddBreakToGroup(WorkoutGroupDTO group)
         {
             _currentGroup = group;
             var breakItem = new WorkoutExerciseDTO
@@ -492,6 +528,12 @@ namespace WorkoutTrackerAPP.ViewModels
             {
                 await App.Current.Windows[0].Page.DisplayAlertAsync("Error", "Add at least one group", "OK");
                 return;
+            }
+
+            for (int i = Groups.Count - 1; i >= 0; i--)
+            {
+                if (Groups[i].Items.Count == 0)
+                    Groups.RemoveAt(i);
             }
             // Save workout changes
             IsEditMode = false;

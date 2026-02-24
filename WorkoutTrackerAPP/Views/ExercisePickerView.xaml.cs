@@ -10,4 +10,9 @@ public partial class ExercisePickerView : ContentPage
 		InitializeComponent();
 		BindingContext = exercisePickerViewModel;
 	}
+
+    private void SearchBar_Unfocused(object sender, FocusEventArgs e)
+    {
+
+    }
 }

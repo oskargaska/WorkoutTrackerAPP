@@ -50,6 +50,8 @@
             <inheritdoc/>
             <inheritdoc/>
             <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
         </member>
         <member name="P:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.IsWorkoutActive">
             <inheritdoc cref="F:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.isWorkoutActive"/>
@@ -144,6 +146,18 @@
         <member name="P:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.AddItemToGroupCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.AddItemToGroup(WorkoutTrackerAPP.Models.WorkoutGroupDTO)"/>.</summary>
         </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.addExerciseToGroupCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.AddExerciseToGroupCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.AddExerciseToGroupCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.AddExerciseToGroup(WorkoutTrackerAPP.Models.WorkoutGroupDTO)"/>.</summary>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.addBreakToGroupCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.AddBreakToGroupCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.AddBreakToGroupCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.AddBreakToGroup(WorkoutTrackerAPP.Models.WorkoutGroupDTO)"/>.</summary>
+        </member>
         <member name="F:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.removeGroupCommand">
             <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.RemoveGroupCommand"/>.</summary>
         </member>
@@ -198,6 +212,8 @@
             <inheritdoc/>
             <inheritdoc/>
             <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
         </member>
         <member name="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.WorkoutName">
             <inheritdoc cref="F:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.workoutName"/>
@@ -222,6 +238,18 @@
         </member>
         <member name="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.AddItemToGroupCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.AddItemToGroup(WorkoutTrackerAPP.Models.WorkoutGroupDTO)"/>.</summary>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.addExerciseToGroupCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.AddExerciseToGroupCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.AddExerciseToGroupCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.AddExerciseToGroup(WorkoutTrackerAPP.Models.WorkoutGroupDTO)"/>.</summary>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.addBreakToGroupCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.AddBreakToGroupCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.AddBreakToGroupCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand`1"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.AddBreakToGroup(WorkoutTrackerAPP.Models.WorkoutGroupDTO)"/>.</summary>
         </member>
         <member name="F:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.removeGroupCommand">
             <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.RemoveGroupCommand"/>.</summary>
@@ -302,6 +330,8 @@
         <member name="T:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel">
             <inheritdoc/>
             <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
         </member>
         <member name="P:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.SearchText">
             <inheritdoc cref="F:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.searchText"/>
@@ -311,11 +341,23 @@
             <param name="value">The new property value that was set.</param>
             <remarks>This method is invoked right after the value of <see cref="P:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.SearchText"/> is changed.</remarks>
         </member>
-        <member name="F:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.selectExerciseCommand">
-            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.SelectExerciseCommand"/>.</summary>
+        <member name="F:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.addExerciseWithRepsCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.AddExerciseWithRepsCommand"/>.</summary>
         </member>
-        <member name="P:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.SelectExerciseCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.SelectExercise(WorkoutTrackerAPP.Models.ExerciseDTO)"/>.</summary>
+        <member name="P:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.AddExerciseWithRepsCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.AddExerciseWithReps(WorkoutTrackerAPP.Models.ExerciseDTO)"/>.</summary>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.addExerciseWithDurationCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.AddExerciseWithDurationCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.AddExerciseWithDurationCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.AddExerciseWithDuration(WorkoutTrackerAPP.Models.ExerciseDTO)"/>.</summary>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.loadMoreItemsCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.LoadMoreItemsCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.LoadMoreItemsCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.LoadMoreItems"/>.</summary>
         </member>
         <member name="T:WorkoutTrackerAPP.ViewModels.MainViewModel">
             <inheritdoc/>
@@ -338,7 +380,6 @@
             <inheritdoc/>
             <inheritdoc/>
             <inheritdoc/>
-            <inheritdoc/>
         </member>
         <member name="F:WorkoutTrackerAPP.ViewModels.WorkoutLibraryViewModel.goBackCommand">
             <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.WorkoutLibraryViewModel.GoBackCommand"/>.</summary>
@@ -351,12 +392,6 @@
         </member>
         <member name="P:WorkoutTrackerAPP.ViewModels.WorkoutLibraryViewModel.AddNewWorkoutCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.WorkoutLibraryViewModel.AddNewWorkout"/>.</summary>
-        </member>
-        <member name="F:WorkoutTrackerAPP.ViewModels.WorkoutLibraryViewModel.editWorkoutCommand">
-            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.WorkoutLibraryViewModel.EditWorkoutCommand"/>.</summary>
-        </member>
-        <member name="P:WorkoutTrackerAPP.ViewModels.WorkoutLibraryViewModel.EditWorkoutCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.WorkoutLibraryViewModel.EditWorkout(WorkoutTrackerAPP.Models.WorkoutDTO)"/>.</summary>
         </member>
         <member name="F:WorkoutTrackerAPP.ViewModels.WorkoutLibraryViewModel.deleteWorkoutCommand">
             <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.WorkoutLibraryViewModel.DeleteWorkoutCommand"/>.</summary>

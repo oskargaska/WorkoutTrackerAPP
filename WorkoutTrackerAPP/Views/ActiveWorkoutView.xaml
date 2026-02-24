@@ -64,7 +64,7 @@
 
         </Grid>
         <Grid   Grid.Row="1"
-        RowDefinitions="Auto,Auto,*,Auto">
+                RowDefinitions="Auto,Auto,*,Auto">
 
             <!-- Workout Name -->
             <Border Grid.Row="0"
@@ -197,15 +197,15 @@
                                                             
 
                                                             <Button Grid.Column="1"
-                                                                Text="↑"
-                                                                FontSize="Large"
-                                                                FontAttributes="Bold"
-                                                                WidthRequest="20"
-                                                                HeightRequest="20"
-                                                                Padding="0"
-                                                                IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=IsEditMode}"
-                                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=MoveItemUpCommand}"
-                                                                CommandParameter="{Binding .}"/>
+                                                                    Text="↑"
+                                                                    FontSize="Large"
+                                                                    FontAttributes="Bold"
+                                                                    WidthRequest="20"
+                                                                    HeightRequest="20"
+                                                                    Padding="0"
+                                                                    IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=IsEditMode}"
+                                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=MoveItemUpCommand}"
+                                                                    CommandParameter="{Binding .}"/>
 
                                                             <Button Grid.Column="2"
                                                                     Text="↓"
@@ -244,7 +244,7 @@
                                                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=RemoveRepsCommand}"
                                                                         CommandParameter="{Binding .}"/>
                                                                 <Label  Text="{Binding Reps}"
-                                                                        WidthRequest="30"
+                                                                        WidthRequest="60"
                                                                         HorizontalOptions="Center"
                                                                         HorizontalTextAlignment="Center"
                                                                         VerticalOptions="Center"/>
@@ -330,14 +330,35 @@
                                             </DataTemplate>
                                         </BindableLayout.ItemTemplate>
                                     </VerticalStackLayout>
-
-                                    <Button Text="Add Exercise or Break"
-                                            BackgroundColor="#4CAF50"
-                                            TextColor="White"
-                                            Margin="5,5,5,0"
-                                            IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=IsEditMode}"
-                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=AddItemToGroupCommand}"
-                                            CommandParameter="{Binding .}"/>
+                                    <Grid ColumnDefinitions="Auto,Auto"
+                                          HorizontalOptions="Center"
+                                          VerticalOptions="Center">
+                                        <Button Grid.Column="0"
+                                                Text="Add Exercise"
+                                                BackgroundColor="#4CAF50"
+                                                TextColor="White"
+                                                Margin="5,5,5,0"
+                                                WidthRequest="130"
+                                                HorizontalOptions="Start"
+                                                IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=IsEditMode}"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=AddExerciseToGroupCommand}"
+                                                CommandParameter="{Binding .}"/>
+                                        
+                                        <Button Grid.Column="1"
+                                                Text="Add Break"
+                                                BackgroundColor="#4CAF50"
+                                                TextColor="White"
+                                                Margin="5,5,5,0"
+                                                WidthRequest="130"
+                                                HorizontalOptions="End"
+                                                IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=IsEditMode}"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=AddBreakToGroupCommand}"
+                                                CommandParameter="{Binding .}"/>
+                                        
+                                        
+                                        
+                                    </Grid>
+                                    
 
                                 </VerticalStackLayout>
                             </Border>
