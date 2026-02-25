@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text;
+using System.Threading.Tasks;
 using WorkoutTrackerAPP.Interfaces;
 using WorkoutTrackerAPP.Messages;
 using WorkoutTrackerAPP.Models;
@@ -23,7 +24,8 @@ namespace WorkoutTrackerAPP.ViewModels
         private WorkoutExerciseDTO _currentExercise;
         private int _currentGroupIndex;
         private int _currentItemIndex;
-        
+        private int _workoutId;
+
 
         [ObservableProperty]
         private bool isWorkoutActive = false;
@@ -33,6 +35,7 @@ namespace WorkoutTrackerAPP.ViewModels
         private bool isEditMode = false;
         public bool IsViewMode => !isEditMode;
 
+        public bool IsWorkoutEdited = false;
 
 
         [ObservableProperty]
@@ -49,6 +52,7 @@ namespace WorkoutTrackerAPP.ViewModels
 
         public ObservableCollection<WorkoutGroupDTO> Groups { get; } = new();
         private readonly List<WorkoutGroupDTO> _originalGroups = new();
+        private readonly List<WorkoutGroupDTO> _snapshotGroups = new();
 
 
         public ActiveWorkoutViewModel(IExercises exercises, IWorkouts workouts)
@@ -64,12 +68,15 @@ namespace WorkoutTrackerAPP.ViewModels
 
         }
 
-
         // FUNCTIONS TO LOAD A SELECTED WORKOUT
         public int WorkoutId
         {
             set
             {
+                if (_workoutId == value)
+                    return;
+
+                _workoutId = value;
                 if (Groups.Count != 0) return;
                 var workout = _workouts.Workouts.FirstOrDefault(w => w.Id == value);
                 if (workout == null) return;
@@ -100,7 +107,8 @@ namespace WorkoutTrackerAPP.ViewModels
                         Name = item.Name,
                         Type = item.Type,
                         Reps = item.Reps,
-                        Duration = item.Duration,
+                        Duration = item.MaxDuration,
+                        MaxDuration = item.MaxDuration,
                         ParentGroup = groupCopy
                     };
                     groupCopy.Items.Add(itemCopy);
@@ -124,65 +132,154 @@ namespace WorkoutTrackerAPP.ViewModels
                         Name = item.Name,
                         Type = item.Type,
                         Reps = item.Reps,
-                        Duration = item.Duration,
+                        Duration = item.MaxDuration,
+                        MaxDuration = item.MaxDuration,
                         ParentGroup = groupCopy
                     };
                     groupCopy.Items.Add(itemCopy);
                 }
                 Groups.Add(groupCopy);
             }
-
-
         }
 
-
-
         // FUNCTIOS TO CHANGE PAGE'S FUNCTION
-
         [RelayCommand]
         async Task GoBack()
         {
+            await DisableAllActivitiesInExercises();
+            if (IsWorkoutEdited)
+            {
+                await AskIfSaveWorkout();
+            }
             await Shell.Current.GoToAsync("//workouts");
 
         }
 
+
+
+
+        // FUNCTIONS TO START, STOP AND NAVIGATE THROUGH ACTIVE WORKOUT
+
         [RelayCommand]
-        void ToggleEditMode()
+        async Task ToggleEditMode()
         {
             IsEditMode = true;
-            if(_timer != null)
-            {
-                _timer.Stop();
 
-            }
+            await StopWorkout();
+                        
+            await SnapshotGroups();
             
         }
 
+        async Task StopWorkout()
+        {
+            if (IsWorkoutActive == false) return;
+            else
+            {
+                if(_currentExercise != null)
+                {
+                    if (_currentExercise.Duration.HasValue)
+                    {
+                        _timer?.Stop();
+                    }
+                }
+            }
+        }
+
+        async Task RestartWorkout()
+        {
+            if (IsWorkoutActive == false) return;
+            else
+            {
+                if (_currentExercise != null)
+                {
+                    await ResetIndexesOnEdit();
+
+                    if (_currentExercise.Duration.HasValue)
+                    {
+                        _timer?.Start();
+                    }
+                }
+            }
+        }
 
         [RelayCommand]
         async Task CancelEdit()
         {
             // Discard changes, reload original
             IsEditMode = false;
-            if (_timer != null)
-            {
-                _timer.Start();
-                
-            }
+
             await ResetGroups();
+            await RestartWorkout();
+
+            
         }
 
         async Task ResetGroups()
         {
             Groups.Clear();
-            foreach (var group in _originalGroups)
+            foreach (var group in _snapshotGroups)
             {
-                Groups.Add(group);
-            }
+                // Deep copy to avoid editing the original
+                var groupCopy = new WorkoutGroupDTO
+                {
+                    Name = group.Name
+                };
+
+                foreach (var item in group.Items)
+                {
+                    var itemCopy = new WorkoutExerciseDTO
+                    {
+                        ExerciseId = item.ExerciseId,
+                        Name = item.Name,
+                        Type = item.Type,
+                        Reps = item.Reps,
+                        Duration = item.Duration,
+                        ParentGroup = groupCopy,
+                        IsActive = item.IsActive
+                    };
+                    if (itemCopy.IsActive)
+                    {
+                        _currentExercise = itemCopy;
+                    }
+                    
+                    groupCopy.Items.Add(itemCopy);
+                }
+                Groups.Add(groupCopy);
+            }  
         }
 
+        async Task SnapshotGroups()
+        {
+            _snapshotGroups.Clear();
 
-        // FUNCTIONS TO START, STOP AND NAVIGATE THROUGH ACTIVE WORKOUT
+            foreach (var group in Groups)
+            {
+                // Deep copy to avoid editing the original
+                var groupCopy = new WorkoutGroupDTO
+                {
+                    Name = group.Name
+                };
+
+                foreach (var item in group.Items)
+                {
+                    var itemCopy = new WorkoutExerciseDTO
+                    {
+                        ExerciseId = item.ExerciseId,
+                        Name = item.Name,
+                        Type = item.Type,
+                        Reps = item.Reps,
+                        Duration = item.Duration,
+                        MaxDuration = item.MaxDuration,
+                        ParentGroup = groupCopy,
+                        IsActive = item.IsActive
+                    };
+                    
+                    groupCopy.Items.Add(itemCopy);
+                }
+                _snapshotGroups.Add(groupCopy);
+            }
+        }
 
         [RelayCommand]
         void StartWorkout()
@@ -199,21 +296,50 @@ namespace WorkoutTrackerAPP.ViewModels
         }
 
         [RelayCommand]
-        void CompleteWorkout()
+        async Task SaveEditChanges()
         {
-            IsStart = false;
-            IsWorkoutActive = false;
-            _timer?.Stop();
+            if (string.IsNullOrWhiteSpace(WorkoutName))
+            {
+                await App.Current.Windows[0].Page.DisplayAlertAsync("Error", "Please enter a workout name", "OK");
+                return;
+            }
 
-            if (_currentExercise != null)
-                _currentExercise.IsActive = false;
+            if (Groups.Count == 0)
+            {
+                await App.Current.Windows[0].Page.DisplayAlertAsync("Error", "Add at least one group", "OK");
+                return;
+            }
 
-            _currentGroupIndex = 0;
-            _currentItemIndex = 0;
-
-            // Save session, show completion message, etc.
-            App.Current.MainPage.DisplayAlertAsync("Complete", "Workout finished!", "OK");
+            for (int i = Groups.Count - 1; i >= 0; i--)
+            {
+                if (Groups[i].Items.Count == 0)
+                    Groups.RemoveAt(i);
+            }
+            // Save workout changes
+            IsEditMode = false;
+            IsWorkoutEdited = true;
+            await RestartWorkout();
         }
+
+        async Task ResetIndexesOnEdit()
+        {
+            for (int g = 0; g < Groups.Count; g++)
+            {
+                var index = Groups[g].Items.IndexOf(Groups[g].Items.FirstOrDefault(x => x.IsActive));
+                if (index >= 0)
+                {
+                    _currentGroupIndex = g;
+                    _currentItemIndex = index;
+                    _currentExercise = Groups[g].Items[index];
+                    return;
+                }
+            }
+        }
+
+
+
+
+        // WORKOUT ITERATION LOGIC
 
         [RelayCommand]
         void NextExercise()
@@ -223,7 +349,11 @@ namespace WorkoutTrackerAPP.ViewModels
 
             // Deactivate current
             if (_currentExercise != null)
+            {
+                Debug.WriteLine($"Current exercise is {_currentExercise.IsActive}");
                 _currentExercise.IsActive = false;
+            }
+                
 
             // Move to next
             _currentItemIndex++;
@@ -278,6 +408,7 @@ namespace WorkoutTrackerAPP.ViewModels
 
         private void StartCurrentExercise()
         {
+
             if (_currentGroupIndex < 0 || _currentGroupIndex >= Groups.Count)
                 return;
 
@@ -306,6 +437,7 @@ namespace WorkoutTrackerAPP.ViewModels
 
         private void OnTimerTick(object sender, EventArgs e)
         {
+
             if (_currentExercise?.Duration > TimeSpan.Zero)
             {
                 _currentExercise.Duration = _currentExercise.Duration.Value.Subtract(TimeSpan.FromSeconds(1));
@@ -318,6 +450,10 @@ namespace WorkoutTrackerAPP.ViewModels
             }
         }
 
+        
+
+
+
 
 
         // FUNCTIONS TO EDIT EXERCISE'S REPS OR DURATION
@@ -325,26 +461,31 @@ namespace WorkoutTrackerAPP.ViewModels
         [RelayCommand]
         void AddSeconds(WorkoutExerciseDTO exercise)
         {
-            if (exercise.Duration.HasValue)
-                exercise.Duration = exercise.Duration.Value.Add(TimeSpan.FromSeconds(10));
+            if (!exercise.Duration.HasValue) return;
+
+            var delta = TimeSpan.FromSeconds(10);
+
+            exercise.Duration += delta;        
+            exercise.MaxDuration += delta;     
         }
 
         [RelayCommand]
         void RemoveSeconds(WorkoutExerciseDTO exercise)
         {
-            if (exercise.Duration.HasValue)
-            {
-                if (exercise.Duration.Value.TotalSeconds >= 10)
-                {
-                    exercise.Duration = exercise.Duration.Value.Subtract(TimeSpan.FromSeconds(10));
-                } else if (exercise.Duration.Value.TotalSeconds < 10 && exercise.Duration.Value.TotalSeconds > 0)
-                {
-                    exercise.Duration = exercise.Duration.Value.Subtract(exercise.Duration.Value);
+            if (!exercise.Duration.HasValue) return;
 
-                }
+            var delta = TimeSpan.FromSeconds(10);
 
-            }
-           
+            var newDuration = exercise.Duration.Value - delta;
+            if (newDuration < TimeSpan.Zero)
+                newDuration = TimeSpan.Zero;
+
+            var newMax = exercise.MaxDuration - delta;
+            if (newMax < TimeSpan.Zero)
+                newMax = TimeSpan.Zero;
+
+            exercise.Duration = newDuration;
+            exercise.MaxDuration = newMax;
         }
 
         [RelayCommand]
@@ -362,6 +503,11 @@ namespace WorkoutTrackerAPP.ViewModels
         }
 
 
+
+
+
+
+
         // FUNCTIONS TO EDIT THE WORKOUT
 
         [RelayCommand]
@@ -372,28 +518,6 @@ namespace WorkoutTrackerAPP.ViewModels
                 Name = $"Group {Groups.Count + 1}"
             };
             Groups.Add(group);
-        }
-
-        [RelayCommand]
-        async Task AddItemToGroup(WorkoutGroupDTO group)
-        {
-            if (group.Items.Count == 0)
-            {
-                await AddExerciseToGroup(group);
-                return;
-            }
-
-            var choice = await App.Current.MainPage.DisplayActionSheetAsync(
-                "Add to group",
-                "Cancel",
-                null,
-                "Exercise",
-                "Break Timer");
-
-            if (choice == "Exercise")
-                await AddExerciseToGroup(group);
-            else if (choice == "Break Timer")
-                await AddBreakToGroup(group);
         }
 
         [RelayCommand]
@@ -408,7 +532,6 @@ namespace WorkoutTrackerAPP.ViewModels
         {
             if (_currentGroup == null) return;
 
-
             if (isReps == true)
             {
                 var item = new WorkoutExerciseDTO
@@ -418,8 +541,8 @@ namespace WorkoutTrackerAPP.ViewModels
                     Type = EWorkoutItemType.Exercise,
                     Reps = 0,
                     Duration = null,
+                    MaxDuration = null,
                     ParentGroup = _currentGroup
-
                 };
                 _currentGroup.Items.Add(item);
             }
@@ -432,12 +555,11 @@ namespace WorkoutTrackerAPP.ViewModels
                     Type = EWorkoutItemType.Exercise,
                     Reps = null,
                     Duration = TimeSpan.FromSeconds(30),
+                    MaxDuration = TimeSpan.FromSeconds(30),
                     ParentGroup = _currentGroup
-
                 };
                 _currentGroup.Items.Add(item);
             }
-
             _currentGroup = null;
         }
 
@@ -451,8 +573,8 @@ namespace WorkoutTrackerAPP.ViewModels
                 Name = "Rest",
                 Type = EWorkoutItemType.Timer,
                 Duration = TimeSpan.FromSeconds(60),
+                MaxDuration = TimeSpan.FromSeconds(60),
                 ParentGroup = group
-
             };
             _currentGroup.Items.Add(breakItem);
         }
@@ -515,31 +637,95 @@ namespace WorkoutTrackerAPP.ViewModels
             }
         }
 
+
+
+
+
+        // WORKOUT ENDED OR STOPPED
         [RelayCommand]
-        async Task SaveChanges()
+        async Task CompleteWorkout()
         {
-            if (string.IsNullOrWhiteSpace(WorkoutName))
-            {
-                await App.Current.Windows[0].Page.DisplayAlertAsync("Error", "Please enter a workout name", "OK");
-                return;
-            }
+            await DisableAllActivitiesInExercises();
+            IsStart = false;
+            IsWorkoutActive = false;
+            _timer?.Stop();
 
-            if (Groups.Count == 0)
-            {
-                await App.Current.Windows[0].Page.DisplayAlertAsync("Error", "Add at least one group", "OK");
-                return;
-            }
+            if (_currentExercise != null)
+                _currentExercise.IsActive = false;
 
-            for (int i = Groups.Count - 1; i >= 0; i--)
+            _currentGroupIndex = 0;
+            _currentItemIndex = 0;
+
+            // Save session, show completion message, etc.
+            App.Current.MainPage.DisplayAlertAsync("Complete", "Workout finished!", "OK");
+        }
+
+        async Task AskIfSaveWorkout()
+        {
+            var choice = await App.Current.MainPage.DisplayActionSheetAsync(
+                "You edited the workout, do you want to save it or not?",
+                "Cancel",
+                null,
+                "Yes",
+                "No");
+
+            if (choice == "Yes")
+                await AskIfSaveWorkoutAsNewOrOld();
+            else if (choice == "No")
+                return;
+        }
+
+        async Task AskIfSaveWorkoutAsNewOrOld()
+        {
+            var choice = await App.Current.MainPage.DisplayActionSheetAsync(
+                "Save it as New Workout or overwrite current Workout?",
+                "Cancel",
+                null,
+                "New",
+                "Overwrite");
+
+            if (choice == "New")
+                await SaveWorkoutAsNew();
+            else if (choice == "Overwrite")
+                await SaveWorkoutOverwrite();
+        }
+
+        async Task SaveWorkoutAsNew()
+        {
+            if (Groups.Count == 0) return;
+            var workout = new WorkoutDTO
             {
-                if (Groups[i].Items.Count == 0)
-                    Groups.RemoveAt(i);
-            }
-            // Save workout changes
-            IsEditMode = false;
+                Name = WorkoutName,
+                Groups = Groups.ToList(),
+            };
+            await _workouts.AddWorkoutAsync(workout);
 
         }
 
+        async Task SaveWorkoutOverwrite()
+        {
+            if (Groups.Count == 0) return;
 
+            var workout = new WorkoutDTO
+            {
+                Id = _workoutId,
+                Name = WorkoutName,
+                Groups = Groups.ToList(),
+
+            };
+            await _workouts.UpdateWorkoutAsync(workout);
+        }
+
+        async Task DisableAllActivitiesInExercises()
+        {
+            foreach (var group in Groups)
+            {
+                if (group == null) continue;
+                foreach (var exercise in group.Items)
+                {
+                    exercise.IsActive = false;
+                }
+            }
+        }
     }
 }

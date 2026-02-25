@@ -153,8 +153,8 @@
                                                                      WidthRequest="20"
                                                                      HeightRequest="20"
                                                                      Padding="0"
-                                                                     IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=IsEditMode}"
-                                                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=MoveItemUpCommand}"
+                                                                     IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=IsEditMode}"
+                                                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=MoveItemUpCommand}"
                                                                      CommandParameter="{Binding .}"/>
 
                                                             <Button Grid.Column="2"
@@ -164,8 +164,8 @@
                                                                      WidthRequest="20"
                                                                      HeightRequest="20"
                                                                      Padding="0"
-                                                                     IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=IsEditMode}"
-                                                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=MoveItemDownCommand}"
+                                                                     IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=IsEditMode}"
+                                                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=MoveItemDownCommand}"
                                                                      CommandParameter="{Binding .}"/>
 
                                                             <Button Grid.Column="3"
@@ -174,8 +174,8 @@
                                                                      WidthRequest="00"
                                                                      HeightRequest="20"
                                                                      Padding="0"
-                                                                     IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=IsEditMode}"
-                                                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=RemoveItemFromGroupCommand}"
+                                                                     IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=IsEditMode}"
+                                                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=RemoveItemFromGroupCommand}"
                                                                      CommandParameter="{Binding .}"/>
 
                                                         </Grid>
@@ -191,7 +191,7 @@
                                                                          HeightRequest="30"
                                                                          WidthRequest="40"
                                                                          CornerRadius="15"
-                                                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=RemoveRepsCommand}"
+                                                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=RemoveRepsCommand}"
                                                                          CommandParameter="{Binding .}"/>
                                                                 <Label  Text="{Binding Reps}"
                                                                          WidthRequest="60"
@@ -204,7 +204,7 @@
                                                                          HeightRequest="30"
                                                                          WidthRequest="40"
                                                                          CornerRadius="15"
-                                                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=AddRepsCommand}"
+                                                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=AddRepsCommand}"
                                                                          CommandParameter="{Binding .}"/>
 
                                                             </HorizontalStackLayout>
@@ -220,7 +220,7 @@
                                                                          HeightRequest="30"
                                                                          WidthRequest="40"
                                                                          CornerRadius="15"
-                                                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=RemoveSecondsCommand}"
+                                                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=RemoveSecondsCommand}"
                                                                          CommandParameter="{Binding .}"/>
 
                                                                 <Label  Text="{Binding RemainingTimeDisplay}"                                                                    
@@ -236,7 +236,7 @@
                                                                          HeightRequest="30"
                                                                          WidthRequest="40"
                                                                          CornerRadius="15"
-                                                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=AddSecondsCommand}"
+                                                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=AddSecondsCommand}"
                                                                          CommandParameter="{Binding .}"/>
 
 
@@ -245,14 +245,14 @@
                                                                      Grid.Column="1"
                                                                      HorizontalOptions="End"
                                                                      VerticalOptions="Center"
-                                                                     IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=IsViewMode}">
+                                                                     IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=IsViewMode}">
                                                                 <Button Grid.Column="0"
                                                                          Text="&lt;"
                                                                          IsVisible="{Binding IsActive}"
                                                                          HeightRequest="40"
                                                                          WidthRequest="40"
                                                                          HorizontalOptions="End"
-                                                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=PreviousExerciseCommand}"
+                                                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=PreviousExerciseCommand}"
                                                                          CommandParameter="{Binding .}">
 
                                                                 </Button>
@@ -262,7 +262,7 @@
                                                                          HeightRequest="40"
                                                                          WidthRequest="40"
                                                                          HorizontalOptions="End"
-                                                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=NextExerciseCommand}"
+                                                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=NextExerciseCommand}"
                                                                          CommandParameter="{Binding .}">
 
                                                                 </Button>

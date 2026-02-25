@@ -16,9 +16,14 @@ namespace WorkoutTrackerAPP.Models
         [ObservableProperty]
         public int? reps;
 
+        // Persisted template value
+        public TimeSpan? MaxDuration { get; set; }
+
+        // Runtime / UI
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(RemainingTimeDisplay))]
-        public TimeSpan? duration;   // if timer based or a break
+        [JsonIgnore]
+        private TimeSpan? duration;
 
         [JsonIgnore]
         public bool IsRepsVisible => Reps.HasValue;

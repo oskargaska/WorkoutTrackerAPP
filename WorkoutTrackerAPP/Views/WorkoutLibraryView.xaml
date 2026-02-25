@@ -106,27 +106,6 @@
                                        FontAttributes="Bold"
                                        TextColor="#333"/>
 
-                                <!-- Group count badge -->
-                                <Border Grid.Row="0"
-                                        Grid.Column="1"
-                                        Padding="8,4"
-                                        BackgroundColor="#E3F2FD"
-                                        StrokeThickness="0">
-                                    <Border.StrokeShape>
-                                        <RoundRectangle CornerRadius="12"/>
-                                    </Border.StrokeShape>
-                                    <Label FontSize="12"
-                                           TextColor="#1976D2"
-                                           VerticalTextAlignment="Center">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span Text="{Binding Id}"/>
-                                                <Span Text=" groups"/>
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                </Border>
-
                                 <!-- Total exercises count -->
                                 <Label Grid.Row="1"
                                        Grid.ColumnSpan="2"

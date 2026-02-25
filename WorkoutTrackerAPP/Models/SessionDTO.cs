@@ -6,7 +6,7 @@ namespace WorkoutTrackerAPP.Models
 {
     public class SessionDTO
     {
-        public int Id { get; set; }          // DB autoincrement   // links to saved workout
+        public int Id { get; set; }          
         public DateTime Date { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }

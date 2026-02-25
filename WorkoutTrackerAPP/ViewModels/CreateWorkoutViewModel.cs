@@ -104,6 +104,7 @@ namespace WorkoutTrackerAPP.ViewModels
                     Name = exercise.Name,
                     Type = EWorkoutItemType.Exercise,
                     Reps = 0,
+                    MaxDuration = null,
                     Duration = null,
                     ParentGroup = _currentGroup
 
@@ -118,6 +119,7 @@ namespace WorkoutTrackerAPP.ViewModels
                     Name = exercise.Name,
                     Type = EWorkoutItemType.Exercise,
                     Reps = null,
+                    MaxDuration = TimeSpan.FromSeconds(30),
                     Duration = TimeSpan.FromSeconds(30),
                     ParentGroup = _currentGroup
 
@@ -137,6 +139,7 @@ namespace WorkoutTrackerAPP.ViewModels
                 Name = "Rest",
                 Type = EWorkoutItemType.Timer,
                 Duration = TimeSpan.FromSeconds(60),
+                MaxDuration = TimeSpan.FromSeconds(60),
                 ParentGroup = group
                 
             };
@@ -230,7 +233,55 @@ namespace WorkoutTrackerAPP.ViewModels
             }
         }
 
-        
+        [RelayCommand]
+        void AddSeconds(WorkoutExerciseDTO exercise)
+        {
+            if (!exercise.Duration.HasValue)
+                return;
+
+            var delta = TimeSpan.FromSeconds(10);
+
+            exercise.Duration += delta;        // affects current session
+            exercise.MaxDuration += delta;     // affects workout definition
+
+        }
+
+        [RelayCommand]
+        void RemoveSeconds(WorkoutExerciseDTO exercise)
+        {
+            if (!exercise.Duration.HasValue)
+                return;
+
+            var delta = TimeSpan.FromSeconds(10);
+
+            var newDuration = exercise.Duration.Value - delta;
+            if (newDuration < TimeSpan.Zero)
+                newDuration = TimeSpan.Zero;
+
+            var newMax = exercise.MaxDuration - delta;
+            if (newMax < TimeSpan.Zero)
+                newMax = TimeSpan.Zero;
+
+            exercise.Duration = newDuration;
+            exercise.MaxDuration = newMax;
+
+        }
+
+        [RelayCommand]
+        void AddReps(WorkoutExerciseDTO exercise)
+        {
+            if (exercise.Reps.HasValue)
+                exercise.Reps += 1;
+        }
+
+        [RelayCommand]
+        void RemoveReps(WorkoutExerciseDTO exercise)
+        {
+            if (exercise.Reps.HasValue && exercise.Reps.Value >= 1)
+                exercise.Reps -= 1;
+        }
+
+
 
 
     }
