@@ -69,10 +69,7 @@
             <!-- Workout Name -->
             <Border Grid.Row="0"
                     Padding="15"
-                    Margin="10,10,10,5"
-                    StrokeThickness="1"
-                    Stroke="#E0E0E0"
-                    BackgroundColor="White">
+                    Margin="10,10,10,5">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="8"/>
                 </Border.StrokeShape>
@@ -88,10 +85,9 @@
             <!-- Add Group Button -->
             <Button Grid.Row="1"
                     Text="+ Add Group"
-                    BackgroundColor="#2196F3"
-                    TextColor="White"
+                    BackgroundColor="{DynamicResource Secondary}"
+                    TextColor="{DynamicResource Tertiary}"
                     Margin="10,5"
-                    CornerRadius="8"
                     IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=IsEditMode}"
                     Command="{Binding AddGroupCommand}"/>
 
@@ -104,8 +100,8 @@
                         <DataTemplate x:DataType="models:WorkoutGroupDTO">
                             <Border Padding="10"
                                     StrokeThickness="2"
-                                    Stroke="#2196F3"
-                                    BackgroundColor="#F5F5F5">
+                                    Stroke="{DynamicResource Tertiary}"
+                                    BackgroundColor="{DynamicResource Primary}">
                                 <Border.StrokeShape>
                                     <RoundRectangle CornerRadius="12"/>
                                 </Border.StrokeShape>
@@ -163,11 +159,21 @@
                                                 <Border Padding="10"
                                                         Margin="5,0"
                                                         StrokeThickness="1"
-                                                        Stroke="#DDD"
-                                                        BackgroundColor="White">
+                                                        Stroke="{DynamicResource Tertiary}"
+                                                        BackgroundColor="{DynamicResource Background}">
                                                     <Border.StrokeShape>
                                                         <RoundRectangle CornerRadius="8"/>
                                                     </Border.StrokeShape>
+                                                    <Border.Triggers>
+                                                        <DataTrigger TargetType="Border"
+                                                                     Binding="{Binding IsActive}"
+                                                                     Value="True">
+                                                            <Setter Property="BackgroundColor"
+                                                                    Value="{DynamicResource Secondary}"/>
+
+
+                                                        </DataTrigger>
+                                                    </Border.Triggers>
 
                                                     <VerticalStackLayout Spacing="5">
                                                         
@@ -177,25 +183,10 @@
                                                             <Label  Grid.Column="0"
                                                                     Text="{Binding Name}"
                                                                     FontSize="14"
-                                                                    TextColor="Black"
+                                                                    TextColor="{DynamicResource Tertiary}"
                                                                     FontAttributes="Bold">
-                                                                <Label.Triggers>
-                                                                    <DataTrigger TargetType="Label"
-                                                                                 Binding="{Binding IsActive}"
-                                                                                 Value="True">
-                                                                        <Setter Property="TextColor"
-                                                                                Value="Green"/>
-
-
-                                                                    </DataTrigger>
-                                                                </Label.Triggers>
-                                                                
-                                                                
-                                                                
                                                             </Label>
                                                             
-                                                            
-
                                                             <Button Grid.Column="1"
                                                                     Text="↑"
                                                                     FontSize="Large"
@@ -274,7 +265,7 @@
                                                                             CommandParameter="{Binding .}"/>
 
                                                                 <Label  Text="{Binding RemainingTimeDisplay}"                                                                    
-                                                                            TextColor="#666"
+                                                                            TextColor="{DynamicResource Tertiary}"
                                                                             WidthRequest="60"
                                                                             VerticalOptions="Center"
                                                                             HorizontalTextAlignment="Center"
@@ -298,6 +289,7 @@
                                                                     IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=IsViewMode}">
                                                                 <Button Grid.Column="0"
                                                                         Text="&lt;"
+                                                                        FontAttributes="Bold"
                                                                         IsVisible="{Binding IsActive}"
                                                                         HeightRequest="40"
                                                                         WidthRequest="40"
@@ -335,8 +327,8 @@
                                           VerticalOptions="Center">
                                         <Button Grid.Column="0"
                                                 Text="Add Exercise"
-                                                BackgroundColor="#4CAF50"
-                                                TextColor="White"
+                                                BackgroundColor="{DynamicResource Secondary}"
+                                                TextColor="{DynamicResource Tertiary}"
                                                 Margin="5,5,5,0"
                                                 WidthRequest="130"
                                                 HorizontalOptions="Start"
@@ -346,8 +338,8 @@
                                         
                                         <Button Grid.Column="1"
                                                 Text="Add Break"
-                                                BackgroundColor="#4CAF50"
-                                                TextColor="White"
+                                                BackgroundColor="{DynamicResource Secondary}"
+                                                TextColor="{DynamicResource Tertiary}"
                                                 Margin="5,5,5,0"
                                                 WidthRequest="130"
                                                 HorizontalOptions="End"

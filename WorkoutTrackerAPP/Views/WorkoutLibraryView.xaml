@@ -88,9 +88,7 @@
                         <!-- Workout card -->
                         <Border Padding="15"
                                 Margin="0,5"
-                                StrokeThickness="1"
-                                Stroke="#E0E0E0"
-                                BackgroundColor="White">
+                                StrokeThickness="1">
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="10"/>
                             </Border.StrokeShape>
@@ -103,15 +101,13 @@
                                        Grid.Column="0"
                                        Text="{Binding Name}"
                                        FontSize="20"
-                                       FontAttributes="Bold"
-                                       TextColor="#333"/>
+                                       FontAttributes="Bold"/>
 
                                 <!-- Total exercises count -->
                                 <Label Grid.Row="1"
                                        Grid.ColumnSpan="2"
                                        Margin="0,5,0,0"
-                                       FontSize="14"
-                                       TextColor="#666">
+                                       FontSize="14">
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text="💪 "/>
@@ -121,14 +117,6 @@
                                     </Label.FormattedText>
                                 </Label>
 
-                                <!-- Group names preview -->
-                                <Label Grid.Row="2"
-                                       Grid.ColumnSpan="2"
-                                       Text="{Binding GroupNamesPreview}"
-                                       FontSize="13"
-                                       TextColor="#888"
-                                       Margin="0,5,0,0"
-                                       LineBreakMode="TailTruncation"/>
 
                             </Grid>
                         </Border>
