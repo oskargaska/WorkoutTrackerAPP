@@ -1,26 +1,58 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-
+             xmlns:converters="clr-namespace:WorkoutTrackerAPP.Converters"
              xmlns:viewModels="clr-namespace:WorkoutTrackerAPP.ViewModels"
              xmlns:models="clr-namespace:WorkoutTrackerAPP.Models"
              x:Class="WorkoutTrackerAPP.Views.ExercisePickerView"
              x:DataType="viewModels:ExercisePickerViewModel"
-             Title="Select Exercise">
-    <Grid RowDefinitions="Auto,*">
+             Shell.BackgroundColor="{DynamicResource Background}">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" />
+    </Shell.BackButtonBehavior>
+    
+    <ContentPage.Resources>
+        <converters:ListToStringConverter x:Key="ListToStringConverter"/>
+    </ContentPage.Resources>
 
+
+
+    <Grid RowDefinitions="Auto,Auto,*">
+        <Button Grid.Column="0"
+                Text="&lt;"
+                FontSize="Large"
+                HeightRequest="20"
+                WidthRequest="70"
+                CornerRadius="10"
+                VerticalOptions="Center"
+                HorizontalOptions="Start"
+                Margin="5"
+                Padding="0"
+                IsVisible="{Binding IsViewMode}"
+                Command="{Binding GoBackCommand}"/>
+
+
+        <Label  Grid.Column="1"
+                Text="Pick an Exercise"
+                FontSize="Large"
+                FontAttributes="Bold"
+                TextColor="{DynamicResource Tertiary}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"/>
+        
+        
         <!-- Search Bar -->
-        <SearchBar Grid.Row="0"
+        <SearchBar Grid.Row="1"
                    Placeholder="Search exercises..."
                    Text="{Binding SearchText}"
-                   Margin="10">
-            
-            
-            
-        </SearchBar>
+                   Margin="10"/>
 
-            <!-- Exercise List -->
-        <CollectionView Grid.Row="1"
+
+
+
+
+        <!-- Exercise List -->
+        <CollectionView Grid.Row="2"
                         ItemsSource="{Binding FilteredExercises}"
                         SelectionMode="Single"
                         SelectedItem="{Binding SelectedItem}"
@@ -30,22 +62,75 @@
                         RemainingItemsThresholdReachedCommand="{Binding LoadMoreItemsCommand}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:ExerciseDTO">
-                    <Border Padding="15"
-                            Margin="10,5"
-                            StrokeThickness="1"
-                            Stroke="#E0E0E0"
-                            BackgroundColor="White">
+                    <Border Padding="15" 
+                            Margin="5,5">
+                        
                         <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="8"/>
+                            <RoundRectangle CornerRadius="10"/>
                         </Border.StrokeShape>
 
                         <VerticalStackLayout Spacing="5">
-                            <Label Text="{Binding Name}"
-                                   FontSize="16"
-                                   FontAttributes="Bold"/>
-                            <Label Text="{Binding Equipment}"
-                                   FontSize="12"
-                                   TextColor="#666"/>
+
+
+                            <Grid RowDefinitions="Auto,Auto,Auto" 
+                                  ColumnDefinitions="*,Auto">
+
+                                <!-- Exercise name -->
+                                <Label Grid.Row="0" Grid.Column="0"
+                                       Text="{Binding Name}"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       TextColor="{DynamicResource Tertiary}"/>
+
+                                <!-- Level badge -->
+                                <Border Grid.Row="0" Grid.Column="1"
+                                        Padding="8,4"
+                                        BackgroundColor="{DynamicResource Tertiary}"
+                                        StrokeThickness="0"
+                                        HeightRequest="30">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="12"/>
+                                    </Border.StrokeShape>
+                                    <Label Text="{Binding Level}"
+                                           FontSize="12"
+                                           TextColor="{DynamicResource Primary}"
+                                           VerticalTextAlignment="Center"/>
+                                </Border>
+
+                                <!-- Equipment & Mechanic -->
+                                <HorizontalStackLayout Grid.Row="1" Grid.ColumnSpan="2"
+                                                       Spacing="10"
+                                                       Margin="0,5,0,0">
+                                    <Label Text="{Binding Equipment}"
+                                           FontSize="14"
+                                           TextColor="{DynamicResource Tertiary}"/>
+                                    <Label Text="•"
+                                           FontSize="14"
+                                           TextColor="{DynamicResource Tertiary}"/>
+                                    <Label Text="{Binding Mechanic}"
+                                           FontSize="14"
+                                           TextColor="{DynamicResource Tertiary}"/>
+                                </HorizontalStackLayout>
+
+                                <!-- Primary muscles -->
+                                <Label Grid.Row="2" Grid.ColumnSpan="2"
+                                       FontSize="13"
+                                       TextColor="{DynamicResource Tertiary}"
+                                       Margin="0,5,0,0">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="💪 "/>
+                                            <Span Text="{Binding PrimaryMuscles, Converter={StaticResource ListToStringConverter}}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                            </Grid>
+
+
+
+
+
                             <Grid   ColumnDefinitions="Auto,Auto,Auto"
                                     x:Name="Buttons"
                                     IsVisible="False"
@@ -53,6 +138,7 @@
                                 <Label  Grid.Column="0"
                                         Text="Add with:"
                                         FontSize="12"
+                                        WidthRequest="100"
                                         HorizontalOptions="Start"
                                         VerticalOptions="Center"/>
 
@@ -61,21 +147,21 @@
                                         FontSize="12"
                                         VerticalOptions="Center"
                                         HorizontalOptions="Center"
-                                        WidthRequest="70"
+                                        WidthRequest="100"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ExercisePickerViewModel}}, Path=AddExerciseWithDurationCommand}"
                                         CommandParameter="{Binding .}"/>
                                 <Button Grid.Column="2"
-                                        Text="Reps"
+                                        Text="Repetitions"
                                         FontSize="12"
                                         VerticalOptions="Center"
                                         HorizontalOptions="Center"
-                                        WidthRequest="70"
+                                        WidthRequest="100"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ExercisePickerViewModel}}, Path=AddExerciseWithRepsCommand}"
                                         CommandParameter="{Binding .}"/>
                             </Grid>
                         </VerticalStackLayout>
-                        
-                        
+
+
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup Name="CommonStates">
 
@@ -92,13 +178,13 @@
                                         <Setter TargetName="Buttons"
                                                 Property="IsVisible"
                                                 Value="True" />
+                                        <Setter Property="BackgroundColor" Value="{DynamicResource Secondary}"/>
                                     </VisualState.Setters>
                                 </VisualState>
-
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        
-                        
+
+
                     </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

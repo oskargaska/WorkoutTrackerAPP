@@ -14,8 +14,15 @@ namespace WorkoutTrackerAPP.ViewModels
     {
         private readonly IExercises _exercises;
 
+
+        [ObservableProperty]
+        private string searchText = "";
+
         private const int PageSize = 20;
         private int _currentPage = 0;
+
+        [ObservableProperty]
+        private bool isFilterPanelVisible = false;
 
         public ObservableCollection<ExerciseDTO> FilteredExercises { get; } = new();
 
@@ -35,19 +42,47 @@ namespace WorkoutTrackerAPP.ViewModels
 
         }
 
+        partial void OnSearchTextChanged(string value)
+        {
+            ApplyFilter();
+        }
+
+        private void ApplyFilter()
+        {
+            var filtered = _exercises.Exercises.AsEnumerable();
+
+            if (!string.IsNullOrWhiteSpace(SearchText))
+            {
+                filtered = filtered.Where(e =>
+                    e.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase));
+            }
+            else
+            {
+                FilteredExercises.Clear();
+                _currentPage = 0;
+                _ = LoadMoreItems();
+                return;
+            }
+
+
+            FilteredExercises.Clear();
+            foreach (var exercise in filtered)
+                FilteredExercises.Add(exercise);
+        }
+
+
         [RelayCommand]
         async Task AddNewExercise()
         {
 
-            App.Current.Windows[0].Page.DisplayAlertAsync("Add New Exercise", "Button has been pressed", "Close");
+            await App.Current.Windows[0].Page.DisplayAlertAsync("Add New Exercise", "Button has been pressed", "Close");
             
             //await Shell.Current.GoToAsync("..");
 
         }
 
 
-        [ObservableProperty]
-        private bool isFilterPanelVisible = false;
+        
 
 
         [RelayCommand]

@@ -1,4 +1,4 @@
-<api type="debug" assembly-name="WorkoutTrackerAPP" mvid="760f8ef1e13a4074845b948c57190807">
+<api type="debug" assembly-name="WorkoutTrackerAPP" mvid="1b979a3292734b278c68230a854b0af2">
   <java-to-managed>
     <entry java-name="crc64c0cc726991cd1e06/MainActivity" managed-name="WorkoutTrackerAPP.MainActivity, WorkoutTrackerAPP" managed-type-token-id="33554456" />
     <entry java-name="crc64c0cc726991cd1e06/MainApplication" managed-name="WorkoutTrackerAPP.MainApplication, WorkoutTrackerAPP" managed-type-token-id="33554457" />

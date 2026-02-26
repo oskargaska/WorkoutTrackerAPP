@@ -62,9 +62,11 @@ namespace WorkoutTrackerAPP
                 var database = app.Services.GetRequiredService<IDatabaseConnection>();
                 var exercises = app.Services.GetRequiredService<IExercises>();
                 var workouts = app.Services.GetRequiredService<IWorkouts>();
+                var sessions = app.Services.GetRequiredService<ISessions>();
                 await database.InitializeAsync();
                 await exercises.LoadFromDatabaseAsync();
                 await workouts.LoadFromDatabaseAsync();
+                await sessions.LoadFromDatabaseAsync();
 
             });
 

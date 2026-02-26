@@ -63,11 +63,11 @@
                                     Spacing="10">
                     <Label Text="No workouts yet"
                            FontSize="20"
-                           TextColor="#999"
+                           TextColor="{DynamicResource Tertiary}"
                            HorizontalOptions="Center"/>
                     <Label Text="Tap the + above to create your first workout"
                            FontSize="14"
-                           TextColor="#BBB"
+                           TextColor="{DynamicResource Tertiary}"
                            HorizontalOptions="Center"/>
                 </VerticalStackLayout>
             </CollectionView.EmptyView>
@@ -78,17 +78,37 @@
                         <!-- Swipe actions -->
                         <SwipeView.RightItems>
                             <SwipeItems>
-                                <SwipeItem Text="Delete"
-                                          BackgroundColor="#F44336"
-                                          Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:WorkoutLibraryViewModel}}, Path=DeleteWorkoutCommand}"
-                                          CommandParameter="{Binding .}"/>
+                                <SwipeItemView Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:WorkoutLibraryViewModel}}, Path=DeleteWorkoutCommand}"
+                                               CommandParameter="{Binding .}">
+                                    <Border
+                                            BackgroundColor="Red"
+                                            Padding="16"
+                                            Margin="5,0"
+                                            StrokeShape="RoundRectangle 12">
+
+                                        <Label
+                                            Text="Delete"
+                                            TextColor="{DynamicResource Tertiary}"
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="Center"/>
+                                    </Border>
+                                </SwipeItemView>
                             </SwipeItems>
                         </SwipeView.RightItems>
 
                         <!-- Workout card -->
                         <Border Padding="15"
-                                Margin="0,5"
-                                StrokeThickness="1">
+                                Margin="0,5">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualState Name="Normal"></VisualState>
+                                    <VisualState Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="{DynamicResource Secondary}"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="10"/>
                             </Border.StrokeShape>

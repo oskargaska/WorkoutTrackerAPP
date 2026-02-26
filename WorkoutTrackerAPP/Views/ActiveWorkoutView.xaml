@@ -32,7 +32,7 @@
                     Text="{Binding PageTitle}"
                     FontSize="Large"
                     FontAttributes="Bold"
-                    TextColor="Black"
+                    TextColor="{DynamicResource Tertiary}"
                     VerticalOptions="Center"
                     HorizontalOptions="Center"/>
 
@@ -69,14 +69,14 @@
             <!-- Workout Name -->
             <Border Grid.Row="0"
                     Padding="15"
-                    Margin="10,10,10,5">
+                    Margin="10,10,10,5"
+                    StrokeThickness="2">
                 <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="8"/>
+                    <RoundRectangle CornerRadius="10"/>
                 </Border.StrokeShape>
                 <Entry Placeholder="Workout Name"
                        Text="{Binding WorkoutName}"
                        FontSize="18"
-                       Grid.Column="0"
                        FontAttributes="Bold"
                        Margin="8"
                        IsReadOnly="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=IsViewMode}"/>
@@ -98,10 +98,7 @@
                              BindableLayout.ItemsSource="{Binding Groups}">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate x:DataType="models:WorkoutGroupDTO">
-                            <Border Padding="10"
-                                    StrokeThickness="2"
-                                    Stroke="{DynamicResource Tertiary}"
-                                    BackgroundColor="{DynamicResource Primary}">
+                            <Border Padding="10">
                                 <Border.StrokeShape>
                                     <RoundRectangle CornerRadius="12"/>
                                 </Border.StrokeShape>
@@ -110,12 +107,13 @@
 
                                     <!-- Group Header -->
                                     <Grid ColumnDefinitions="*,Auto,Auto,Auto"
-                                            ColumnSpacing="1">
+                                            ColumnSpacing="3">
                                         <Entry Grid.Column="0"
                                                Text="{Binding Name}"
                                                FontSize="16"
                                                FontAttributes="Bold"
                                                Margin="8"
+                                               BackgroundColor="Transparent"
                                                IsReadOnly="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=IsViewMode}"/>
 
                                         <Button Grid.Column="1"
@@ -179,7 +177,7 @@
                                                         
                                                         
                                                         <Grid ColumnDefinitions="*,Auto,Auto,Auto"
-                                                                ColumnSpacing="1">
+                                                                ColumnSpacing="3">
                                                             <Label  Grid.Column="0"
                                                                     Text="{Binding Name}"
                                                                     FontSize="14"
@@ -223,7 +221,7 @@
                                                         <Grid>
                                                             <HorizontalStackLayout Spacing="5"                   
                                                                                     IsVisible="{Binding IsRepsVisible}">
-                                                                <Label Text="Reps:"
+                                                                <Label Text="Repetitions:"
                                                                        WidthRequest="70"
                                                                        VerticalOptions="Center"/>
                                                                 <Button Text="-1"
@@ -286,6 +284,7 @@
                                                                     Grid.Column="1"
                                                                     HorizontalOptions="End"
                                                                     VerticalOptions="Center"
+                                                                    ColumnSpacing="5"
                                                                     IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ActiveWorkoutViewModel}}, Path=IsViewMode}">
                                                                 <Button Grid.Column="0"
                                                                         Text="&lt;"
@@ -363,6 +362,7 @@
             <Button Grid.Row="3"
                     Text="Save"
                     FontSize="Large"
+                    TextColor="{DynamicResource Tertiary}"
                     HeightRequest="20"
                     WidthRequest="300"
                     CornerRadius="10"
@@ -370,6 +370,7 @@
                     HorizontalOptions="Center"
                     Margin="5"
                     Padding="0" 
+                    Background="{DynamicResource Secondary}"
                     IsVisible="{Binding IsEditMode}"
                     Command="{Binding SaveEditChangesCommand}"/>
 
@@ -386,6 +387,7 @@
                 <Button Grid.Row="3"
                         Text="Finish"
                         FontSize="Large"
+                        TextColor="{DynamicResource Tertiary}"
                         HeightRequest="20"
                         WidthRequest="300"
                         CornerRadius="10"
@@ -393,6 +395,7 @@
                         HorizontalOptions="Center"
                         Margin="5"
                         Padding="0" 
+                        Background="{DynamicResource Secondary}"
                         IsVisible="{Binding IsStart}"
                         Command="{Binding CompleteWorkoutCommand}"/>
 
@@ -400,6 +403,7 @@
                 <Button Grid.Row="3"
                         Text="Start"
                         FontSize="Large"
+                        TextColor="{DynamicResource Tertiary}"
                         HeightRequest="20"
                         WidthRequest="300"
                         CornerRadius="10"
@@ -407,6 +411,7 @@
                         HorizontalOptions="Center"
                         Margin="5"
                         Padding="0" 
+                        Background="{DynamicResource Secondary}"
                         IsVisible="{Binding IsStop}"
                         Command="{Binding StartWorkoutCommand}"/>
 

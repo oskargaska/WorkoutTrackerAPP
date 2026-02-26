@@ -11,7 +11,6 @@ namespace WorkoutTrackerAPP.Models
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public TimeSpan Duration => EndTime - StartTime;
-
         public WorkoutDTO WorkoutSnapshot { get; set; }
     }
 }

@@ -56,9 +56,10 @@ namespace WorkoutTrackerAPP.Services
             var entities = await connection.Table<WorkoutEntity>().ToListAsync();
             var workouts = new List<WorkoutDTO>();
 
-            if (entities == null)
+            if (entities == null || entities.Count == 0)
             {
                 Debug.WriteLine("Database querry returned empty list of workout entities");
+                return workouts;
             }
             foreach (var entity in entities)
             {
@@ -86,9 +87,8 @@ namespace WorkoutTrackerAPP.Services
                 Json = JsonSerializer.Serialize(workout)
                 
             };
-            Debug.WriteLine($"{workout.Name}");
             await connection.InsertAsync(entity);
-            Debug.WriteLine($"{entity.Id}");
+
             return entity.Id;
 
         }
@@ -112,6 +112,70 @@ namespace WorkoutTrackerAPP.Services
             var connection = await _databaseConnection.GetConnectionAsync();
 
             await connection.DeleteAsync<WorkoutEntity>(id);
+        }
+
+        public async Task<List<SessionDTO>> GetSessionsAsync()
+        {
+            var connection = await _databaseConnection.GetConnectionAsync();
+            var entities = await connection.Table<SessionEntity>().ToListAsync();
+
+            var sessions = new List<SessionDTO>();
+
+            if (entities == null || entities.Count == 0)
+            {
+                Debug.WriteLine("Database query returned empty list of session entities");
+                return sessions;
+            }
+
+            foreach (var entity in entities)
+            {
+                if (string.IsNullOrWhiteSpace(entity.Json)) continue;
+
+                var workoutSnapshot = JsonSerializer.Deserialize<WorkoutDTO>(entity.Json);
+
+                if (workoutSnapshot == null) continue;
+
+                var dto = new SessionDTO
+                {
+                    Id = entity.Id,
+
+                    Date = DateTimeOffset
+                        .FromUnixTimeMilliseconds(entity.Date)
+                        .LocalDateTime,
+
+                    StartTime = DateTimeOffset
+                        .FromUnixTimeMilliseconds(entity.StartTime)
+                        .LocalDateTime,
+
+                    EndTime = DateTimeOffset
+                        .FromUnixTimeMilliseconds(entity.EndTime)
+                        .LocalDateTime,
+
+                    WorkoutSnapshot = workoutSnapshot
+                };
+
+                sessions.Add(dto);
+            }
+
+            return sessions;
+        }
+
+        public async Task<int> AddSessionAsync(SessionDTO session)
+        {
+            var connection = await _databaseConnection.GetConnectionAsync();
+
+            var entity = new SessionEntity
+            {
+                
+                Date = new DateTimeOffset(session.Date.ToUniversalTime()).ToUnixTimeMilliseconds(),
+                StartTime = new DateTimeOffset(session.StartTime.ToUniversalTime()).ToUnixTimeMilliseconds(),
+                EndTime = new DateTimeOffset(session.EndTime.ToUniversalTime()).ToUnixTimeMilliseconds(),
+                Json = JsonSerializer.Serialize(session.WorkoutSnapshot)
+
+            };
+            await connection.InsertAsync(entity);
+            Debug.WriteLine($"{entity.Id}");
+            return entity.Id;
         }
 
     }

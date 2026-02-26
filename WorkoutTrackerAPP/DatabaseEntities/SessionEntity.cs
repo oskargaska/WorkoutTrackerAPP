@@ -13,6 +13,6 @@ namespace WorkoutTrackerAPP.DatabaseEntities
         public long Date { get; set; }        // stored as ticks
         public long StartTime { get; set; }   // stored as ticks
         public long EndTime { get; set; }     // stored as ticks
-        public string WorkoutSnapshot { get; set; }
+        public string Json { get; set; }
     }
 }

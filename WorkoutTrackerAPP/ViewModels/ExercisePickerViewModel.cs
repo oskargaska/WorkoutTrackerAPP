@@ -38,6 +38,12 @@ namespace WorkoutTrackerAPP.ViewModels
             //ApplyFilter();
         }
 
+        [RelayCommand]
+        async Task GoBack()
+        {
+            await Shell.Current.Navigation.PopAsync();
+        }
+
         partial void OnSearchTextChanged(string value)
         {
             ApplyFilter();
@@ -66,10 +72,6 @@ namespace WorkoutTrackerAPP.ViewModels
                 FilteredExercises.Add(exercise);
         }
 
-        public void ToggleExercise(ExerciseDTO item)
-        {
-            //item.IsExpanded = !item.IsExpanded;
-        }
 
         [RelayCommand]
         async Task AddExerciseWithReps(ExerciseDTO exercise)

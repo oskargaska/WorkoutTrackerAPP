@@ -21,5 +21,9 @@ namespace WorkoutTrackerAPP.Interfaces
         Task UpdateWorkoutAsync(WorkoutDTO workout);
 
         Task DeleteWorkoutAsync(int id);
+
+        Task<List<SessionDTO>> GetSessionsAsync();
+
+        Task<int> AddSessionAsync(SessionDTO session);
     }
 }
