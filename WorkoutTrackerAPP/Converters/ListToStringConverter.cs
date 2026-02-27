@@ -10,8 +10,18 @@ namespace WorkoutTrackerAPP.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is List<string> list)
-                return string.Join(", ", list);
-            return string.Empty;
+            {
+                if (list.Count == 0)
+                    return "None";
+
+                var joined = string.Join(", ", list);
+                return char.ToUpper(joined[0]) + joined.Substring(1).ToLower();
+            }
+
+            if (value is string item && !string.IsNullOrEmpty(item))
+                return char.ToUpper(item[0]) + item.Substring(1).ToLower();
+
+            return "None";
         }
 
 

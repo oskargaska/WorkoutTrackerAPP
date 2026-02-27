@@ -69,7 +69,7 @@
                             <RoundRectangle CornerRadius="10"/>
                         </Border.StrokeShape>
 
-                        <VerticalStackLayout Spacing="5">
+                        <VerticalStackLayout Spacing="8">
 
 
                             <Grid RowDefinitions="Auto,Auto,Auto" 
@@ -77,68 +77,94 @@
 
                                 <!-- Exercise name -->
                                 <Label Grid.Row="0" Grid.Column="0"
-                                       Text="{Binding Name}"
-                                       FontSize="18"
-                                       FontAttributes="Bold"
-                                       TextColor="{DynamicResource Tertiary}"/>
+                                        Text="{Binding Name}"
+                                        FontSize="18"
+                                        TextDecorations="Underline"
+                                        FontAttributes="Bold"
+                                        TextColor="{DynamicResource Tertiary}"/>
 
                                 <!-- Level badge -->
                                 <Border Grid.Row="0" Grid.Column="1"
-                                        Padding="8,4"
-                                        BackgroundColor="{DynamicResource Tertiary}"
-                                        StrokeThickness="0"
-                                        HeightRequest="30">
+                                         Padding="8,4"
+                                         BackgroundColor="{DynamicResource Tertiary}"
+                                         StrokeThickness="0"
+                                         HeightRequest="30">
                                     <Border.StrokeShape>
                                         <RoundRectangle CornerRadius="12"/>
                                     </Border.StrokeShape>
                                     <Label Text="{Binding Level}"
-                                           FontSize="12"
-                                           TextColor="{DynamicResource Primary}"
-                                           VerticalTextAlignment="Center"/>
+                                            FontSize="12"
+                                            TextColor="{DynamicResource Primary}"
+                                            VerticalTextAlignment="Center"/>
                                 </Border>
 
                                 <!-- Equipment & Mechanic -->
                                 <HorizontalStackLayout Grid.Row="1" Grid.ColumnSpan="2"
                                                        Spacing="10"
                                                        Margin="0,5,0,0">
-                                    <Label Text="{Binding Equipment}"
-                                           FontSize="14"
-                                           TextColor="{DynamicResource Tertiary}"/>
-                                    <Label Text="•"
-                                           FontSize="14"
-                                           TextColor="{DynamicResource Tertiary}"/>
-                                    <Label Text="{Binding Mechanic}"
-                                           FontSize="14"
-                                           TextColor="{DynamicResource Tertiary}"/>
+                                    <Grid RowDefinitions="Auto,Auto,Auto">
+                                        <Grid Grid.Row="0"
+                                               ColumnDefinitions="Auto, Auto"
+                                               ColumnSpacing="5">
+                                            <Label Grid.Column="0"
+                                                    Text="Primary Muscles:"
+                                                    FontAttributes="Bold"
+                                                    FontSize="14"
+                                                    TextColor="{DynamicResource Tertiary}"/>
+                                            <Label  Grid.Column="1"
+                                                     Text="{Binding PrimaryMuscles, Converter={StaticResource ListToStringConverter}}"
+                                                     FontSize="14"
+                                                     TextColor="{DynamicResource Tertiary}"/>
+                                        </Grid>
+                                        <Grid Grid.Row="1"
+                                               ColumnDefinitions="Auto, Auto"
+                                               ColumnSpacing="5">
+                                            <Label 
+                                                    Grid.Column="0"
+                                                    Text="Secondary Muscles:"
+                                                    FontAttributes="Bold"
+                                                    FontSize="14"
+                                                    TextColor="{DynamicResource Tertiary}"/>
+                                            <Label 
+                                                     Grid.Column="1"
+                                                     Text="{Binding SecondaryMuscles, Converter={StaticResource ListToStringConverter}}"
+                                                     MaximumWidthRequest="250"
+                                                     FontSize="14"
+                                                     TextColor="{DynamicResource Tertiary}"/>
+                                        </Grid>
+
+                                        <Grid Grid.Row="2"
+                                               ColumnDefinitions="Auto,Auto"
+                                               ColumnSpacing="5">
+                                            <Label 
+                                                    Grid.Column="0"
+                                                    Text="Equipment:"
+                                                    FontAttributes="Bold"
+                                                    FontSize="14"
+                                                    TextColor="{DynamicResource Tertiary}"/>
+                                            <Label 
+                                                     Grid.Column="1"
+                                                     Text="{Binding Equipment, Converter={StaticResource ListToStringConverter}}"
+                                                     FontSize="14"
+                                                     TextColor="{DynamicResource Tertiary}"/>
+                                        </Grid>
+
+
+
+                                    </Grid>
+                                    
+
                                 </HorizontalStackLayout>
-
-                                <!-- Primary muscles -->
-                                <Label Grid.Row="2" Grid.ColumnSpan="2"
-                                       FontSize="13"
-                                       TextColor="{DynamicResource Tertiary}"
-                                       Margin="0,5,0,0">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="💪 "/>
-                                            <Span Text="{Binding PrimaryMuscles, Converter={StaticResource ListToStringConverter}}"/>
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-
                             </Grid>
-
-
-
-
-
                             <Grid   ColumnDefinitions="Auto,Auto,Auto"
                                     x:Name="Buttons"
                                     IsVisible="False"
                                     ColumnSpacing="30">
                                 <Label  Grid.Column="0"
                                         Text="Add with:"
-                                        FontSize="12"
-                                        WidthRequest="100"
+                                        FontAttributes="Bold"
+                                        FontSize="14"
+                                        WidthRequest="70"
                                         HorizontalOptions="Start"
                                         VerticalOptions="Center"/>
 
@@ -150,6 +176,7 @@
                                         WidthRequest="100"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ExercisePickerViewModel}}, Path=AddExerciseWithDurationCommand}"
                                         CommandParameter="{Binding .}"/>
+                                
                                 <Button Grid.Column="2"
                                         Text="Repetitions"
                                         FontSize="12"
@@ -159,6 +186,12 @@
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ExercisePickerViewModel}}, Path=AddExerciseWithRepsCommand}"
                                         CommandParameter="{Binding .}"/>
                             </Grid>
+
+
+
+
+
+
                         </VerticalStackLayout>
 
 

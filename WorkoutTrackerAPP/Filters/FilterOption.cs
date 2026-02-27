@@ -2,18 +2,19 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using WorkoutTrackerAPP.Enumerators;
 
-namespace WorkoutTrackerAPP.Models
+namespace WorkoutTrackerAPP.Filters
 {
     public partial class FilterOption : ObservableObject
     {
         [ObservableProperty]
-        private string name;
+        private string name = string.Empty;
 
         [ObservableProperty]
         private bool isSelected;
 
         [ObservableProperty]
-        private string category; // "Equipment", "Level", "Muscle"
+        private EFilterCategory category;
     }
 }

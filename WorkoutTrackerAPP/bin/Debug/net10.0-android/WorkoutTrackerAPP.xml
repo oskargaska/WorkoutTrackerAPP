@@ -4,18 +4,6 @@
         <name>WorkoutTrackerAPP</name>
     </assembly>
     <members>
-        <member name="T:WorkoutTrackerAPP.Models.FilterOption">
-            <inheritdoc/>
-        </member>
-        <member name="P:WorkoutTrackerAPP.Models.FilterOption.Name">
-            <inheritdoc cref="F:WorkoutTrackerAPP.Models.FilterOption.name"/>
-        </member>
-        <member name="P:WorkoutTrackerAPP.Models.FilterOption.IsSelected">
-            <inheritdoc cref="F:WorkoutTrackerAPP.Models.FilterOption.isSelected"/>
-        </member>
-        <member name="P:WorkoutTrackerAPP.Models.FilterOption.Category">
-            <inheritdoc cref="F:WorkoutTrackerAPP.Models.FilterOption.category"/>
-        </member>
         <member name="T:WorkoutTrackerAPP.Models.WorkoutExerciseDTO">
             <inheritdoc/>
         </member>
@@ -27,6 +15,18 @@
         </member>
         <member name="P:WorkoutTrackerAPP.Models.WorkoutExerciseDTO.IsActive">
             <inheritdoc cref="F:WorkoutTrackerAPP.Models.WorkoutExerciseDTO.isActive"/>
+        </member>
+        <member name="T:WorkoutTrackerAPP.Filters.FilterOption">
+            <inheritdoc/>
+        </member>
+        <member name="P:WorkoutTrackerAPP.Filters.FilterOption.Name">
+            <inheritdoc cref="F:WorkoutTrackerAPP.Filters.FilterOption.name"/>
+        </member>
+        <member name="P:WorkoutTrackerAPP.Filters.FilterOption.IsSelected">
+            <inheritdoc cref="F:WorkoutTrackerAPP.Filters.FilterOption.isSelected"/>
+        </member>
+        <member name="P:WorkoutTrackerAPP.Filters.FilterOption.Category">
+            <inheritdoc cref="F:WorkoutTrackerAPP.Filters.FilterOption.category"/>
         </member>
         <member name="T:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel">
             <inheritdoc/>
@@ -320,6 +320,8 @@
             <inheritdoc/>
             <inheritdoc/>
             <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
         </member>
         <member name="P:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.SearchText">
             <inheritdoc cref="F:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.searchText"/>
@@ -350,11 +352,23 @@
         <member name="P:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.LoadMoreItemsCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.LoadMoreItems"/>.</summary>
         </member>
-        <member name="F:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.toggleFiltersCommand">
-            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.ToggleFiltersCommand"/>.</summary>
+        <member name="F:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.toggleFilterCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.ToggleFilterCommand"/>.</summary>
         </member>
-        <member name="P:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.ToggleFiltersCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.ToggleFilters"/>.</summary>
+        <member name="P:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.ToggleFilterCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand`1"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.ToggleFilter(WorkoutTrackerAPP.Filters.FilterOption)"/>.</summary>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.toggleFilterPanelCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.ToggleFilterPanelCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.ToggleFilterPanelCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.ToggleFilterPanel"/>.</summary>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.clearFiltersCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.ClearFiltersCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.ClearFiltersCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ExerciseLibraryViewModel.ClearFilters"/>.</summary>
         </member>
         <member name="T:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel">
             <inheritdoc/>

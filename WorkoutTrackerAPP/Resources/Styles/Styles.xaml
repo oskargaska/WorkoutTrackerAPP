@@ -161,8 +161,10 @@
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="FontFamily" Value="OpenSansRegular" />
         <Setter Property="FontSize" Value="14" />
+        <Setter Property="LineBreakMode" Value="WordWrap"/>
         <Setter Property="VisualStateManager.VisualStateGroups">
-            <VisualStateGroupList>
+            
+                <VisualStateGroupList>
                 <VisualStateGroup x:Name="CommonStates">
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="Disabled">
