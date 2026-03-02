@@ -7,9 +7,9 @@ namespace WorkoutTrackerAPP.Enumerators
     public enum EFilterCategory
     {
         Equipment,
+        Force,
         Level,
         Category,
-        PrimaryMuscle,
-        SecondaryMuscle
+        Muscle
     }
 }

@@ -16,9 +16,11 @@ namespace WorkoutTrackerAPP.ViewModels
 {
     public partial class CreateWorkoutViewModel : ObservableObject
     {
-
+        private ExercisePickerViewModel _pickerVM;
+        private ExercisePickerView _pickerPage;
         private readonly IExercises _exercises;
         private readonly IWorkouts _workouts;
+        private readonly IFilters _filters;
         private WorkoutGroupDTO _currentGroup;
 
         [ObservableProperty]
@@ -29,12 +31,15 @@ namespace WorkoutTrackerAPP.ViewModels
 
         public ObservableCollection<WorkoutGroupDTO> Groups { get; } = new();
 
-        public CreateWorkoutViewModel(IExercises exercises, IWorkouts workouts)
+        public CreateWorkoutViewModel(IExercises exercises, IWorkouts workouts, IFilters filters)
         {
 
             _exercises = exercises;
             _workouts = workouts;
+            _filters = filters;
 
+            _pickerVM = new(_exercises, _filters);
+            
             WeakReferenceMessenger.Default.Register<MExerciseSelectedMessage>(this, (recipient, message) =>
             {
                 OnExerciseSelected(message.Exercise, message.IsReps);
@@ -62,33 +67,13 @@ namespace WorkoutTrackerAPP.ViewModels
         }
 
         [RelayCommand]
-        async Task AddItemToGroup(WorkoutGroupDTO group)
-        {
-            if(group.Items.Count == 0)
-            {
-                await AddExerciseToGroup(group);
-                return;
-            }
-
-            var choice = await App.Current.MainPage.DisplayActionSheetAsync(
-                "Add to group",
-                "Cancel",
-                null,
-                "Exercise",
-                "Break Timer");
-
-            if (choice == "Exercise")
-                await AddExerciseToGroup(group);
-            else if (choice == "Break Timer")
-                AddBreakToGroup(group);
-        }
-
-        [RelayCommand]
         private async Task AddExerciseToGroup(WorkoutGroupDTO group)
         {
             _currentGroup = group;
-            var picker = App.Current.Handler.MauiContext.Services.GetRequiredService<ExercisePickerView>();
-            await Shell.Current.Navigation.PushAsync(picker);
+           
+            _pickerPage = App.Current.Handler.MauiContext.Services.GetRequiredService<ExercisePickerView>();
+            _pickerPage.BindingContext = _pickerVM;
+            await Shell.Current.Navigation.PushAsync(_pickerPage);
         }
 
         private async void OnExerciseSelected(ExerciseDTO exercise, bool isReps)

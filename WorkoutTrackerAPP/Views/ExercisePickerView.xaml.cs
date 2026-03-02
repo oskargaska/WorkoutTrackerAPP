@@ -5,14 +5,10 @@ namespace WorkoutTrackerAPP.Views;
 
 public partial class ExercisePickerView : ContentPage
 {
-	public ExercisePickerView(IExercises exercises, ExercisePickerViewModel exercisePickerViewModel)
+	public ExercisePickerView(ExercisePickerViewModel exercisePickerViewModel)
 	{
 		InitializeComponent();
 		BindingContext = exercisePickerViewModel;
 	}
 
-    private void SearchBar_Unfocused(object sender, FocusEventArgs e)
-    {
-
-    }
 }

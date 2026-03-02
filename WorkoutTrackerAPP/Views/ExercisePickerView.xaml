@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:converters="clr-namespace:WorkoutTrackerAPP.Converters"
              xmlns:viewModels="clr-namespace:WorkoutTrackerAPP.ViewModels"
+             xmlns:filters="clr-namespace:WorkoutTrackerAPP.Filters"
+
              xmlns:models="clr-namespace:WorkoutTrackerAPP.Models"
              x:Class="WorkoutTrackerAPP.Views.ExercisePickerView"
              x:DataType="viewModels:ExercisePickerViewModel"
@@ -13,12 +16,55 @@
     
     <ContentPage.Resources>
         <converters:ListToStringConverter x:Key="ListToStringConverter"/>
+        <DataTemplate x:Key="FilterPillTemplate"
+               x:DataType="filters:FilterOption">
+
+            <Button Text="{Binding Name}"
+             Padding="12,6"
+             CornerRadius="18"
+             FontSize="14"
+             BorderWidth="1"                                      
+             Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ExercisePickerViewModel}}, Path=ToggleFilterCommand}"
+             CommandParameter="{Binding .}">
+
+                <!-- Default (not selected) -->
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button"
+                  Binding="{Binding IsSelected}"
+                  Value="False">
+                        <Setter Property="BackgroundColor"
+                 Value="{DynamicResource Tertiary}" />
+                        <Setter Property="TextColor"
+                 Value="{DynamicResource Primary}" />
+                    </DataTrigger>
+
+                    <!-- Selected -->
+                    <DataTrigger TargetType="Button"
+                  Binding="{Binding IsSelected}"
+                  Value="True">
+                        <Setter Property="BackgroundColor"
+                 Value="{DynamicResource Secondary}" />
+                        <Setter Property="TextColor"
+                 Value="{DynamicResource Tertiary}" />
+                    </DataTrigger>
+                </Button.Triggers>
+
+            </Button>
+        </DataTemplate>
     </ContentPage.Resources>
 
 
 
-    <Grid RowDefinitions="Auto,Auto,*">
-        <Button Grid.Column="0"
+    <Grid RowDefinitions="Auto, Auto, Auto, *">
+
+
+        <!-- Grid with buttons on top -->
+        <Grid   Grid.Row="0"
+            ColumnDefinitions="3,*,3"
+            VerticalOptions="Start"
+            HeightRequest="50">
+
+            <Button Grid.Column="0"
                 Text="&lt;"
                 FontSize="Large"
                 HeightRequest="20"
@@ -28,31 +74,145 @@
                 HorizontalOptions="Start"
                 Margin="5"
                 Padding="0"
-                IsVisible="{Binding IsViewMode}"
-                Command="{Binding GoBackCommand}"/>
+                Command="{Binding GoBackCommand}">
 
 
-        <Label  Grid.Column="1"
-                Text="Pick an Exercise"
+            </Button>
+            <Label  Grid.Column="1"
+                Text="Add Exercise"
                 FontSize="Large"
                 FontAttributes="Bold"
                 TextColor="{DynamicResource Tertiary}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"/>
-        
-        
+        </Grid>
+
         <!-- Search Bar -->
         <SearchBar Grid.Row="1"
-                   Placeholder="Search exercises..."
-                   Text="{Binding SearchText}"
-                   Margin="10"/>
+               Placeholder="Search exercises..."
+               Text="{Binding SearchText}"
+               Margin="10"/>
+
+        <!-- Expander with filter content -->
+        <toolkit:Expander   Grid.Row="2"
+                        IsExpanded="{Binding IsFilterPanelVisible}">
+
+            <!-- Header (what you click to expand) -->
+            <toolkit:Expander.Header>
+                <Border Padding="15"
+                    Margin="5,0"
+                    BackgroundColor="{DynamicResource Secondary}">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10"/>
+                    </Border.StrokeShape>
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ToggleFilterPanelCommand}" />
+                    </Border.GestureRecognizers>
+
+                    <Label Text="Filters"
+                       FontSize="15"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       TextColor="{DynamicResource Tertiary}"/>
+                </Border>
+            </toolkit:Expander.Header>
+
+            <!-- Content (what slides down) -->
+            <Border BackgroundColor="{DynamicResource Primary}"
+                Padding="10"
+                Margin="5,0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10"/>
+                </Border.StrokeShape>
+                <ScrollView >
+                    <VerticalStackLayout Spacing="12"
+                                     Padding="10">
+
+                        <!-- Equipment -->
+                        <Label Text="Equipment"
+                           FontSize="16"
+                           FontAttributes="Bold" />
+
+                        <ScrollView Orientation="Horizontal">
+                            <HorizontalStackLayout Spacing="8"
+                                               BindableLayout.ItemsSource="{Binding AvailableEquipment}"
+                                               BindableLayout.ItemTemplate="{StaticResource FilterPillTemplate}" />
+                        </ScrollView>
+
+                        <!-- Level -->
+                        <Label Text="Level"
+                               FontSize="16"
+                               FontAttributes="Bold" />
+
+                        <ScrollView Orientation="Horizontal">
+                            <HorizontalStackLayout Spacing="8"
+                                               BindableLayout.ItemsSource="{Binding AvailableLevels}"
+                                               BindableLayout.ItemTemplate="{StaticResource FilterPillTemplate}" />
+                        </ScrollView>
+
+                        <!-- Force -->
+                        <Label Text="Level"
+                                FontSize="16"
+                                FontAttributes="Bold" />
+
+                        <ScrollView Orientation="Horizontal">
+                            <HorizontalStackLayout Spacing="8"
+                                                    BindableLayout.ItemsSource="{Binding AvailableForces}"
+                                                    BindableLayout.ItemTemplate="{StaticResource FilterPillTemplate}" />
+                        </ScrollView>
+
+                        <!-- Category -->
+                        <Label Text="Category"
+                               FontSize="16"
+                               FontAttributes="Bold" />
+
+                        <ScrollView Orientation="Horizontal">
+                            <HorizontalStackLayout Spacing="8"
+                                               BindableLayout.ItemsSource="{Binding AvailableCategories}"
+                                               BindableLayout.ItemTemplate="{StaticResource FilterPillTemplate}" />
+                        </ScrollView>
+
+                        <!-- Primary Muscles -->
+                        <Label Text="Primary Muscles"
+                           FontSize="16"
+                           FontAttributes="Bold" />
+
+                        <ScrollView Orientation="Horizontal">
+                            <HorizontalStackLayout Spacing="8"
+                                               BindableLayout.ItemsSource="{Binding AvailablePrimaryMuscles}"
+                                               BindableLayout.ItemTemplate="{StaticResource FilterPillTemplate}" />
+                        </ScrollView>
+
+                        <!-- Secondary Muscles -->
+                        <Label Text="Secondary Muscles"
+                           FontSize="16"
+                           FontAttributes="Bold" />
+
+                        <ScrollView Orientation="Horizontal">
+                            <HorizontalStackLayout Spacing="8"
+                           BindableLayout.ItemsSource="{Binding AvailableSecondaryMuscles}"
+                           BindableLayout.ItemTemplate="{StaticResource FilterPillTemplate}" />
+                        </ScrollView>
+
+                        <Button Text="Clear All Filters"
+                            Command="{Binding ClearFiltersCommand}"
+                            WidthRequest="150"
+                            Margin="0,5,0,0"
+                            TextColor="{DynamicResource Tertiary}"
+                            BackgroundColor="{DynamicResource Secondary}"/>
+
+                    </VerticalStackLayout>
+                </ScrollView>
+            </Border>
+        </toolkit:Expander>
 
 
 
 
 
         <!-- Exercise List -->
-        <CollectionView Grid.Row="2"
+        <CollectionView Grid.Row="3"
                         ItemsSource="{Binding FilteredExercises}"
                         SelectionMode="Single"
                         SelectedItem="{Binding SelectedItem}"
@@ -77,83 +237,111 @@
 
                                 <!-- Exercise name -->
                                 <Label Grid.Row="0" Grid.Column="0"
-                                        Text="{Binding Name}"
-                                        FontSize="18"
-                                        TextDecorations="Underline"
-                                        FontAttributes="Bold"
-                                        TextColor="{DynamicResource Tertiary}"/>
+                                       Text="{Binding Name}"
+                                       TextDecorations="Underline"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       TextColor="{DynamicResource Tertiary}"/>
 
                                 <!-- Level badge -->
                                 <Border Grid.Row="0" Grid.Column="1"
-                                         Padding="8,4"
-                                         BackgroundColor="{DynamicResource Tertiary}"
-                                         StrokeThickness="0"
-                                         HeightRequest="30">
+                                        Padding="8,4"
+                                        BackgroundColor="{DynamicResource Tertiary}"
+                                        StrokeThickness="0"
+                                        HeightRequest="30">
                                     <Border.StrokeShape>
                                         <RoundRectangle CornerRadius="12"/>
                                     </Border.StrokeShape>
                                     <Label Text="{Binding Level}"
-                                            FontSize="12"
-                                            TextColor="{DynamicResource Primary}"
-                                            VerticalTextAlignment="Center"/>
+                                           FontSize="12"
+                                           TextColor="{DynamicResource Primary}"
+                                           VerticalTextAlignment="Center"/>
                                 </Border>
 
                                 <!-- Equipment & Mechanic -->
                                 <HorizontalStackLayout Grid.Row="1" Grid.ColumnSpan="2"
-                                                       Spacing="10"
-                                                       Margin="0,5,0,0">
-                                    <Grid RowDefinitions="Auto,Auto,Auto">
+                                                        Spacing="10"
+                                                        Margin="0,5,0,0">     
+                                    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto">
                                         <Grid Grid.Row="0"
-                                               ColumnDefinitions="Auto, Auto"
-                                               ColumnSpacing="5">
+                                              ColumnDefinitions="Auto, Auto"
+                                              ColumnSpacing="5">
                                             <Label Grid.Column="0"
-                                                    Text="Primary Muscles:"
-                                                    FontAttributes="Bold"
-                                                    FontSize="14"
-                                                    TextColor="{DynamicResource Tertiary}"/>
+                                                   Text="Primary Muscles:"
+                                                   FontAttributes="Bold"
+                                                   FontSize="14"
+                                                   TextColor="{DynamicResource Tertiary}"/>
                                             <Label  Grid.Column="1"
-                                                     Text="{Binding PrimaryMuscles, Converter={StaticResource ListToStringConverter}}"
-                                                     FontSize="14"
-                                                     TextColor="{DynamicResource Tertiary}"/>
-                                        </Grid>
-                                        <Grid Grid.Row="1"
-                                               ColumnDefinitions="Auto, Auto"
-                                               ColumnSpacing="5">
-                                            <Label 
-                                                    Grid.Column="0"
-                                                    Text="Secondary Muscles:"
-                                                    FontAttributes="Bold"
+                                                    Text="{Binding PrimaryMuscles, Converter={StaticResource ListToStringConverter}}"
                                                     FontSize="14"
                                                     TextColor="{DynamicResource Tertiary}"/>
+                                        </Grid>
+
+                                        <Grid Grid.Row="1"
+                                              ColumnDefinitions="Auto, Auto"
+                                              ColumnSpacing="5">
                                             <Label 
-                                                     Grid.Column="1"
-                                                     Text="{Binding SecondaryMuscles, Converter={StaticResource ListToStringConverter}}"
-                                                     MaximumWidthRequest="250"
-                                                     FontSize="14"
-                                                     TextColor="{DynamicResource Tertiary}"/>
+                                                   Grid.Column="0"
+                                                   Text="Secondary Muscles:"
+                                                   FontAttributes="Bold"
+                                                   FontSize="14"
+                                                   TextColor="{DynamicResource Tertiary}"/>
+                                            <Label 
+                                                    Grid.Column="1"
+                                                    Text="{Binding SecondaryMuscles, Converter={StaticResource ListToStringConverter}}"
+                                                    MaximumWidthRequest="250"
+                                                    FontSize="14"
+                                                    TextColor="{DynamicResource Tertiary}"/>
                                         </Grid>
 
                                         <Grid Grid.Row="2"
-                                               ColumnDefinitions="Auto,Auto"
-                                               ColumnSpacing="5">
+                                              ColumnDefinitions="Auto,Auto"
+                                              ColumnSpacing="5">
+                                            <Label 
+                                                   Grid.Column="0"
+                                                   Text="Equipment:"
+                                                   FontAttributes="Bold"
+                                                   FontSize="14"
+                                                   TextColor="{DynamicResource Tertiary}"/>
+                                            <Label 
+                                                    Grid.Column="1"
+                                                    Text="{Binding Equipment, Converter={StaticResource ListToStringConverter}}"
+                                                    FontSize="14"
+                                                    TextColor="{DynamicResource Tertiary}"/>
+                                        </Grid>
+                                        <Grid Grid.Row="3"
+                                              ColumnDefinitions="Auto, Auto"
+                                              ColumnSpacing="5">
                                             <Label 
                                                     Grid.Column="0"
-                                                    Text="Equipment:"
+                                                    Text="Category:"
                                                     FontAttributes="Bold"
                                                     FontSize="14"
                                                     TextColor="{DynamicResource Tertiary}"/>
                                             <Label 
-                                                     Grid.Column="1"
-                                                     Text="{Binding Equipment, Converter={StaticResource ListToStringConverter}}"
-                                                     FontSize="14"
-                                                     TextColor="{DynamicResource Tertiary}"/>
+                                                    Grid.Column="1"
+                                                    Text="{Binding Category, Converter={StaticResource ListToStringConverter}}"
+                                                    MaximumWidthRequest="250"
+                                                    FontSize="14"
+                                                    TextColor="{DynamicResource Tertiary}"/>
                                         </Grid>
-
-
-
+                                        <Grid Grid.Row="4"
+                                              ColumnDefinitions="Auto, Auto"
+                                              ColumnSpacing="5">
+                                            <Label 
+                                                    Grid.Column="0"
+                                                    Text="Force:"
+                                                    FontAttributes="Bold"
+                                                    FontSize="14"
+                                                    TextColor="{DynamicResource Tertiary}"/>
+                                            <Label 
+                                                    Grid.Column="1"
+                                                    Text="{Binding Force, Converter={StaticResource ListToStringConverter}}"
+                                                    MaximumWidthRequest="250"
+                                                    FontSize="14"
+                                                    TextColor="{DynamicResource Tertiary}"/>
+                                        </Grid>
                                     </Grid>
-                                    
-
                                 </HorizontalStackLayout>
                             </Grid>
                             <Grid   ColumnDefinitions="Auto,Auto,Auto"
@@ -176,7 +364,7 @@
                                         WidthRequest="100"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ExercisePickerViewModel}}, Path=AddExerciseWithDurationCommand}"
                                         CommandParameter="{Binding .}"/>
-                                
+
                                 <Button Grid.Column="2"
                                         Text="Repetitions"
                                         FontSize="12"
@@ -186,15 +374,8 @@
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ExercisePickerViewModel}}, Path=AddExerciseWithRepsCommand}"
                                         CommandParameter="{Binding .}"/>
                             </Grid>
-
-
-
-
-
-
                         </VerticalStackLayout>
-
-
+                        
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup Name="CommonStates">
 

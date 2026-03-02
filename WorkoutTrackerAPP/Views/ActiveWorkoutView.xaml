@@ -222,7 +222,7 @@
                                                             <HorizontalStackLayout Spacing="5"                   
                                                                                     IsVisible="{Binding IsRepsVisible}">
                                                                 <Label Text="Repetitions:"
-                                                                       WidthRequest="70"
+                                                                       WidthRequest="80"
                                                                        VerticalOptions="Center"/>
                                                                 <Button Text="-1"
                                                                         FontSize="Small"
@@ -251,7 +251,7 @@
                                                                                        IsVisible="{Binding IsDurationVisible}">
 
                                                                 <Label  Text="Duration:"
-                                                                            WidthRequest="70"
+                                                                            WidthRequest="80"
                                                                             VerticalOptions="Center"/>
                                                                 <Button Text="-10"
                                                                             FontSize="Small"

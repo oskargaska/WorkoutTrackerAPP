@@ -28,6 +28,7 @@ namespace WorkoutTrackerAPP
             builder.Services.AddSingleton<IDatabaseConnection, DatabaseConnectionService>();
             builder.Services.AddSingleton<IDatabase, DatabaseService>();
             builder.Services.AddSingleton<ISessions, SessionsService>();
+            builder.Services.AddSingleton<IFilters, FiltersService>();
 
 
             builder.Services.AddTransient<MainViewModel>();
@@ -63,10 +64,13 @@ namespace WorkoutTrackerAPP
                 var exercises = app.Services.GetRequiredService<IExercises>();
                 var workouts = app.Services.GetRequiredService<IWorkouts>();
                 var sessions = app.Services.GetRequiredService<ISessions>();
+                var filters = app.Services.GetRequiredService<IFilters>();
                 await database.InitializeAsync();
                 await exercises.LoadFromDatabaseAsync();
                 await workouts.LoadFromDatabaseAsync();
                 await sessions.LoadFromDatabaseAsync();
+                await filters.LoadFromDatabaseAsync();
+
 
             });
 

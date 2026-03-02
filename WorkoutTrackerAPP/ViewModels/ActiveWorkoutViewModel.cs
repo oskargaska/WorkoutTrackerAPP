@@ -453,7 +453,7 @@ namespace WorkoutTrackerAPP.ViewModels
             {
                 _timer?.Stop();
                 // Auto-advance to next exercise
-                NextExercise();
+                _ = NextExercise();
             }
         }
 

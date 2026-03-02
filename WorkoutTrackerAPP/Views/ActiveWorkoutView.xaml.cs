@@ -5,7 +5,7 @@ namespace WorkoutTrackerAPP.Views;
 
 public partial class ActiveWorkoutView : ContentPage
 {
-	public ActiveWorkoutView(IWorkouts workouts, ISessions sessions, ActiveWorkoutViewModel activeWorkoutViewModel)
+	public ActiveWorkoutView(ActiveWorkoutViewModel activeWorkoutViewModel)
 	{
 		InitializeComponent();
 		BindingContext = activeWorkoutViewModel;

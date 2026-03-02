@@ -6,7 +6,7 @@ using WorkoutTrackerAPP.ViewModels;
 public partial class ExerciseLibraryView : ContentPage
 {
 
-	public ExerciseLibraryView(IExercises exercises, ExerciseLibraryViewModel exerciseLibraryViewModel)
+	public ExerciseLibraryView(ExerciseLibraryViewModel exerciseLibraryViewModel)
 	{
 		InitializeComponent();
 		BindingContext = exerciseLibraryViewModel;

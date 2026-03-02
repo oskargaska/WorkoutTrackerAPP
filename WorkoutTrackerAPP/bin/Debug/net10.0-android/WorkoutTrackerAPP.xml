@@ -210,7 +210,6 @@
             <inheritdoc/>
             <inheritdoc/>
             <inheritdoc/>
-            <inheritdoc/>
         </member>
         <member name="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.WorkoutName">
             <inheritdoc cref="F:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.workoutName"/>
@@ -229,12 +228,6 @@
         </member>
         <member name="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.AddGroupCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.AddGroup"/>.</summary>
-        </member>
-        <member name="F:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.addItemToGroupCommand">
-            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.AddItemToGroupCommand"/>.</summary>
-        </member>
-        <member name="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.AddItemToGroupCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.AddItemToGroup(WorkoutTrackerAPP.Models.WorkoutGroupDTO)"/>.</summary>
         </member>
         <member name="F:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.addExerciseToGroupCommand">
             <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel.AddExerciseToGroupCommand"/>.</summary>
@@ -376,9 +369,15 @@
             <inheritdoc/>
             <inheritdoc/>
             <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
         </member>
         <member name="P:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.SearchText">
             <inheritdoc cref="F:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.searchText"/>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.IsFilterPanelVisible">
+            <inheritdoc cref="F:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.isFilterPanelVisible"/>
         </member>
         <member name="M:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.OnSearchTextChanged(System.String)">
             <summary>Executes the logic for when <see cref="P:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.SearchText"/> just changed.</summary>
@@ -408,6 +407,24 @@
         </member>
         <member name="P:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.LoadMoreItemsCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.LoadMoreItems"/>.</summary>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.toggleFilterCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.ToggleFilterCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.ToggleFilterCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand`1"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.ToggleFilter(WorkoutTrackerAPP.Filters.FilterOption)"/>.</summary>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.toggleFilterPanelCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.ToggleFilterPanelCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.ToggleFilterPanelCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.ToggleFilterPanel"/>.</summary>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.clearFiltersCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.ClearFiltersCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.ClearFiltersCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.ClearFilters"/>.</summary>
         </member>
         <member name="T:WorkoutTrackerAPP.ViewModels.MainViewModel">
             <inheritdoc/>

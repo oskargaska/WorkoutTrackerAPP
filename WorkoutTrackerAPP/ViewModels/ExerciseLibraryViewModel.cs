@@ -16,7 +16,7 @@ namespace WorkoutTrackerAPP.ViewModels
     public partial class ExerciseLibraryViewModel : ObservableObject
     {
         private readonly IExercises _exercises;
-
+        private readonly IFilters _filters;
 
         [ObservableProperty]
         private string searchText = "";
@@ -36,25 +36,27 @@ namespace WorkoutTrackerAPP.ViewModels
 
 
         // Filter collections
-        public ObservableCollection<FilterOption> AvailableEquipment { get; } = new();
-        public ObservableCollection<FilterOption> AvailableLevels { get; } = new();
-        public ObservableCollection<FilterOption> AvailableCategories { get; } = new();
-        public ObservableCollection<FilterOption> AvailablePrimaryMuscles { get; } = new();
-        public ObservableCollection<FilterOption> AvailableSecondaryMuscles { get; } = new();
+        public ObservableCollection<FilterOption> AvailableEquipment => _filters.Equipment;
+        public ObservableCollection<FilterOption> AvailableLevels => _filters.Levels;
+        public ObservableCollection<FilterOption> AvailableForces => _filters.Forces;
+        public ObservableCollection<FilterOption> AvailableCategories =>    _filters.Categories;
+        public ObservableCollection<FilterOption> AvailablePrimaryMuscles => _filters.PrimaryMuscles;
+        public ObservableCollection<FilterOption> AvailableSecondaryMuscles => _filters.SecondaryMuscles;
 
-        public ExerciseLibraryViewModel(IExercises exercises)
+
+
+        public ExerciseLibraryViewModel(IExercises exercises, IFilters filters)
         {
-            _exercises = exercises;
+            _exercises = exercises; 
+            _filters = filters;
 
-            // Initialize filters first
-            InitializeFilters();
+            // Attach PropertyChanged handlers for all FilterOptions
+            foreach (var option in AllFilters())
+                option.PropertyChanged += OnFilterOptionChanged;
 
-            // Set initial state AFTER filters are ready
-            IsFilterPanelVisible = false;
 
             ApplyFilter();
 
-            _ = LoadMoreItems();  // Loads first 20 items
 
             
         }
@@ -62,6 +64,7 @@ namespace WorkoutTrackerAPP.ViewModels
         [RelayCommand]
         async Task GoBack()
         {
+            _filters.ResetAllFilters();
             await Shell.Current.GoToAsync("//main");
 
         }
@@ -77,6 +80,8 @@ namespace WorkoutTrackerAPP.ViewModels
             var searchText = SearchText;
             var selectedEquipment = AvailableEquipment.Where(f => f.IsSelected).Select(f => f.Name).ToHashSet();
             var selectedLevels = AvailableLevels.Where(f => f.IsSelected).Select(f => f.Name).ToHashSet();
+            var selectedForces = AvailableForces.Where(f => f.IsSelected).Select(f => f.Name).ToHashSet();
+
             var selectedCategories = AvailableCategories.Where(f => f.IsSelected).Select(f => f.Name).ToHashSet();
             var selectedPrimary = AvailablePrimaryMuscles.Where(f => f.IsSelected).Select(f => f.Name).ToHashSet();
             var selectedSecondary = AvailableSecondaryMuscles.Where(f => f.IsSelected).Select(f => f.Name).ToHashSet();
@@ -96,6 +101,10 @@ namespace WorkoutTrackerAPP.ViewModels
                 // Level
                 if (selectedLevels.Any())
                     query = query.Where(e => selectedLevels.Contains(e.Level));
+
+                // Force
+                if (selectedForces.Any())
+                    query = query.Where(e => selectedForces.Contains(e.Force));
 
                 // Category
                 if (selectedCategories.Any())
@@ -177,68 +186,6 @@ namespace WorkoutTrackerAPP.ViewModels
             
         }
         
-
-        private void InitializeFilters()
-        {
-            // Clear first (important if re-initialized)
-            AvailableEquipment.Clear();
-            AvailableLevels.Clear();
-            AvailableCategories.Clear();
-            AvailablePrimaryMuscles.Clear();
-            AvailableSecondaryMuscles.Clear();
-
-            var exercises = _exercises.Exercises;
-
-            var equipment = exercises
-                .Select(e => e.Equipment)
-                .Where(e => !string.IsNullOrWhiteSpace(e))
-                .Distinct(StringComparer.OrdinalIgnoreCase)
-                .OrderBy(e => e)
-                .Select(e => new FilterOption { Name = e, Category = EFilterCategory.Equipment });
-
-            var levels = exercises
-                .Select(e => e.Level)
-                .Where(l => !string.IsNullOrWhiteSpace(l))
-                .Distinct()
-                .OrderBy(l => l)
-                .Select(l => new FilterOption { Name = l, Category = EFilterCategory.Level });
-
-            var categories = exercises
-                .Select(e => e.Category)
-                .Where(c => !string.IsNullOrWhiteSpace(c))
-                .Distinct()
-                .OrderBy(c => c)
-                .Select(c => new FilterOption { Name = c, Category = EFilterCategory.Category });
-
-            var primaryMuscles = exercises
-                .SelectMany(e => e.PrimaryMuscles ?? Enumerable.Empty<string>())
-                .Distinct()
-                .OrderBy(m => m)
-                .Select(m => new FilterOption { Name = m, Category = EFilterCategory.PrimaryMuscle });
-
-            var secondaryMuscles = exercises
-                .SelectMany(e => e.SecondaryMuscles ?? Enumerable.Empty<string>())
-                .Distinct()
-                .OrderBy(m => m)
-                .Select(m => new FilterOption { Name = m, Category = EFilterCategory.SecondaryMuscle });
-
-            foreach (var item in equipment) AvailableEquipment.Add(item);
-            foreach (var item in levels) AvailableLevels.Add(item);
-            foreach (var item in categories) AvailableCategories.Add(item);
-            foreach (var item in primaryMuscles) AvailablePrimaryMuscles.Add(item);
-            foreach (var item in secondaryMuscles) AvailableSecondaryMuscles.Add(item);
-
-            foreach (var option in AvailableEquipment
-                .Concat(AvailableLevels)
-                .Concat(AvailableCategories)
-                .Concat(AvailablePrimaryMuscles)
-                .Concat(AvailableSecondaryMuscles))
-            {
-                option.PropertyChanged -= OnFilterOptionChanged;
-                option.PropertyChanged += OnFilterOptionChanged;
-            }
-        }
-
         private void OnFilterOptionChanged(object? sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(FilterOption.IsSelected))
@@ -249,20 +196,15 @@ namespace WorkoutTrackerAPP.ViewModels
         void ClearFilters()
         {
             foreach (var option in AllFilters())
-                option.PropertyChanged -= OnFilterOptionChanged;
-
-            foreach (var option in AllFilters())
                 option.IsSelected = false;
 
-            foreach (var option in AllFilters())
-                option.PropertyChanged += OnFilterOptionChanged;
-
-            ApplyFilter();
+            ApplyFilter(); // Only one call needed
         }
 
         private IEnumerable<FilterOption> AllFilters() =>
             AvailableEquipment
                 .Concat(AvailableLevels)
+                .Concat(AvailableForces)
                 .Concat(AvailableCategories)
                 .Concat(AvailablePrimaryMuscles)
                 .Concat(AvailableSecondaryMuscles);

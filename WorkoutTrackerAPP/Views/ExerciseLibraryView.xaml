@@ -17,9 +17,8 @@
                     Padding="12,6"
                     CornerRadius="18"
                     FontSize="14"
-                    BorderWidth="1"
-                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}},
-                                      Path=BindingContext.ToggleFilterCommand}"
+                    BorderWidth="1"                                      
+                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ExerciseLibraryViewModel}}, Path=ToggleFilterCommand}"
                     CommandParameter="{Binding .}">
 
                 <!-- Default (not selected) -->
@@ -90,21 +89,17 @@
                     Margin="5"
                     Padding="0"
                     Command="{Binding AddNewExerciseCommand}">
-
-
-
             </Button>
 
 
         </Grid>
+        
         <!-- Search Bar -->
         <SearchBar Grid.Row="1"
                    Placeholder="Search exercises..."
                    Text="{Binding SearchText}"
                    Margin="10"/>
-
-
-
+        
         <!-- Expander with filter content -->
         <toolkit:Expander   Grid.Row="2"
                             IsExpanded="{Binding IsFilterPanelVisible}">
@@ -163,6 +158,17 @@
                                                    BindableLayout.ItemTemplate="{StaticResource FilterPillTemplate}" />
                         </ScrollView>
 
+                        <!-- Level -->
+                        <Label Text="Force"
+                               FontSize="16"
+                               FontAttributes="Bold" />
+
+                        <ScrollView Orientation="Horizontal">
+                            <HorizontalStackLayout Spacing="8"
+                                                   BindableLayout.ItemsSource="{Binding AvailableForces}"
+                                                   BindableLayout.ItemTemplate="{StaticResource FilterPillTemplate}" />
+                        </ScrollView>
+
                         <!-- Category -->
                         <Label Text="Category"
                                FontSize="16"
@@ -198,7 +204,7 @@
 
                         <Button Text="Clear All Filters"
                                 Command="{Binding ClearFiltersCommand}"
-                                WidthRequest="150"
+                                WidthRequest="170"
                                 Margin="0,5,0,0"
                                 TextColor="{DynamicResource Tertiary}"
                                 BackgroundColor="{DynamicResource Secondary}"/>
@@ -206,7 +212,6 @@
                     </VerticalStackLayout>
                 </ScrollView>
             </Border>
-
         </toolkit:Expander>
 
 
@@ -229,9 +234,8 @@
                                     </VisualState.Setters>
                                 </VisualState>
                             </VisualStateGroup>
-                            
-                            
                         </VisualStateManager.VisualStateGroups>
+                        
                         <Border.StrokeShape>
                             <RoundRectangle CornerRadius="10"/>
                         </Border.StrokeShape>
@@ -266,7 +270,7 @@
                             <HorizontalStackLayout Grid.Row="1" Grid.ColumnSpan="2"
                                               Spacing="10"
                                               Margin="0,5,0,0">
-                                <Grid RowDefinitions="Auto,Auto,Auto,Auto">
+                                <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto">
                                     <Grid Grid.Row="0"
                                           ColumnDefinitions="Auto, Auto"
                                           ColumnSpacing="5">
@@ -325,6 +329,22 @@
                                         <Label 
                                                 Grid.Column="1"
                                                 Text="{Binding Category, Converter={StaticResource ListToStringConverter}}"
+                                                MaximumWidthRequest="250"
+                                                FontSize="14"
+                                                TextColor="{DynamicResource Tertiary}"/>
+                                    </Grid>
+                                    <Grid Grid.Row="4"
+                                          ColumnDefinitions="Auto, Auto"
+                                          ColumnSpacing="5">
+                                        <Label 
+                                                Grid.Column="0"
+                                                Text="Force:"
+                                                FontAttributes="Bold"
+                                                FontSize="14"
+                                                TextColor="{DynamicResource Tertiary}"/>
+                                        <Label 
+                                                Grid.Column="1"
+                                                Text="{Binding Force, Converter={StaticResource ListToStringConverter}}"
                                                 MaximumWidthRequest="250"
                                                 FontSize="14"
                                                 TextColor="{DynamicResource Tertiary}"/>

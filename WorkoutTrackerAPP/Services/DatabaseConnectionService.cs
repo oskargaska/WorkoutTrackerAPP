@@ -27,12 +27,12 @@ namespace WorkoutTrackerAPP.Services
                 var dataDir = FileSystem.AppDataDirectory;
                 var databasePath = Path.Combine(dataDir, "WorkoutTracker.db");
 
-                /*
+                
                 if (File.Exists(databasePath))
                 {
-                    File.Delete(databasePath);
+                    //File.Delete(databasePath);
                 }
-                */
+                
 
                 // Checks if database is populated. Deletes if it is empty
                 if (File.Exists(databasePath))
@@ -80,14 +80,6 @@ namespace WorkoutTrackerAPP.Services
 
         public async Task<SQLiteAsyncConnection> GetConnectionAsync()
         {
-            // Dangerous because of infinite loops. Will stay for now. Not necessarily needed for local database. It never looses conneciton.
-            /*
-            while(_connection == null)
-            {
-                await InitializeAsync();
-                
-            }
-            */
 
             if (_connection != null)
             {

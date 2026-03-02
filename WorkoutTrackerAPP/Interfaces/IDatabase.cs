@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using WorkoutTrackerAPP.Enumerators;
+using WorkoutTrackerAPP.Filters;
 using WorkoutTrackerAPP.Models;
 
 namespace WorkoutTrackerAPP.Interfaces
@@ -25,5 +27,14 @@ namespace WorkoutTrackerAPP.Interfaces
         Task<List<SessionDTO>> GetSessionsAsync();
 
         Task<int> AddSessionAsync(SessionDTO session);
+
+
+        Task<List<FilterOption>> GetCategoriesAsync();
+        Task<List<FilterOption>> GetForcesAsync();
+
+        Task<List<FilterOption>> GetLevelsAsync();
+        Task<List<FilterOption>> GetEquipmentAsync();
+        Task<List<FilterOption>> GetMusclesAsync();
+
     }
 }
