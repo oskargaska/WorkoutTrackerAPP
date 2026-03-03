@@ -35,7 +35,8 @@
 
             <Button Text="History"
                     WidthRequest="250"
-                    HeightRequest="50"/>
+                    HeightRequest="50"
+                    Command="{Binding NavigateToHistoryCommand}"/>
 
         </VerticalStackLayout>
 

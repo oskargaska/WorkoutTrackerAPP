@@ -107,7 +107,7 @@
             <!-- Header (what you click to expand) -->
             <toolkit:Expander.Header>
                 <Border Padding="15"
-                        Margin="5,0"
+                        Margin="10,0"
                         BackgroundColor="{DynamicResource Secondary}">
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="10"/>
@@ -128,7 +128,7 @@
             <!-- Content (what slides down) -->
             <Border BackgroundColor="{DynamicResource Primary}"
                     Padding="10"
-                    Margin="5,0">
+                    Margin="10,0">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="10"/>
                 </Border.StrokeShape>
@@ -219,12 +219,14 @@
         <CollectionView Grid.Row="3"
                         ItemsSource="{Binding FilteredExercises}"
                         SelectionMode="Single"
+                        SelectionChangedCommand="{Binding SelectExerciseCommand}"
+                        SelectionChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}"
                         RemainingItemsThreshold="5"
                         RemainingItemsThresholdReachedCommand="{Binding LoadMoreItemsCommand}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:ExerciseDTO">
                     <Border Padding="15" 
-                            Margin="5,5">
+                            Margin="10,2">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup Name="CommonStates">
                                 <VisualState Name="Normal"></VisualState>
@@ -245,11 +247,11 @@
 
                             <!-- Exercise name -->
                             <Label Grid.Row="0" Grid.Column="0"
-                               Text="{Binding Name}"
-                               TextDecorations="Underline"
-                               FontSize="18"
-                               FontAttributes="Bold"
-                               TextColor="{DynamicResource Tertiary}"/>
+                                   Text="{Binding Name}"
+                                   TextDecorations="Underline"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="{DynamicResource Tertiary}"/>
 
                             <!-- Level badge -->
                             <Border Grid.Row="0" Grid.Column="1"

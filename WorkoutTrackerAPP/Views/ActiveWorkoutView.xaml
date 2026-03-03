@@ -69,7 +69,7 @@
             <!-- Workout Name -->
             <Border Grid.Row="0"
                     Padding="15"
-                    Margin="10,10,10,5"
+                    Margin="10,15,10,0"
                     StrokeThickness="2">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="10"/>

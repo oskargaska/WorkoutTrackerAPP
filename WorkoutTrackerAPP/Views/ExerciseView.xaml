@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewModels="clr-namespace:WorkoutTrackerAPP.ViewModels"
+             xmlns:models="clr-namespace:WorkoutTrackerAPP.Models"
+             xmlns:converters="clr-namespace:WorkoutTrackerAPP.Converters"
+             x:Class="WorkoutTrackerAPP.Views.ExerciseView"          
+             x:DataType="viewModels:ExerciseViewModel"
+             Shell.BackgroundColor="{DynamicResource Background}">
+    
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" />
+    </Shell.BackButtonBehavior>
+    <ContentPage.Resources>
+        <converters:ListToStringConverter x:Key="ListToStringConverter"/>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto,*">
+        <Grid   Grid.Row="0"
+         ColumnDefinitions="3,*"
+         VerticalOptions="Start"
+         HeightRequest="50">
+
+            <Button Grid.Column="0"
+             Text="&lt;"
+             FontSize="Large"
+             HeightRequest="20"
+             WidthRequest="70"
+             CornerRadius="10"
+             VerticalOptions="Center"
+             HorizontalOptions="Start"
+             Margin="5"
+             Padding="0"
+             Command="{Binding GoBackCommand}">
+            </Button>
+
+            <Label  Grid.Column="1"
+             Text="Exercise"
+             FontSize="Large"
+             FontAttributes="Bold"
+             TextColor="Black"
+             VerticalOptions="Center"
+             HorizontalOptions="Center"/>
+        </Grid>
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="15" Spacing="20">
+
+                <!-- Exercise Name -->
+                <Label Text="{Binding Exercise.Name}"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="{DynamicResource Tertiary}"/>
+
+
+
+                <!-- Details Grid -->
+                <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                      ColumnDefinitions="120,*"
+                      RowSpacing="10">
+
+                    <Label Grid.Row="0" Grid.Column="0"
+                   Text="Equipment:"
+                   FontAttributes="Bold"
+                   TextColor="{DynamicResource Tertiary}"/>
+                    <Label Grid.Row="0" Grid.Column="1"
+                   Text="{Binding Exercise.Equipment, Converter={StaticResource ListToStringConverter}}"
+                   TextColor="{DynamicResource Tertiary}"/>
+
+                    <Label Grid.Row="1" Grid.Column="0"
+                   Text="Level:"
+                   FontAttributes="Bold"
+                   TextColor="{DynamicResource Tertiary}"/>
+                    <Label Grid.Row="1" Grid.Column="1"
+                   Text="{Binding Exercise.Level, Converter={StaticResource ListToStringConverter}}"
+                   TextColor="{DynamicResource Tertiary}"/>
+
+                    <Label Grid.Row="2" Grid.Column="0"
+                   Text="Category:"
+                   FontAttributes="Bold"
+                   TextColor="{DynamicResource Tertiary}"/>
+                    <Label Grid.Row="2" Grid.Column="1"
+                   Text="{Binding Exercise.Category, Converter={StaticResource ListToStringConverter}}"
+                   TextColor="{DynamicResource Tertiary}"/>
+
+                    <Label Grid.Row="3" Grid.Column="0"
+                   Text="Mechanic:"
+                   FontAttributes="Bold"
+                   TextColor="{DynamicResource Tertiary}"/>
+                    <Label Grid.Row="3" Grid.Column="1"
+                   Text="{Binding Exercise.Mechanic, Converter={StaticResource ListToStringConverter}}"
+                   TextColor="{DynamicResource Tertiary}"/>
+
+                    <Label Grid.Row="4" Grid.Column="0"
+                   Text="Force:"
+                   FontAttributes="Bold"
+                   TextColor="{DynamicResource Tertiary}"/>
+                    <Label Grid.Row="4" Grid.Column="1"
+                   Text="{Binding Exercise.Force, Converter={StaticResource ListToStringConverter}}"
+                   TextColor="{DynamicResource Tertiary}"/>
+                </Grid>
+
+                <!-- Primary Muscles -->
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="Primary Muscles:"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   TextColor="{DynamicResource Tertiary}"/>
+                    <Label Text="{Binding Exercise.PrimaryMuscles, Converter={StaticResource ListToStringConverter}}"
+                   TextColor="{DynamicResource Tertiary}"/>
+                </VerticalStackLayout>
+
+                <!-- Secondary Muscles -->
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="Secondary Muscles:"
+               FontSize="16"
+               FontAttributes="Bold"
+               TextColor="{DynamicResource Tertiary}"/>
+                    <Label Text="{Binding Exercise.SecondaryMuscles, Converter={StaticResource ListToStringConverter}}"
+               TextColor="{DynamicResource Tertiary}"/>
+                </VerticalStackLayout>
+
+                <!-- Instructions -->
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Instructions:"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="{DynamicResource Tertiary}"/>
+                    <VerticalStackLayout Spacing="8"
+                                        BindableLayout.ItemsSource="{Binding NumberedInstructions}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate x:DataType="{x:Type x:String}">
+                                <Label Text="{Binding .}"
+                                        TextColor="{DynamicResource Tertiary}"/>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </Grid>
+    
+</ContentPage>

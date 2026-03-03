@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewModels="clr-namespace:WorkoutTrackerAPP.ViewModels"
+             xmlns:models="clr-namespace:WorkoutTrackerAPP.Models"
+             xmlns:converters="clr-namespace:WorkoutTrackerAPP.Converters"
+             x:Class="WorkoutTrackerAPP.Views.SessionView"          
+             x:DataType="viewModels:SessionViewModel">
+
+
+    <Grid RowDefinitions="Auto, Auto, *">
+        <Grid   Grid.Row="0"
+                ColumnDefinitions="3,*"
+                VerticalOptions="Start"
+                HeightRequest="50">
+
+            <Button Grid.Column="0"
+                    Text="&lt;"
+                    FontSize="Large"
+                    HeightRequest="20"
+                    WidthRequest="70"
+                    CornerRadius="10"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Start"
+                    Margin="5"
+                    Padding="0"
+                    Command="{Binding GoBackCommand}">
+            </Button>
+
+            <Label  Grid.Column="1"
+                    Text="Workout Session"
+                    FontSize="Large"
+                    FontAttributes="Bold"
+                    TextColor="Black"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"/>
+        </Grid>
+
+        <Grid Grid.Row="1"
+              VerticalOptions="Center">
+            <Border Padding="10"
+                    Margin="10,5,10,0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12"/>
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="{Binding WorkoutName}"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           FontSize="20"
+                           FontAttributes="Bold">
+                    </Label>
+
+                    <!-- Session time -->
+                    <Label FontSize="16" TextColor="{DynamicResource Tertiary}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Date: " FontAttributes="Bold"/>
+                                <Span Text="{Binding SessionDate, StringFormat='{0:HH:mm - dd.MM.yyyy}'}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <!-- Session duration -->
+                    <Label FontSize="16" TextColor="{DynamicResource Tertiary}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Duration: " FontAttributes="Bold"/>
+                                <Span Text="{Binding SessionDuration, StringFormat='{0:%h\\:mm\\:ss}'}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </VerticalStackLayout>
+                
+            </Border>
+        </Grid>
+        
+        <!-- Groups List -->
+        <ScrollView Grid.Row="2">
+            <VerticalStackLayout Spacing="10"
+                                 Padding="10"
+                                 BindableLayout.ItemsSource="{Binding Groups}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate x:DataType="models:WorkoutGroupDTO">
+                        <Border Padding="10">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="12"/>
+                            </Border.StrokeShape>
+
+                            <VerticalStackLayout Spacing="10">
+
+                                <!-- Group Header -->
+                                <Label Text="{Binding Name}"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       Margin="8"
+                                       TextColor="{DynamicResource Tertiary}"/>
+
+                                <!-- Items in Group -->
+                                <VerticalStackLayout Spacing="5"
+                                                     BindableLayout.ItemsSource="{Binding Items}">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate x:DataType="models:WorkoutExerciseDTO">
+                                            <Border Padding="10"
+                                                    Margin="5,0"
+                                                    StrokeThickness="1"
+                                                    Stroke="{DynamicResource Tertiary}"
+                                                    BackgroundColor="{DynamicResource Background}">
+                                                <Border.StrokeShape>
+                                                    <RoundRectangle CornerRadius="8"/>
+                                                </Border.StrokeShape>
+
+                                                <VerticalStackLayout Spacing="5">
+
+                                                    <Label Text="{Binding Name}"
+                                                           FontSize="14"
+                                                           TextColor="{DynamicResource Tertiary}"
+                                                           FontAttributes="Bold"/>
+
+                                                    <Grid>
+                                                        <Grid   ColumnDefinitions="*,*"
+                                                                IsVisible="{Binding IsRepsVisible}">
+                                                            <Label Grid.Column="0"
+                                                                   Text="Repetitions:"
+                                                                   HorizontalOptions="Start"
+                                                                   HorizontalTextAlignment="Start"
+                                                                   VerticalOptions="Center"
+                                                                   TextColor="{DynamicResource Tertiary}"/>
+                                                            
+                                                            <Label Grid.Column="1"
+                                                                   Text="{Binding Reps}"
+                                                                   WidthRequest="60"
+                                                                   HorizontalOptions="End"
+                                                                   HorizontalTextAlignment="End"
+                                                                   VerticalOptions="Center"
+                                                                   TextColor="{DynamicResource Tertiary}"/>
+                                                          
+                                                        </Grid>
+
+                                                        <Grid   ColumnDefinitions="*,*"
+                                                                IsVisible="{Binding IsDurationVisible}">
+                                                            <Label Grid.Column="0"
+                                                                   Text="Duration:"
+                                                                   VerticalOptions="Center"
+                                                                   TextColor="{DynamicResource Tertiary}"/>
+                                                            
+                                                            <Label Grid.Column="1"
+                                                                   Text="{Binding RemainingTimeDisplay}"
+                                                                   TextColor="{DynamicResource Tertiary}"
+                                                                   WidthRequest="60"
+                                                                   VerticalOptions="Center"
+                                                                   HorizontalTextAlignment="End"
+                                                                   HorizontalOptions="End"/>
+                                                            
+                                                        </Grid>
+
+                                                    </Grid>
+
+                                                </VerticalStackLayout>
+                                            </Border>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                </VerticalStackLayout>
+
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

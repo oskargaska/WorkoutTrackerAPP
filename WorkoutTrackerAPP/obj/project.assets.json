@@ -611,6 +611,24 @@
           "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
+      "Syncfusion.Maui.Toolkit/1.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0-android36.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-android36.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "runtime": {
+          "lib/net10.0-android36.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-android36.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "build": {
+          "buildTransitive/Syncfusion.Maui.Toolkit.props": {}
+        }
+      },
       "Xamarin.Android.Glide/4.16.0.14": {
         "type": "package",
         "dependencies": {
@@ -3211,6 +3229,24 @@
         },
         "runtime": {
           "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
+        }
+      },
+      "Syncfusion.Maui.Toolkit/1.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0-android36.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-android36.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "runtime": {
+          "lib/net10.0-android36.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-android36.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "build": {
+          "buildTransitive/Syncfusion.Maui.Toolkit.props": {}
         }
       },
       "Xamarin.Android.Glide/4.16.0.14": {
@@ -5815,6 +5851,24 @@
           "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
+      "Syncfusion.Maui.Toolkit/1.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0-android36.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-android36.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "runtime": {
+          "lib/net10.0-android36.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-android36.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "build": {
+          "buildTransitive/Syncfusion.Maui.Toolkit.props": {}
+        }
+      },
       "Xamarin.Android.Glide/4.16.0.14": {
         "type": "package",
         "dependencies": {
@@ -8415,6 +8469,24 @@
         },
         "runtime": {
           "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
+        }
+      },
+      "Syncfusion.Maui.Toolkit/1.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0-android36.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-android36.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "runtime": {
+          "lib/net10.0-android36.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-android36.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "build": {
+          "buildTransitive/Syncfusion.Maui.Toolkit.props": {}
         }
       },
       "Xamarin.Android.Glide/4.16.0.14": {
@@ -11019,6 +11091,24 @@
           "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
+      "Syncfusion.Maui.Toolkit/1.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0-android36.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-android36.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "runtime": {
+          "lib/net10.0-android36.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-android36.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "build": {
+          "buildTransitive/Syncfusion.Maui.Toolkit.props": {}
+        }
+      },
       "Xamarin.Android.Glide/4.16.0.14": {
         "type": "package",
         "dependencies": {
@@ -13621,6 +13711,24 @@
           "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
+      "Syncfusion.Maui.Toolkit/1.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0-android36.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-android36.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "runtime": {
+          "lib/net10.0-android36.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-android36.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "build": {
+          "buildTransitive/Syncfusion.Maui.Toolkit.props": {}
+        }
+      },
       "Xamarin.Android.Glide/4.16.0.14": {
         "type": "package",
         "dependencies": {
@@ -16177,6 +16285,24 @@
           "lib/net6.0/SQLitePCLRaw.provider.sqlite3.dll": {}
         }
       },
+      "Syncfusion.Maui.Toolkit/1.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0-ios26.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-ios26.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "runtime": {
+          "lib/net10.0-ios26.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-ios26.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "build": {
+          "buildTransitive/Syncfusion.Maui.Toolkit.props": {}
+        }
+      },
       "System.Runtime.InteropServices.NFloat.Internal/6.0.1": {
         "type": "package",
         "compile": {
@@ -16748,6 +16874,24 @@
         },
         "runtime": {
           "lib/net6.0/SQLitePCLRaw.provider.sqlite3.dll": {}
+        }
+      },
+      "Syncfusion.Maui.Toolkit/1.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0-ios26.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-ios26.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "runtime": {
+          "lib/net10.0-ios26.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-ios26.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "build": {
+          "buildTransitive/Syncfusion.Maui.Toolkit.props": {}
         }
       },
       "System.Runtime.InteropServices.NFloat.Internal/6.0.1": {
@@ -17323,6 +17467,24 @@
           "lib/net6.0/SQLitePCLRaw.provider.sqlite3.dll": {}
         }
       },
+      "Syncfusion.Maui.Toolkit/1.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0-ios26.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-ios26.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "runtime": {
+          "lib/net10.0-ios26.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-ios26.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "build": {
+          "buildTransitive/Syncfusion.Maui.Toolkit.props": {}
+        }
+      },
       "System.Runtime.InteropServices.NFloat.Internal/6.0.1": {
         "type": "package",
         "compile": {
@@ -17894,6 +18056,24 @@
         },
         "runtime": {
           "lib/net6.0/SQLitePCLRaw.provider.sqlite3.dll": {}
+        }
+      },
+      "Syncfusion.Maui.Toolkit/1.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0-ios26.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-ios26.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "runtime": {
+          "lib/net10.0-ios26.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-ios26.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "build": {
+          "buildTransitive/Syncfusion.Maui.Toolkit.props": {}
         }
       },
       "System.Runtime.InteropServices.NFloat.Internal/6.0.1": {
@@ -18469,6 +18649,24 @@
           "lib/net6.0/SQLitePCLRaw.provider.sqlite3.dll": {}
         }
       },
+      "Syncfusion.Maui.Toolkit/1.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0-ios26.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-ios26.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "runtime": {
+          "lib/net10.0-ios26.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-ios26.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "build": {
+          "buildTransitive/Syncfusion.Maui.Toolkit.props": {}
+        }
+      },
       "System.Runtime.InteropServices.NFloat.Internal/6.0.1": {
         "type": "package",
         "compile": {
@@ -19040,6 +19238,24 @@
         },
         "runtime": {
           "lib/net6.0/SQLitePCLRaw.provider.sqlite3.dll": {}
+        }
+      },
+      "Syncfusion.Maui.Toolkit/1.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0-ios26.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-ios26.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "runtime": {
+          "lib/net10.0-ios26.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-ios26.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "build": {
+          "buildTransitive/Syncfusion.Maui.Toolkit.props": {}
         }
       },
       "System.Runtime.InteropServices.NFloat.Internal/6.0.1": {
@@ -19716,6 +19932,24 @@
         "runtime": {
           "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
+      },
+      "Syncfusion.Maui.Toolkit/1.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0-maccatalyst26.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-maccatalyst26.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "runtime": {
+          "lib/net10.0-maccatalyst26.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-maccatalyst26.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "build": {
+          "buildTransitive/Syncfusion.Maui.Toolkit.props": {}
+        }
       }
     },
     "net10.0-maccatalyst26.1/android-arm64": {
@@ -20295,6 +20529,24 @@
         },
         "runtime": {
           "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
+        }
+      },
+      "Syncfusion.Maui.Toolkit/1.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0-maccatalyst26.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-maccatalyst26.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "runtime": {
+          "lib/net10.0-maccatalyst26.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-maccatalyst26.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "build": {
+          "buildTransitive/Syncfusion.Maui.Toolkit.props": {}
         }
       }
     },
@@ -20876,6 +21128,24 @@
         "runtime": {
           "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
+      },
+      "Syncfusion.Maui.Toolkit/1.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0-maccatalyst26.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-maccatalyst26.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "runtime": {
+          "lib/net10.0-maccatalyst26.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-maccatalyst26.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "build": {
+          "buildTransitive/Syncfusion.Maui.Toolkit.props": {}
+        }
       }
     },
     "net10.0-maccatalyst26.1/iossimulator-x64": {
@@ -21452,6 +21722,24 @@
         },
         "runtime": {
           "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
+        }
+      },
+      "Syncfusion.Maui.Toolkit/1.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0-maccatalyst26.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-maccatalyst26.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "runtime": {
+          "lib/net10.0-maccatalyst26.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-maccatalyst26.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "build": {
+          "buildTransitive/Syncfusion.Maui.Toolkit.props": {}
         }
       }
     },
@@ -22033,6 +22321,24 @@
         "runtime": {
           "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
+      },
+      "Syncfusion.Maui.Toolkit/1.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0-maccatalyst26.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-maccatalyst26.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "runtime": {
+          "lib/net10.0-maccatalyst26.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-maccatalyst26.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "build": {
+          "buildTransitive/Syncfusion.Maui.Toolkit.props": {}
+        }
       }
     },
     "net10.0-maccatalyst26.1/win-x64": {
@@ -22612,6 +22918,24 @@
         },
         "runtime": {
           "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
+        }
+      },
+      "Syncfusion.Maui.Toolkit/1.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0-maccatalyst26.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-maccatalyst26.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "runtime": {
+          "lib/net10.0-maccatalyst26.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net10.0-maccatalyst26.0/Syncfusion.Maui.Toolkit.resources.dll": {}
+        },
+        "build": {
+          "buildTransitive/Syncfusion.Maui.Toolkit.props": {}
         }
       }
     },
@@ -23680,6 +24004,27 @@
           "lib/net6.0-windows7.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
+      "Syncfusion.Maui.Toolkit/1.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".deps.json;.pdb;.pri;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".deps.json;.pdb;.pri;.xml"
+          }
+        },
+        "resource": {
+          "lib/net10.0-windows10.0.19041.0/en-US/Syncfusion.Maui.Toolkit.resources.dll": {
+            "locale": "en-US"
+          }
+        },
+        "build": {
+          "buildTransitive/Syncfusion.Maui.Toolkit.props": {}
+        }
+      },
       "System.Numerics.Tensors/9.0.0": {
         "type": "package",
         "compile": {
@@ -24635,6 +24980,27 @@
           "lib/net6.0-windows7.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
+      "Syncfusion.Maui.Toolkit/1.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".deps.json;.pdb;.pri;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".deps.json;.pdb;.pri;.xml"
+          }
+        },
+        "resource": {
+          "lib/net10.0-windows10.0.19041.0/en-US/Syncfusion.Maui.Toolkit.resources.dll": {
+            "locale": "en-US"
+          }
+        },
+        "build": {
+          "buildTransitive/Syncfusion.Maui.Toolkit.props": {}
+        }
+      },
       "System.Numerics.Tensors/9.0.0": {
         "type": "package",
         "compile": {
@@ -25584,6 +25950,27 @@
           "lib/net6.0-windows7.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
+      "Syncfusion.Maui.Toolkit/1.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".deps.json;.pdb;.pri;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".deps.json;.pdb;.pri;.xml"
+          }
+        },
+        "resource": {
+          "lib/net10.0-windows10.0.19041.0/en-US/Syncfusion.Maui.Toolkit.resources.dll": {
+            "locale": "en-US"
+          }
+        },
+        "build": {
+          "buildTransitive/Syncfusion.Maui.Toolkit.props": {}
+        }
+      },
       "System.Numerics.Tensors/9.0.0": {
         "type": "package",
         "compile": {
@@ -26528,6 +26915,27 @@
         },
         "runtime": {
           "lib/net6.0-windows7.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
+        }
+      },
+      "Syncfusion.Maui.Toolkit/1.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".deps.json;.pdb;.pri;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".deps.json;.pdb;.pri;.xml"
+          }
+        },
+        "resource": {
+          "lib/net10.0-windows10.0.19041.0/en-US/Syncfusion.Maui.Toolkit.resources.dll": {
+            "locale": "en-US"
+          }
+        },
+        "build": {
+          "buildTransitive/Syncfusion.Maui.Toolkit.props": {}
         }
       },
       "System.Numerics.Tensors/9.0.0": {
@@ -27477,6 +27885,27 @@
         },
         "runtime": {
           "lib/net6.0-windows7.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
+        }
+      },
+      "Syncfusion.Maui.Toolkit/1.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".deps.json;.pdb;.pri;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".deps.json;.pdb;.pri;.xml"
+          }
+        },
+        "resource": {
+          "lib/net10.0-windows10.0.19041.0/en-US/Syncfusion.Maui.Toolkit.resources.dll": {
+            "locale": "en-US"
+          }
+        },
+        "build": {
+          "buildTransitive/Syncfusion.Maui.Toolkit.props": {}
         }
       },
       "System.Numerics.Tensors/9.0.0": {
@@ -28436,6 +28865,27 @@
         },
         "runtime": {
           "lib/net6.0-windows7.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
+        }
+      },
+      "Syncfusion.Maui.Toolkit/1.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".deps.json;.pdb;.pri;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit.dll": {
+            "related": ".deps.json;.pdb;.pri;.xml"
+          }
+        },
+        "resource": {
+          "lib/net10.0-windows10.0.19041.0/en-US/Syncfusion.Maui.Toolkit.resources.dll": {
+            "locale": "en-US"
+          }
+        },
+        "build": {
+          "buildTransitive/Syncfusion.Maui.Toolkit.props": {}
         }
       },
       "System.Numerics.Tensors/9.0.0": {
@@ -31831,6 +32281,76 @@
         "sqlitepclraw.provider.sqlite3.nuspec"
       ]
     },
+    "Syncfusion.Maui.Toolkit/1.0.9": {
+      "sha512": "T7GJRt37VoYScF3hpWEFZwLn8ooz0k4HRvQgAe55g0ftWkKvHpTog+za4N7kXVgwDoMwfEmIW1qW3z/OAcpxng==",
+      "type": "package",
+      "path": "syncfusion.maui.toolkit/1.0.9",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "README.md",
+        "buildTransitive/Resources/Fonts/MauiMaterialAssets.ttf",
+        "buildTransitive/Syncfusion.Maui.Toolkit.props",
+        "lib/net10.0-android36.0/Syncfusion.Maui.Toolkit.dll",
+        "lib/net10.0-android36.0/Syncfusion.Maui.Toolkit.pdb",
+        "lib/net10.0-android36.0/Syncfusion.Maui.Toolkit.resources.dll",
+        "lib/net10.0-android36.0/Syncfusion.Maui.Toolkit.xml",
+        "lib/net10.0-ios26.0/Syncfusion.Maui.Toolkit.dll",
+        "lib/net10.0-ios26.0/Syncfusion.Maui.Toolkit.pdb",
+        "lib/net10.0-ios26.0/Syncfusion.Maui.Toolkit.resources.dll",
+        "lib/net10.0-ios26.0/Syncfusion.Maui.Toolkit.xml",
+        "lib/net10.0-maccatalyst26.0/Syncfusion.Maui.Toolkit.dll",
+        "lib/net10.0-maccatalyst26.0/Syncfusion.Maui.Toolkit.pdb",
+        "lib/net10.0-maccatalyst26.0/Syncfusion.Maui.Toolkit.resources.dll",
+        "lib/net10.0-maccatalyst26.0/Syncfusion.Maui.Toolkit.xml",
+        "lib/net10.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit.deps.json",
+        "lib/net10.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit.dll",
+        "lib/net10.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit.pdb",
+        "lib/net10.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit.pri",
+        "lib/net10.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit.xml",
+        "lib/net10.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit/Carousel/Platform/Windows/Styles/CarouselStyles.xaml",
+        "lib/net10.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit/Carousel/Platform/Windows/Styles/CarouselStyles.xbf",
+        "lib/net10.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit/Carousel/Platform/Windows/Styles/Resources.xaml",
+        "lib/net10.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit/Carousel/Platform/Windows/Styles/Resources.xbf",
+        "lib/net10.0-windows10.0.19041.0/en-US/Syncfusion.Maui.Toolkit.resources.dll",
+        "lib/net10.0/Syncfusion.Maui.Toolkit.deps.json",
+        "lib/net10.0/Syncfusion.Maui.Toolkit.dll",
+        "lib/net10.0/Syncfusion.Maui.Toolkit.pdb",
+        "lib/net10.0/Syncfusion.Maui.Toolkit.resources.dll",
+        "lib/net10.0/Syncfusion.Maui.Toolkit.xml",
+        "lib/net9.0-android35.0/Syncfusion.Maui.Toolkit.dll",
+        "lib/net9.0-android35.0/Syncfusion.Maui.Toolkit.pdb",
+        "lib/net9.0-android35.0/Syncfusion.Maui.Toolkit.resources.dll",
+        "lib/net9.0-android35.0/Syncfusion.Maui.Toolkit.xml",
+        "lib/net9.0-ios18.0/Syncfusion.Maui.Toolkit.dll",
+        "lib/net9.0-ios18.0/Syncfusion.Maui.Toolkit.pdb",
+        "lib/net9.0-ios18.0/Syncfusion.Maui.Toolkit.resources.dll",
+        "lib/net9.0-ios18.0/Syncfusion.Maui.Toolkit.xml",
+        "lib/net9.0-maccatalyst18.0/Syncfusion.Maui.Toolkit.dll",
+        "lib/net9.0-maccatalyst18.0/Syncfusion.Maui.Toolkit.pdb",
+        "lib/net9.0-maccatalyst18.0/Syncfusion.Maui.Toolkit.resources.dll",
+        "lib/net9.0-maccatalyst18.0/Syncfusion.Maui.Toolkit.xml",
+        "lib/net9.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit.deps.json",
+        "lib/net9.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit.dll",
+        "lib/net9.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit.pdb",
+        "lib/net9.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit.pri",
+        "lib/net9.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit.xml",
+        "lib/net9.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit/Carousel/Platform/Windows/Styles/CarouselStyles.xaml",
+        "lib/net9.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit/Carousel/Platform/Windows/Styles/CarouselStyles.xbf",
+        "lib/net9.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit/Carousel/Platform/Windows/Styles/Resources.xaml",
+        "lib/net9.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit/Carousel/Platform/Windows/Styles/Resources.xbf",
+        "lib/net9.0-windows10.0.19041.0/en-US/Syncfusion.Maui.Toolkit.resources.dll",
+        "lib/net9.0/Syncfusion.Maui.Toolkit.deps.json",
+        "lib/net9.0/Syncfusion.Maui.Toolkit.dll",
+        "lib/net9.0/Syncfusion.Maui.Toolkit.pdb",
+        "lib/net9.0/Syncfusion.Maui.Toolkit.resources.dll",
+        "lib/net9.0/Syncfusion.Maui.Toolkit.xml",
+        "syncfusion.maui.toolkit.1.0.9.nupkg.sha512",
+        "syncfusion.maui.toolkit.nuspec",
+        "syncfusion_logo.png"
+      ]
+    },
     "System.Numerics.Tensors/9.0.0": {
       "sha512": "hyJB4UlpAi19Xr9AXzu2NuagKC4lPfHObNMEAA0HmqFz2rX7wKgzeYzO/jM/eBHDhnUGFFEjk5cOoJaxqg5J4A==",
       "type": "package",
@@ -34294,6 +34814,7 @@
       "Microsoft.Extensions.Logging.Debug >= 10.0.2",
       "Microsoft.Maui.Controls >= 10.0.31",
       "Microsoft.NET.ILLink.Tasks >= 10.0.2",
+      "Syncfusion.Maui.Toolkit >= 1.0.9",
       "sqlite-net-pcl >= 1.9.172"
     ],
     "net10.0-ios26.1": [
@@ -34302,6 +34823,7 @@
       "Microsoft.Extensions.Logging.Debug >= 10.0.2",
       "Microsoft.Maui.Controls >= 10.0.31",
       "Microsoft.NET.ILLink.Tasks >= 10.0.2",
+      "Syncfusion.Maui.Toolkit >= 1.0.9",
       "sqlite-net-pcl >= 1.9.172"
     ],
     "net10.0-maccatalyst26.1": [
@@ -34310,6 +34832,7 @@
       "Microsoft.Extensions.Logging.Debug >= 10.0.2",
       "Microsoft.Maui.Controls >= 10.0.31",
       "Microsoft.NET.ILLink.Tasks >= 10.0.2",
+      "Syncfusion.Maui.Toolkit >= 1.0.9",
       "sqlite-net-pcl >= 1.9.172"
     ],
     "net10.0-windows10.0.19041": [
@@ -34317,6 +34840,7 @@
       "CommunityToolkit.Mvvm >= 8.4.0",
       "Microsoft.Extensions.Logging.Debug >= 10.0.2",
       "Microsoft.Maui.Controls >= 10.0.31",
+      "Syncfusion.Maui.Toolkit >= 1.0.9",
       "sqlite-net-pcl >= 1.9.172"
     ]
   },
@@ -34408,6 +34932,10 @@
             "target": "Package",
             "version": "[10.0.2, )",
             "autoReferenced": true
+          },
+          "Syncfusion.Maui.Toolkit": {
+            "target": "Package",
+            "version": "[1.0.9, )"
           },
           "sqlite-net-pcl": {
             "target": "Package",
@@ -34737,6 +35265,10 @@
             "version": "[10.0.2, )",
             "autoReferenced": true
           },
+          "Syncfusion.Maui.Toolkit": {
+            "target": "Package",
+            "version": "[1.0.9, )"
+          },
           "sqlite-net-pcl": {
             "target": "Package",
             "version": "[1.9.172, )"
@@ -35065,6 +35597,10 @@
             "version": "[10.0.2, )",
             "autoReferenced": true
           },
+          "Syncfusion.Maui.Toolkit": {
+            "target": "Package",
+            "version": "[1.0.9, )"
+          },
           "sqlite-net-pcl": {
             "target": "Package",
             "version": "[1.9.172, )"
@@ -35387,6 +35923,10 @@
           "Microsoft.Maui.Controls": {
             "target": "Package",
             "version": "[10.0.31, )"
+          },
+          "Syncfusion.Maui.Toolkit": {
+            "target": "Package",
+            "version": "[1.0.9, )"
           },
           "sqlite-net-pcl": {
             "target": "Package",

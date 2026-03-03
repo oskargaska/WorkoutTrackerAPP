@@ -30,12 +30,10 @@ namespace WorkoutTrackerAPP.ViewModels
             await Shell.Current.GoToAsync("//workouts");
         }
 
-        
-
-
-
-
-
-
+        [RelayCommand]
+        async Task NavigateToHistory()
+        {
+            await Shell.Current.GoToAsync("//history");
+        }
     }
 }

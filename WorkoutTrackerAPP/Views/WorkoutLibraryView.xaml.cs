@@ -5,7 +5,7 @@ namespace WorkoutTrackerAPP.Views;
 
 public partial class WorkoutLibraryView : ContentPage
 {
-	public WorkoutLibraryView(IWorkouts workouts, WorkoutLibraryViewModel workoutLibraryViewModel)
+	public WorkoutLibraryView(WorkoutLibraryViewModel workoutLibraryViewModel)
 	{
 		InitializeComponent();
 		BindingContext = workoutLibraryViewModel;

@@ -6,10 +6,11 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
+using WorkoutTrackerAPP.Enumerators;
 using WorkoutTrackerAPP.Filters;
 using WorkoutTrackerAPP.Interfaces;
 using WorkoutTrackerAPP.Models;
-using WorkoutTrackerAPP.Enumerators;
+using WorkoutTrackerAPP.Views;
 
 namespace WorkoutTrackerAPP.ViewModels
 {
@@ -209,7 +210,24 @@ namespace WorkoutTrackerAPP.ViewModels
                 .Concat(AvailablePrimaryMuscles)
                 .Concat(AvailableSecondaryMuscles);
 
+
+
+        [RelayCommand]
+        async Task SelectExercise(ExerciseDTO exercise)
+        {
+            var exerciseView = App.Current.Handler.MauiContext.Services.GetRequiredService<ExerciseView>();
+            exerciseView.SetExercise(exercise.Id);
+            await Shell.Current.Navigation.PushAsync(exerciseView);
+
+        }
+
     }
+
+
+
+
+
+   
 
 
 }

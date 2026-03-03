@@ -1,4 +1,3 @@
-using WorkoutTrackerAPP.Interfaces;
 using WorkoutTrackerAPP.ViewModels;
 
 namespace WorkoutTrackerAPP.Views;

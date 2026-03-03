@@ -20,12 +20,18 @@ namespace WorkoutTrackerAPP.ViewModels
         private readonly IExercises _exercises;
         private readonly IWorkouts _workouts;
         private readonly ISessions _sessions;
+        private readonly IFilters _filters;
+
         private WorkoutGroupDTO _currentGroup;
         private IDispatcherTimer _timer;
         private WorkoutExerciseDTO _currentExercise;
+
         private int _currentGroupIndex;
         private int _currentItemIndex;
         private int _workoutId;
+
+        private ExercisePickerViewModel _pickerVM;
+        private ExercisePickerView _pickerPage;
 
         private DateTime _startTime;
         private DateTime _endTime;
@@ -61,11 +67,14 @@ namespace WorkoutTrackerAPP.ViewModels
         private readonly WorkoutDTO _workoutSnapshot = new();
 
 
-        public ActiveWorkoutViewModel(IExercises exercises, IWorkouts workouts, ISessions sessions)
+        public ActiveWorkoutViewModel(IExercises exercises, IWorkouts workouts, ISessions sessions, IFilters filters)
         {
             _exercises = exercises;
             _workouts = workouts;
             _sessions = sessions;
+            _filters = filters;
+
+            _pickerVM = new(_exercises, _filters);
 
             WeakReferenceMessenger.Default.Register<MExerciseSelectedMessage>(this, (recipient, message) =>
             {
@@ -531,8 +540,9 @@ namespace WorkoutTrackerAPP.ViewModels
         async Task AddExerciseToGroup(WorkoutGroupDTO group)
         {
             _currentGroup = group;
-            var picker = App.Current.Handler.MauiContext.Services.GetRequiredService<ExercisePickerView>();
-            await Shell.Current.Navigation.PushAsync(picker);
+            _pickerPage = App.Current.Handler.MauiContext.Services.GetRequiredService<ExercisePickerView>();
+            _pickerPage.BindingContext = _pickerVM;
+            await Shell.Current.Navigation.PushAsync(_pickerPage);
         }
 
         private async void OnExerciseSelected(ExerciseDTO exercise, bool isReps)
@@ -546,7 +556,7 @@ namespace WorkoutTrackerAPP.ViewModels
                     ExerciseId = exercise.Id,
                     Name = exercise.Name,
                     Type = EWorkoutItemType.Exercise,
-                    Reps = 0,
+                    Reps = 8,
                     Duration = null,
                     MaxDuration = null,
                     ParentGroup = _currentGroup
@@ -768,7 +778,7 @@ namespace WorkoutTrackerAPP.ViewModels
             if (Groups.Count == 0) return;
             var workout = new WorkoutDTO
             {
-                Name = WorkoutName,
+                Name = WorkoutName += " - Copy",
                 Groups = Groups.ToList(),
             };
             await _workouts.AddWorkoutAsync(workout);

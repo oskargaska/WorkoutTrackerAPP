@@ -29,6 +29,8 @@ public class MonoPackageManager_Resources {
 		"SQLitePCLRaw.core.dll",
 		"SQLitePCLRaw.lib.e_sqlite3.android.dll",
 		"SQLitePCLRaw.provider.e_sqlite3.dll",
+		"Syncfusion.Maui.Toolkit.dll",
+		"Syncfusion.Maui.Toolkit.resources.dll",
 		"Xamarin.Android.Glide.dll",
 		"Xamarin.Android.Glide.Annotations.dll",
 		"Xamarin.Android.Glide.DiskLruCache.dll",

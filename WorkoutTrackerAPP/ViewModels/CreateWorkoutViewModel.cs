@@ -88,7 +88,7 @@ namespace WorkoutTrackerAPP.ViewModels
                     ExerciseId = exercise.Id,
                     Name = exercise.Name,
                     Type = EWorkoutItemType.Exercise,
-                    Reps = 0,
+                    Reps = 8,
                     MaxDuration = null,
                     Duration = null,
                     ParentGroup = _currentGroup

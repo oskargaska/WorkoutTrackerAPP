@@ -55,7 +55,7 @@
                         SelectionMode="Single"
                         SelectionChangedCommand="{Binding WorkoutSelectedCommand}"
                         SelectionChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}"
-                        Margin="10,0">
+                        Margin="10,15">
 
             <CollectionView.EmptyView>
                 <VerticalStackLayout HorizontalOptions="Center"
@@ -98,7 +98,7 @@
 
                         <!-- Workout card -->
                         <Border Padding="15"
-                                Margin="0,5">
+                                Margin="0,0,0,5">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup Name="CommonStates">
                                     <VisualState Name="Normal"></VisualState>
@@ -130,14 +130,11 @@
                                        FontSize="14">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="💪 "/>
+                                            <Span Text="Exercises: "/>
                                             <Span Text="{Binding TotalExercises}"/>
-                                            <Span Text=" exercises"/>
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
-
-
                             </Grid>
                         </Border>
                     </SwipeView>

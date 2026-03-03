@@ -4,6 +4,9 @@ using WorkoutTrackerAPP.Interfaces;
 using WorkoutTrackerAPP.Services;
 using WorkoutTrackerAPP.ViewModels;
 using WorkoutTrackerAPP.Views;
+using Syncfusion.Maui.Toolkit.Hosting;
+
+
 
 
 namespace WorkoutTrackerAPP
@@ -17,6 +20,7 @@ namespace WorkoutTrackerAPP
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
+                .ConfigureSyncfusionToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -28,8 +32,8 @@ namespace WorkoutTrackerAPP
             builder.Services.AddSingleton<IDatabaseConnection, DatabaseConnectionService>();
             builder.Services.AddSingleton<IDatabase, DatabaseService>();
             builder.Services.AddSingleton<ISessions, SessionsService>();
-            builder.Services.AddSingleton<IFilters, FiltersService>();
 
+            builder.Services.AddSingleton<IFilters, FiltersService>(); //Could be transient, but ExercisePicker is never resetted while picking exercises, so it will use reset function anyway. No time to play around.
 
             builder.Services.AddTransient<MainViewModel>();
             builder.Services.AddTransient<MainView>();
@@ -48,6 +52,15 @@ namespace WorkoutTrackerAPP
 
             builder.Services.AddTransient<ActiveWorkoutView>();
             builder.Services.AddTransient<ActiveWorkoutViewModel>();
+
+            builder.Services.AddTransient<HistoryView>();
+            builder.Services.AddTransient<HistoryViewModel>();
+
+            builder.Services.AddTransient<SessionView>();
+            builder.Services.AddTransient<SessionViewModel>();
+
+            builder.Services.AddTransient<ExerciseView>();
+            builder.Services.AddTransient<ExerciseViewModel>();
 
 
 

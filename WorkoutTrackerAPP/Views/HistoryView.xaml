@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+             xmlns:viewModels="clr-namespace:WorkoutTrackerAPP.ViewModels"
+             xmlns:models="clr-namespace:WorkoutTrackerAPP.Models"
+             xmlns:filters="clr-namespace:WorkoutTrackerAPP.Filters"
+             x:Class="WorkoutTrackerAPP.Views.HistoryView"
+             x:DataType="viewModels:HistoryViewModel">
+
+
+    <Grid RowDefinitions="Auto,Auto,*"
+          RowSpacing="5">
+        
+        <!-- Grid with buttons on top -->
+        <Grid   Grid.Row="0"
+                ColumnDefinitions="3,*"
+                VerticalOptions="Start"
+                HeightRequest="50">
+
+            <Button Grid.Column="0"
+                    Text="&lt;"
+                    FontSize="Large"
+                    HeightRequest="20"
+                    WidthRequest="70"
+                    CornerRadius="10"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Start"
+                    Margin="5"
+                    Padding="0"
+                    Command="{Binding GoBackCommand}">
+
+
+            </Button>
+            <Label  Grid.Column="1"
+                    Text="History"
+                    FontSize="Large"
+                    FontAttributes="Bold"
+                    TextColor="{DynamicResource Tertiary}"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"/>
+        </Grid>
+        <Border Grid.Row="1"
+                Margin="10,15,10,0">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10"/>
+            </Border.StrokeShape>
+
+
+            <toolkit:SfCalendar 
+                            View="Month"
+                            SelectionMode="Single"
+                            SelectedDate="{Binding SelectedDate, Mode=TwoWay}"
+                            Background="{DynamicResource Primary}"
+                            SelectionBackground="{DynamicResource Secondary}">
+
+
+            <toolkit:SfCalendar.MonthView>
+                <toolkit:CalendarMonthView Background="{DynamicResource Primary}">
+                    <toolkit:CalendarMonthView.TextStyle>
+                        <toolkit:CalendarTextStyle TextColor="{DynamicResource Tertiary}" FontSize="14"/>
+                    </toolkit:CalendarMonthView.TextStyle>
+
+                    <toolkit:CalendarMonthView.TodayTextStyle>
+                        <toolkit:CalendarTextStyle TextColor="{DynamicResource Tertiary}" FontSize="14" FontAttributes="Bold"/>
+                    </toolkit:CalendarMonthView.TodayTextStyle>
+
+                    <toolkit:CalendarMonthView.TrailingLeadingDatesTextStyle>
+                        <toolkit:CalendarTextStyle TextColor="{DynamicResource Secondary}" FontSize="12"/>
+                    </toolkit:CalendarMonthView.TrailingLeadingDatesTextStyle>
+
+                    <toolkit:CalendarMonthView.SelectionTextStyle>
+                        <toolkit:CalendarTextStyle TextColor="{DynamicResource Tertiary}" FontSize="12"/>
+                    </toolkit:CalendarMonthView.SelectionTextStyle>
+
+                </toolkit:CalendarMonthView>
+            </toolkit:SfCalendar.MonthView>
+
+
+
+
+
+        </toolkit:SfCalendar>
+        </Border>
+        <CollectionView Grid.Row="2"
+                        ItemsSource="{Binding SelectedDaySessions}"
+                        SelectionMode="Single"
+                        SelectionChangedCommand="{Binding SessionSelectedCommand}"
+                        SelectionChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}">
+            <CollectionView.ItemTemplate >
+                <DataTemplate x:DataType="models:SessionDTO">
+                    <Border Padding="20,10"
+                            Margin="10,3">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10"/>
+                        </Border.StrokeShape>
+
+                        <VerticalStackLayout Spacing="2">
+                            <!-- Workout Name -->
+                            <Label FontSize="14" TextColor="{DynamicResource Tertiary}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Workout: " FontAttributes="Bold"/>
+                                        <Span Text="{Binding WorkoutSnapshot.Name}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <!-- Session time -->
+                            <Label FontSize="12" TextColor="{DynamicResource Tertiary}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Time: " FontAttributes="Bold"/>
+                                        <Span Text="{Binding StartTime, StringFormat='{0:HH:mm}'}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <!-- Session duration -->
+                            <Label FontSize="12" TextColor="{DynamicResource Tertiary}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Duration: " FontAttributes="Bold"/>
+                                        <Span Text="{Binding Duration, StringFormat='{0:%h\\:mm\\:ss}'}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </VerticalStackLayout>
+
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+
+    
+
+
+
+
+
+</ContentPage>

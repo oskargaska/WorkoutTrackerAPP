@@ -26,5 +26,14 @@
     <ShellContent 
         Route="workout"
         ContentTemplate="{DataTemplate views:ActiveWorkoutView}" />
+    <ShellContent 
+        Route="history"
+        ContentTemplate="{DataTemplate views:HistoryView}" />
+    <ShellContent 
+        Route="session"
+        ContentTemplate="{DataTemplate views:SessionView}" />
+    <ShellContent 
+        Route="exercise"
+        ContentTemplate="{DataTemplate views:ExerciseView}" />
 
 </Shell>
