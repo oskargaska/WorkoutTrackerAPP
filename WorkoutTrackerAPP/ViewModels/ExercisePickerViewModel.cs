@@ -11,6 +11,7 @@ using WorkoutTrackerAPP.Filters;
 using WorkoutTrackerAPP.Interfaces;
 using WorkoutTrackerAPP.Messages;
 using WorkoutTrackerAPP.Models;
+using WorkoutTrackerAPP.Views;
 
 
 namespace WorkoutTrackerAPP.ViewModels
@@ -209,5 +210,13 @@ namespace WorkoutTrackerAPP.ViewModels
                 .Concat(AvailableSecondaryMuscles);
 
 
+        [RelayCommand]
+        async Task SelectExercise(ExerciseDTO exercise)
+        {
+            var exerciseView = App.Current.Handler.MauiContext.Services.GetRequiredService<ExerciseView>();
+            exerciseView.SetExercise(exercise.Id);
+            await Shell.Current.Navigation.PushAsync(exerciseView);
+
+        }
     }
 }

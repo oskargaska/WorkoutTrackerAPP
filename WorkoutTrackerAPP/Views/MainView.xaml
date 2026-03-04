@@ -8,20 +8,15 @@
 
 
 
-    <Grid RowDefinitions="Auto,*" 
+    <Grid RowDefinitions="*,Auto" 
           RowSpacing="20"
           Padding="20">
 
-        <Label Grid.Row="0"
-               Text="Welcome"
-               VerticalOptions="Center"
-               HorizontalOptions="Center"
-               FontSize="32"
-               FontAttributes="Bold"/>
 
-        <VerticalStackLayout Grid.Row="1"
-                            Spacing="15"
-                            VerticalOptions="Center">
+
+        <VerticalStackLayout Grid.Row="0"
+                             Spacing="15"
+                             VerticalOptions="Center">
 
             <Button Text="Start Workout"
                     WidthRequest="250"
@@ -38,6 +33,13 @@
                     HeightRequest="50"
                     Command="{Binding NavigateToHistoryCommand}"/>
 
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Grid.Row="1">
+            <Button Text="Exit"
+                    WidthRequest="250"
+                    HeightRequest="50"
+                    Command="{Binding ExitAppCommand}"/>
         </VerticalStackLayout>
 
     </Grid>

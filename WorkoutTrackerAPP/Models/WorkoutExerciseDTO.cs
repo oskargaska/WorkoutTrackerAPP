@@ -34,12 +34,16 @@ namespace WorkoutTrackerAPP.Models
         [JsonIgnore]
         public WorkoutGroupDTO ParentGroup { get; set; }
 
+
         [ObservableProperty]
         [JsonIgnore]  
         private bool isActive = false;
 
         [JsonIgnore]
         public string RemainingTimeDisplay => Duration?.ToString(@"mm\:ss") ?? "00:00";
+
+        [JsonIgnore]
+        public bool IsActualExercise => !string.IsNullOrEmpty(ExerciseId);
 
     }
 }

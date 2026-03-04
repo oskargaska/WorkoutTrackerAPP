@@ -51,6 +51,12 @@
             <inheritdoc/>
             <inheritdoc/>
             <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.IsWorkoutPaused">
+            <inheritdoc cref="F:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.isWorkoutPaused"/>
         </member>
         <member name="P:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.IsWorkoutActive">
             <inheritdoc cref="F:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.isWorkoutActive"/>
@@ -78,6 +84,18 @@
         </member>
         <member name="P:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.ToggleEditModeCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.ToggleEditMode"/>.</summary>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.stopWorkoutCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.StopWorkoutCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.StopWorkoutCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.StopWorkout"/>.</summary>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.restartWorkoutCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.RestartWorkoutCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.RestartWorkoutCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.RestartWorkout"/>.</summary>
         </member>
         <member name="F:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.cancelEditCommand">
             <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.CancelEditCommand"/>.</summary>
@@ -192,6 +210,12 @@
         </member>
         <member name="P:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.CompleteWorkoutCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.CompleteWorkout"/>.</summary>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.selectExerciseDetailsCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.SelectExerciseDetailsCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.SelectExerciseDetailsCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ActiveWorkoutViewModel.SelectExerciseDetails(WorkoutTrackerAPP.Models.WorkoutExerciseDTO)"/>.</summary>
         </member>
         <member name="T:WorkoutTrackerAPP.ViewModels.CreateWorkoutViewModel">
             <inheritdoc/>
@@ -379,6 +403,7 @@
             <inheritdoc/>
             <inheritdoc/>
             <inheritdoc/>
+            <inheritdoc/>
         </member>
         <member name="P:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.SearchText">
             <inheritdoc cref="F:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.searchText"/>
@@ -433,6 +458,12 @@
         <member name="P:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.ClearFiltersCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.ClearFilters"/>.</summary>
         </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.selectExerciseCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.SelectExerciseCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.SelectExerciseCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ExercisePickerViewModel.SelectExercise(WorkoutTrackerAPP.Models.ExerciseDTO)"/>.</summary>
+        </member>
         <member name="T:WorkoutTrackerAPP.ViewModels.ExerciseViewModel">
             <inheritdoc/>
             <inheritdoc/>
@@ -475,6 +506,7 @@
             <inheritdoc/>
             <inheritdoc/>
             <inheritdoc/>
+            <inheritdoc/>
         </member>
         <member name="F:WorkoutTrackerAPP.ViewModels.MainViewModel.navigateToExercisesCommand">
             <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.MainViewModel.NavigateToExercisesCommand"/>.</summary>
@@ -493,6 +525,12 @@
         </member>
         <member name="P:WorkoutTrackerAPP.ViewModels.MainViewModel.NavigateToHistoryCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.MainViewModel.NavigateToHistory"/>.</summary>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.MainViewModel.exitAppCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.MainViewModel.ExitAppCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.MainViewModel.ExitAppCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.MainViewModel.ExitApp"/>.</summary>
         </member>
         <member name="T:WorkoutTrackerAPP.ViewModels.SessionViewModel">
             <inheritdoc/>
@@ -774,6 +812,12 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsActive">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsActive" generated properties.</summary>
         </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsWorkoutPaused">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsWorkoutPaused" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsWorkoutNotPaused">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsWorkoutNotPaused" generated properties.</summary>
+        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsWorkoutActive">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsWorkoutActive" generated properties.</summary>
         </member>
@@ -842,6 +886,12 @@
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsActive">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsActive" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsWorkoutPaused">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsWorkoutPaused" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsWorkoutNotPaused">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsWorkoutNotPaused" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsWorkoutActive">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsWorkoutActive" generated properties.</summary>

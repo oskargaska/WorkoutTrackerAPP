@@ -232,18 +232,34 @@
 
 
                             <Grid RowDefinitions="Auto,Auto,Auto" 
-                                  ColumnDefinitions="*,Auto">
+                                  ColumnDefinitions="Auto,*,Auto">
 
+                                <Button Grid.Row="0" Grid.Column="0"
+                                         Text="&#x24D8;"
+                                         FontSize="25"
+                                         Padding="0"
+                                         WidthRequest="20"
+                                         HeightRequest="20"
+                                         HorizontalOptions="Start"
+                                         Background="Transparent"
+                                         TextColor="{DynamicResource Tertiary}"
+                                         BorderColor="Transparent"
+                                         CornerRadius="30"
+                                         IsVisible="{Binding IsActualExercise}"
+                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ExercisePickerViewModel}}, Path=SelectExerciseCommand}"
+                                         CommandParameter="{Binding .}"/>
+                                
                                 <!-- Exercise name -->
-                                <Label Grid.Row="0" Grid.Column="0"
+                                <Label Grid.Row="0" Grid.Column="1"
                                        Text="{Binding Name}"
                                        TextDecorations="Underline"
+                                       VerticalOptions="Center"
                                        FontSize="18"
                                        FontAttributes="Bold"
                                        TextColor="{DynamicResource Tertiary}"/>
 
                                 <!-- Level badge -->
-                                <Border Grid.Row="0" Grid.Column="1"
+                                <Border Grid.Row="0" Grid.Column="2"
                                         Padding="8,4"
                                         BackgroundColor="{DynamicResource Tertiary}"
                                         StrokeThickness="0"
@@ -256,6 +272,8 @@
                                            TextColor="{DynamicResource Primary}"
                                            VerticalTextAlignment="Center"/>
                                 </Border>
+
+                               
 
                                 <!-- Equipment & Mechanic -->
                                 <HorizontalStackLayout Grid.Row="1" Grid.ColumnSpan="2"
@@ -288,7 +306,7 @@
                                             <Label 
                                                     Grid.Column="1"
                                                     Text="{Binding SecondaryMuscles, Converter={StaticResource ListToStringConverter}}"
-                                                    MaximumWidthRequest="250"
+                                                    MaximumWidthRequest="230"
                                                     FontSize="14"
                                                     TextColor="{DynamicResource Tertiary}"/>
                                         </Grid>

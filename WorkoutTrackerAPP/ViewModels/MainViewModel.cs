@@ -35,5 +35,18 @@ namespace WorkoutTrackerAPP.ViewModels
         {
             await Shell.Current.GoToAsync("//history");
         }
+
+        [RelayCommand]
+        async Task ExitApp()
+        {
+            bool confirm = await App.Current.Windows[0].Page.DisplayAlertAsync(
+                "Exit",
+                "Are you sure you want to exit?",
+                "Yes",
+                "No");
+
+            if (confirm)
+                Application.Current.Quit();
+        }
     }
 }

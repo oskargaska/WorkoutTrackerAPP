@@ -18,7 +18,6 @@ namespace WorkoutTrackerAPP.ViewModels
         public ExerciseViewModel(IExercises exercises)
         {
             _exercises = exercises;
-
         }
 
         public List<string> NumberedInstructions =>

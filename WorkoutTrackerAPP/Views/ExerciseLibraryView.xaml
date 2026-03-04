@@ -299,7 +299,7 @@
                                         <Label 
                                                 Grid.Column="1"
                                                 Text="{Binding SecondaryMuscles, Converter={StaticResource ListToStringConverter}}"
-                                                MaximumWidthRequest="250"
+                                                MaximumWidthRequest="230"
                                                 FontSize="14"
                                                 TextColor="{DynamicResource Tertiary}"/>
                                     </Grid>

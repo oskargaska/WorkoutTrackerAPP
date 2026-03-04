@@ -36,6 +36,10 @@ namespace WorkoutTrackerAPP.ViewModels
         private DateTime _startTime;
         private DateTime _endTime;
 
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(IsWorkoutNotPaused))]
+        private bool isWorkoutPaused = false;
+        public bool IsWorkoutNotPaused => !isWorkoutPaused;
 
         [ObservableProperty]
         private bool isWorkoutActive = false;
@@ -184,9 +188,11 @@ namespace WorkoutTrackerAPP.ViewModels
             
         }
 
+        [RelayCommand]
         async Task StopWorkout()
         {
             if (IsWorkoutActive == false) return;
+            
             else
             {
                 if(_currentExercise != null)
@@ -194,14 +200,17 @@ namespace WorkoutTrackerAPP.ViewModels
                     if (_currentExercise.Duration.HasValue)
                     {
                         _timer?.Stop();
+                        IsWorkoutPaused = true;
                     }
                 }
             }
         }
 
+        [RelayCommand]
         async Task RestartWorkout()
         {
             if (IsWorkoutActive == false) return;
+            
             else
             {
                 if (_currentExercise != null)
@@ -210,7 +219,13 @@ namespace WorkoutTrackerAPP.ViewModels
 
                     if (_currentExercise.Duration.HasValue)
                     {
-                        _timer?.Start();
+                        
+                        if (!IsEditMode)
+                        {
+                            IsWorkoutPaused = false;
+                            _timer?.Start();
+                        }
+                        
                     }
                 }
             }
@@ -219,13 +234,14 @@ namespace WorkoutTrackerAPP.ViewModels
         [RelayCommand]
         async Task CancelEdit()
         {
-            // Discard changes, reload original
-            IsEditMode = false;
+
+            //Discard changes, reload original
+            
 
             await ResetGroups();
             await RestartWorkout();
+            IsEditMode = false;
 
-            
         }
 
         async Task ResetGroups()
@@ -333,9 +349,10 @@ namespace WorkoutTrackerAPP.ViewModels
                     Groups.RemoveAt(i);
             }
             // Save workout changes
+            await RestartWorkout();
             IsEditMode = false;
             IsWorkoutEdited = true;
-            await RestartWorkout();
+            
         }
 
         async Task ResetIndexesOnEdit()
@@ -442,6 +459,8 @@ namespace WorkoutTrackerAPP.ViewModels
 
             // Only start timer if duration-based
             if (!_currentExercise.Duration.HasValue)
+                return;
+            if (IsWorkoutPaused)
                 return;
 
             _timer?.Stop();
@@ -809,6 +828,16 @@ namespace WorkoutTrackerAPP.ViewModels
                     exercise.IsActive = false;
                 }
             }
+        }
+
+        [RelayCommand]
+        async Task SelectExerciseDetails(WorkoutExerciseDTO exercise)
+        {
+            await StopWorkout();
+            var exerciseView = App.Current.Handler.MauiContext.Services.GetRequiredService<ExerciseView>();
+            exerciseView.SetExercise(exercise.ExerciseId);
+            await Shell.Current.Navigation.PushAsync(exerciseView);
+
         }
     }
 }
