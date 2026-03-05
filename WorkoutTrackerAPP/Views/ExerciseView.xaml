@@ -98,50 +98,51 @@
                           RowSpacing="10">
 
                         <Label Grid.Row="0" Grid.Column="0"
-   Text="Equipment:"
-   FontAttributes="Bold"
-   TextColor="{DynamicResource Tertiary}"/>
+                               Text="Equipment:"
+                               FontAttributes="Bold"
+                               TextColor="{DynamicResource Tertiary}"/>
                         <Label Grid.Row="0" Grid.Column="1"
-   Text="{Binding Exercise.Equipment, Converter={StaticResource ListToStringConverter}}"
-   TextColor="{DynamicResource Tertiary}"/>
+                               Text="{Binding Exercise.Equipment, Converter={StaticResource ListToStringConverter}}"
+                               TextColor="{DynamicResource Tertiary}"/>
 
                         <Label Grid.Row="1" Grid.Column="0"
-   Text="Level:"
-   FontAttributes="Bold"
-   TextColor="{DynamicResource Tertiary}"/>
+                               Text="Level:"
+                               FontAttributes="Bold"
+                               TextColor="{DynamicResource Tertiary}"/>
                         <Label Grid.Row="1" Grid.Column="1"
-   Text="{Binding Exercise.Level, Converter={StaticResource ListToStringConverter}}"
-   TextColor="{DynamicResource Tertiary}"/>
+                               Text="{Binding Exercise.Level, Converter={StaticResource ListToStringConverter}}"
+                               TextColor="{DynamicResource Tertiary}"/>
 
                         <Label Grid.Row="2" Grid.Column="0"
-   Text="Category:"
-   FontAttributes="Bold"
-   TextColor="{DynamicResource Tertiary}"/>
+                               Text="Category:"
+                               FontAttributes="Bold"
+                               TextColor="{DynamicResource Tertiary}"/>
                         <Label Grid.Row="2" Grid.Column="1"
-   Text="{Binding Exercise.Category, Converter={StaticResource ListToStringConverter}}"
-   TextColor="{DynamicResource Tertiary}"/>
+                               Text="{Binding Exercise.Category, Converter={StaticResource ListToStringConverter}}"
+                               TextColor="{DynamicResource Tertiary}"/>
 
                         <Label Grid.Row="3" Grid.Column="0"
-   Text="Mechanic:"
-   FontAttributes="Bold"
-   TextColor="{DynamicResource Tertiary}"/>
+                               Text="Mechanic:"
+                               FontAttributes="Bold"
+                               TextColor="{DynamicResource Tertiary}"/>
                         <Label Grid.Row="3" Grid.Column="1"
-   Text="{Binding Exercise.Mechanic, Converter={StaticResource ListToStringConverter}}"
-   TextColor="{DynamicResource Tertiary}"/>
+                               Text="{Binding Exercise.Mechanic, Converter={StaticResource ListToStringConverter}}"
+                               TextColor="{DynamicResource Tertiary}"/>
 
                         <Label Grid.Row="4" Grid.Column="0"
-   Text="Force:"
-   FontAttributes="Bold"
-   TextColor="{DynamicResource Tertiary}"/>
+                               Text="Force:"
+                               FontAttributes="Bold"
+                               TextColor="{DynamicResource Tertiary}"/>
                         <Label Grid.Row="4" Grid.Column="1"
-   Text="{Binding Exercise.Force, Converter={StaticResource ListToStringConverter}}"
-   TextColor="{DynamicResource Tertiary}"/>
+                               Text="{Binding Exercise.Force, Converter={StaticResource ListToStringConverter}}"
+                               TextColor="{DynamicResource Tertiary}"/>
                     </Grid>
 
 
 
                 </Border>
 
+                
                 <!-- Instructions -->
                 <Border BackgroundColor="{DynamicResource Primary}"
                         Padding="10">
@@ -151,16 +152,52 @@
 
                     
                     <VerticalStackLayout Spacing="10">
+                        <HorizontalStackLayout Spacing="10"
+                                               HorizontalOptions="Center">
+                            <Border>
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="15"/>
+                                </Border.StrokeShape>
+                                <Image Source="{Binding Exercise.Images[0]}"
+                                       Aspect="AspectFill"
+                                       WidthRequest="150"
+                                       HeightRequest="150">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding ImageTappedCommand}"
+                                                              CommandParameter="{Binding Exercise.Images[0]}"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+
+                            </Border>
+                            
+                            <Border>
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="15"/>
+                                </Border.StrokeShape>
+                                <Image Source="{Binding Exercise.Images[1]}"
+                                       WidthRequest="150"
+                                       HeightRequest="150"
+                                       Aspect="AspectFill">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding ImageTappedCommand}"
+                                                              CommandParameter="{Binding Exercise.Images[1]}"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+
+                            </Border>
+                            
+                            
+                        </HorizontalStackLayout>
                         <Label Text="Instructions:"
-                           FontSize="16"
-                           FontAttributes="Bold"
-                           TextColor="{DynamicResource Tertiary}"/>
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               TextColor="{DynamicResource Tertiary}"/>
                         <VerticalStackLayout Spacing="8"
                                         BindableLayout.ItemsSource="{Binding NumberedInstructions}">
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate x:DataType="{x:Type x:String}">
                                     <Label Text="{Binding .}"
-                                        TextColor="{DynamicResource Tertiary}"/>
+                                           TextColor="{DynamicResource Tertiary}"/>
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>
                         </VerticalStackLayout>

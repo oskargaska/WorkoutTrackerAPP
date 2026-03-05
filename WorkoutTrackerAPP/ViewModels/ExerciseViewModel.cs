@@ -2,9 +2,11 @@
 using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using WorkoutTrackerAPP.Interfaces;
 using WorkoutTrackerAPP.Models;
+using WorkoutTrackerAPP.Views;
 
 namespace WorkoutTrackerAPP.ViewModels
 {
@@ -43,6 +45,12 @@ namespace WorkoutTrackerAPP.ViewModels
         async Task GoBack()
         {
             await Shell.Current.Navigation.PopAsync();
+        }
+
+        [RelayCommand]
+        private async Task ImageTapped(string source)
+        {
+            await Shell.Current.Navigation.PushAsync(new FullScreenImageView(source));
         }
     }
 }

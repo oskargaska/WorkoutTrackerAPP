@@ -62,6 +62,9 @@ namespace WorkoutTrackerAPP
             builder.Services.AddTransient<ExerciseView>();
             builder.Services.AddTransient<ExerciseViewModel>();
 
+            builder.Services.AddTransient<FullScreenImageView>();
+
+
 
 
 #if DEBUG

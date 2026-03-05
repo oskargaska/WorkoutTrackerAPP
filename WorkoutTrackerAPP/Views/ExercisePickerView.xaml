@@ -215,8 +215,6 @@
         <CollectionView Grid.Row="3"
                         ItemsSource="{Binding FilteredExercises}"
                         SelectionMode="Single"
-                        SelectionChangedCommand="{Binding SelectExerciseCommand}"
-                        SelectionChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}"
                         RemainingItemsThreshold="5"
                         RemainingItemsThresholdReachedCommand="{Binding LoadMoreItemsCommand}">
             <CollectionView.ItemTemplate>

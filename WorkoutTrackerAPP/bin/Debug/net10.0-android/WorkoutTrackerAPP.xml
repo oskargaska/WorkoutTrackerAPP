@@ -467,6 +467,7 @@
         <member name="T:WorkoutTrackerAPP.ViewModels.ExerciseViewModel">
             <inheritdoc/>
             <inheritdoc/>
+            <inheritdoc/>
         </member>
         <member name="P:WorkoutTrackerAPP.ViewModels.ExerciseViewModel.Exercise">
             <inheritdoc cref="F:WorkoutTrackerAPP.ViewModels.ExerciseViewModel.exercise"/>
@@ -476,6 +477,12 @@
         </member>
         <member name="P:WorkoutTrackerAPP.ViewModels.ExerciseViewModel.GoBackCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ExerciseViewModel.GoBack"/>.</summary>
+        </member>
+        <member name="F:WorkoutTrackerAPP.ViewModels.ExerciseViewModel.imageTappedCommand">
+            <summary>The backing field for <see cref="P:WorkoutTrackerAPP.ViewModels.ExerciseViewModel.ImageTappedCommand"/>.</summary>
+        </member>
+        <member name="P:WorkoutTrackerAPP.ViewModels.ExerciseViewModel.ImageTappedCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:WorkoutTrackerAPP.ViewModels.ExerciseViewModel.ImageTapped(System.String)"/>.</summary>
         </member>
         <member name="T:WorkoutTrackerAPP.ViewModels.HistoryViewModel">
             <inheritdoc/>

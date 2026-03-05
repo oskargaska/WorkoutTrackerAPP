@@ -35,5 +35,8 @@
     <ShellContent 
         Route="exercise"
         ContentTemplate="{DataTemplate views:ExerciseView}" />
+    <ShellContent 
+        Route="image"
+        ContentTemplate="{DataTemplate views:FullScreenImageView}" />
 
 </Shell>
