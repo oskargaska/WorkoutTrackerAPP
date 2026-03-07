@@ -9,5 +9,7 @@ public partial class CreateWorkoutView : ContentPage
 	{
 		InitializeComponent();
 		BindingContext = createWorkoutViewModel;
-	}
+
+        
+    }
 }

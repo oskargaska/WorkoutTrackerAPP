@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Text;
 using WorkoutTrackerAPP.Interfaces;
 using WorkoutTrackerAPP.Models;
+using WorkoutTrackerAPP.Views;
 
 
 namespace WorkoutTrackerAPP.ViewModels
@@ -28,10 +29,9 @@ namespace WorkoutTrackerAPP.ViewModels
         [RelayCommand]
         async Task GoBack()
         {
-            await Shell.Current.GoToAsync("//main");
+            await Shell.Current.Navigation.PopAsync();
         }
 
-        // Sessions for selected day
 
         [ObservableProperty]
         private DateTime selectedDate = DateTime.Today;
@@ -39,7 +39,6 @@ namespace WorkoutTrackerAPP.ViewModels
         partial void OnSelectedDateChanged(DateTime value)
         {
             FilterSessions(value);
-            //Debug.WriteLine($"Selected: {value}");
         }
 
         private void FilterSessions(DateTime date)
@@ -59,12 +58,10 @@ namespace WorkoutTrackerAPP.ViewModels
         [RelayCommand]
         async Task SessionSelected(SessionDTO session)
         {
-            await Shell.Current.GoToAsync(
-            "//session",
-            new Dictionary<string, object>
-            {
-                ["SessionId"] = session.Id
-            });
+            var page = App.Current.Handler.MauiContext.Services.GetRequiredService<SessionView>();
+            var vm = (SessionViewModel)page.BindingContext;
+            vm.SessionId = session.Id;
+            await Shell.Current.Navigation.PushAsync(page);
         }
 
     }

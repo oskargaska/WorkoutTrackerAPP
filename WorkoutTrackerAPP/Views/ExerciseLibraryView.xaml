@@ -7,7 +7,9 @@
              xmlns:converters="clr-namespace:WorkoutTrackerAPP.Converters"
              x:Class="WorkoutTrackerAPP.Views.ExerciseLibraryView"          
              x:DataType="viewModels:ExerciseLibraryViewModel">
-
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" />
+    </Shell.BackButtonBehavior>
     <ContentPage.Resources>
         <converters:ListToStringConverter x:Key="ListToStringConverter"/>
         <DataTemplate x:Key="FilterPillTemplate"
@@ -17,29 +19,26 @@
                     Padding="12,6"
                     CornerRadius="18"
                     FontSize="14"
-                    BorderWidth="1"                                      
+                    BorderWidth="1"   
+                    BorderColor="{DynamicResource Tertiary}"
                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ExerciseLibraryViewModel}}, Path=ToggleFilterCommand}"
                     CommandParameter="{Binding .}">
 
-                <!-- Default (not selected) -->
                 <Button.Triggers>
+                    <!-- Light Mode - Not Selected -->
                     <DataTrigger TargetType="Button"
-                         Binding="{Binding IsSelected}"
-                         Value="False">
-                        <Setter Property="BackgroundColor"
-                        Value="{DynamicResource Tertiary}" />
-                        <Setter Property="TextColor"
-                        Value="{DynamicResource Primary}" />
+                                 Binding="{Binding IsSelected}"
+                                 Value="False">
+                        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={DynamicResource Tertiary}, Dark={DynamicResource Primary}}" />
+                        <Setter Property="TextColor" Value="{AppThemeBinding Light={DynamicResource Primary}, Dark={DynamicResource Tertiary}}" />
                     </DataTrigger>
 
-                    <!-- Selected -->
+                    <!-- Selected (same for both themes) -->
                     <DataTrigger TargetType="Button"
-                         Binding="{Binding IsSelected}"
-                         Value="True">
-                        <Setter Property="BackgroundColor"
-                        Value="{DynamicResource Secondary}" />
-                        <Setter Property="TextColor"
-                        Value="{DynamicResource Tertiary}" />
+                                 Binding="{Binding IsSelected}"
+                                 Value="True">
+                        <Setter Property="BackgroundColor" Value="{DynamicResource Secondary}" />
+                        <Setter Property="TextColor" Value="{DynamicResource Tertiary}" />
                     </DataTrigger>
                 </Button.Triggers>
 
@@ -74,24 +73,9 @@
                     Text="Exercise Library"
                     FontSize="Large"
                     FontAttributes="Bold"
-                    TextColor="{DynamicResource Tertiary}"
                     VerticalOptions="Center"
                     HorizontalOptions="Center"/>
-            <Button Grid.Column="2"
-                    Text="+"
-                    FontAttributes="Bold"
-                    FontSize="Medium"
-                    HeightRequest="20"
-                    WidthRequest="70"
-                    CornerRadius="10"
-                    VerticalOptions="Center"
-                    HorizontalOptions="End"
-                    Margin="5"
-                    Padding="0"
-                    Command="{Binding AddNewExerciseCommand}">
-            </Button>
-
-
+          
         </Grid>
         
         <!-- Search Bar -->
@@ -108,7 +92,8 @@
             <toolkit:Expander.Header>
                 <Border Padding="15"
                         Margin="10,0"
-                        BackgroundColor="{DynamicResource Secondary}">
+                        BackgroundColor="{DynamicResource Secondary}"
+                        Stroke="{DynamicResource Tertiary}">
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="10"/>
                     </Border.StrokeShape>
@@ -126,7 +111,7 @@
             </toolkit:Expander.Header>
 
             <!-- Content (what slides down) -->
-            <Border BackgroundColor="{DynamicResource Primary}"
+            <Border BackgroundColor="{AppThemeBinding Light={DynamicResource Primary}, Dark={DynamicResource Tertiary}}"
                     Padding="10"
                     Margin="10,0">
                 <Border.StrokeShape>
@@ -207,7 +192,8 @@
                                 WidthRequest="170"
                                 Margin="0,5,0,0"
                                 TextColor="{DynamicResource Tertiary}"
-                                BackgroundColor="{DynamicResource Secondary}"/>
+                                BackgroundColor="{DynamicResource Secondary}"
+                                BorderColor="{DynamicResource Tertiary}"/>
 
                     </VerticalStackLayout>
                 </ScrollView>
@@ -219,6 +205,7 @@
         <CollectionView Grid.Row="3"
                         ItemsSource="{Binding FilteredExercises}"
                         SelectionMode="Single"
+                        SelectedItem="{Binding SelectedWorkout, Mode=TwoWay}"
                         SelectionChangedCommand="{Binding SelectExerciseCommand}"
                         SelectionChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}"
                         RemainingItemsThreshold="5"
@@ -251,12 +238,12 @@
                                    TextDecorations="Underline"
                                    FontSize="18"
                                    FontAttributes="Bold"
-                                   TextColor="{DynamicResource Tertiary}"/>
+                                   TextColor="{AppThemeBinding Light={DynamicResource Tertiary}, Dark={DynamicResource Primary}}"/>
 
                             <!-- Level badge -->
                             <Border Grid.Row="0" Grid.Column="1"
                                     Padding="8,4"
-                                    BackgroundColor="{DynamicResource Tertiary}"
+                                    BackgroundColor="{AppThemeBinding Light={DynamicResource Tertiary}, Dark={DynamicResource Primary}}"
                                     StrokeThickness="0"
                                     HeightRequest="30">
                                 <Border.StrokeShape>
@@ -264,7 +251,7 @@
                                 </Border.StrokeShape>
                                 <Label Text="{Binding Level}"
                                        FontSize="12"
-                                       TextColor="{DynamicResource Primary}"
+                                       TextColor="{AppThemeBinding Light={DynamicResource Primary}, Dark={DynamicResource Tertiary}}"
                                        VerticalTextAlignment="Center"/>
                             </Border>
 
@@ -280,11 +267,11 @@
                                                Text="Primary Muscles:"
                                                FontAttributes="Bold"
                                                FontSize="14"
-                                               TextColor="{DynamicResource Tertiary}"/>
+                                               TextColor="{AppThemeBinding Light={DynamicResource Tertiary}, Dark={DynamicResource Primary}}"/>
                                         <Label  Grid.Column="1"
                                                 Text="{Binding PrimaryMuscles, Converter={StaticResource ListToStringConverter}}"
                                                 FontSize="14"
-                                                TextColor="{DynamicResource Tertiary}"/>
+                                                TextColor="{AppThemeBinding Light={DynamicResource Tertiary}, Dark={DynamicResource Primary}}"/>
                                     </Grid>
                                     
                                     <Grid Grid.Row="1"
@@ -295,13 +282,13 @@
                                                Text="Secondary Muscles:"
                                                FontAttributes="Bold"
                                                FontSize="14"
-                                               TextColor="{DynamicResource Tertiary}"/>
+                                               TextColor="{AppThemeBinding Light={DynamicResource Tertiary}, Dark={DynamicResource Primary}}"/>
                                         <Label 
                                                 Grid.Column="1"
                                                 Text="{Binding SecondaryMuscles, Converter={StaticResource ListToStringConverter}}"
                                                 MaximumWidthRequest="230"
                                                 FontSize="14"
-                                                TextColor="{DynamicResource Tertiary}"/>
+                                                TextColor="{AppThemeBinding Light={DynamicResource Tertiary}, Dark={DynamicResource Primary}}"/>
                                     </Grid>
 
                                     <Grid Grid.Row="2"
@@ -312,12 +299,12 @@
                                                Text="Equipment:"
                                                FontAttributes="Bold"
                                                FontSize="14"
-                                               TextColor="{DynamicResource Tertiary}"/>
+                                               TextColor="{AppThemeBinding Light={DynamicResource Tertiary}, Dark={DynamicResource Primary}}"/>
                                         <Label 
                                                 Grid.Column="1"
                                                 Text="{Binding Equipment, Converter={StaticResource ListToStringConverter}}"
                                                 FontSize="14"
-                                                TextColor="{DynamicResource Tertiary}"/>
+                                                TextColor="{AppThemeBinding Light={DynamicResource Tertiary}, Dark={DynamicResource Primary}}"/>
                                     </Grid>
                                     <Grid Grid.Row="3"
                                           ColumnDefinitions="Auto, Auto"
@@ -327,13 +314,13 @@
                                                 Text="Category:"
                                                 FontAttributes="Bold"
                                                 FontSize="14"
-                                                TextColor="{DynamicResource Tertiary}"/>
+                                                TextColor="{AppThemeBinding Light={DynamicResource Tertiary}, Dark={DynamicResource Primary}}"/>
                                         <Label 
                                                 Grid.Column="1"
                                                 Text="{Binding Category, Converter={StaticResource ListToStringConverter}}"
                                                 MaximumWidthRequest="250"
                                                 FontSize="14"
-                                                TextColor="{DynamicResource Tertiary}"/>
+                                                TextColor="{AppThemeBinding Light={DynamicResource Tertiary}, Dark={DynamicResource Primary}}"/>
                                     </Grid>
                                     <Grid Grid.Row="4"
                                           ColumnDefinitions="Auto, Auto"
@@ -343,13 +330,13 @@
                                                 Text="Force:"
                                                 FontAttributes="Bold"
                                                 FontSize="14"
-                                                TextColor="{DynamicResource Tertiary}"/>
+                                                TextColor="{AppThemeBinding Light={DynamicResource Tertiary}, Dark={DynamicResource Primary}}"/>
                                         <Label 
                                                 Grid.Column="1"
                                                 Text="{Binding Force, Converter={StaticResource ListToStringConverter}}"
                                                 MaximumWidthRequest="250"
                                                 FontSize="14"
-                                                TextColor="{DynamicResource Tertiary}"/>
+                                                TextColor="{AppThemeBinding Light={DynamicResource Tertiary}, Dark={DynamicResource Primary}}"/>
                                     </Grid>
                                 </Grid>
                             </HorizontalStackLayout>

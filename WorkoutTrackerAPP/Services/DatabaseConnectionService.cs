@@ -30,7 +30,7 @@ namespace WorkoutTrackerAPP.Services
                 
                 if (File.Exists(databasePath))
                 {
-                    File.Delete(databasePath);
+                    //File.Delete(databasePath);
                 }
                 
 

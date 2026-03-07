@@ -28,6 +28,9 @@ namespace WorkoutTrackerAPP.ViewModels
         [ObservableProperty]
         private bool isFilterPanelVisible = false;
 
+        private object? _selectedWorkout;
+
+
         public ObservableCollection<ExerciseDTO> FilteredExercises { get; } = new();
 
         private bool _isLoadingMore;
@@ -44,29 +47,22 @@ namespace WorkoutTrackerAPP.ViewModels
         public ObservableCollection<FilterOption> AvailablePrimaryMuscles => _filters.PrimaryMuscles;
         public ObservableCollection<FilterOption> AvailableSecondaryMuscles => _filters.SecondaryMuscles;
 
-
-
         public ExerciseLibraryViewModel(IExercises exercises, IFilters filters)
         {
             _exercises = exercises; 
             _filters = filters;
-
-            // Attach PropertyChanged handlers for all FilterOptions
+            _filters.ResetAllFilters();
             foreach (var option in AllFilters())
                 option.PropertyChanged += OnFilterOptionChanged;
 
-
             ApplyFilter();
-
-
-            
         }
 
         [RelayCommand]
         async Task GoBack()
         {
-            _filters.ResetAllFilters();
-            await Shell.Current.GoToAsync("//main");
+            
+            await Shell.Current.Navigation.PopAsync();
 
         }
 
@@ -128,7 +124,6 @@ namespace WorkoutTrackerAPP.ViewModels
                 return query.ToList();
             });
 
-            // Update UI
             _filteredSource = filtered;
             _currentPage = 0;
             FilteredExercises.Clear();
@@ -136,16 +131,7 @@ namespace WorkoutTrackerAPP.ViewModels
         }
 
 
-        [RelayCommand]
-        async Task AddNewExercise()
-        {
-
-            await App.Current.Windows[0].Page.DisplayAlertAsync("Add New Exercise", "Button has been pressed", "Close");
-            
-            //await Shell.Current.GoToAsync("..");
-
-        }
-
+        
 
         
 
@@ -165,7 +151,6 @@ namespace WorkoutTrackerAPP.ViewModels
             foreach (var item in itemsToLoad)
             {
                 FilteredExercises.Add(item);
-                //Debug.WriteLine($"{item.Name}");
             }
 
             _currentPage++;
@@ -220,14 +205,16 @@ namespace WorkoutTrackerAPP.ViewModels
             await Shell.Current.Navigation.PushAsync(exerciseView);
 
         }
-
+        public object? SelectedWorkout
+        {
+            get => _selectedWorkout;
+            set
+            {
+                _selectedWorkout = value;
+                OnPropertyChanged();
+                _selectedWorkout = null;
+                OnPropertyChanged();
+            }
+        }
     }
-
-
-
-
-
-   
-
-
 }

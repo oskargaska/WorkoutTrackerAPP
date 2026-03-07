@@ -50,7 +50,7 @@ namespace WorkoutTrackerAPP.ViewModels
         {
             _exercises = exercises;
             _filters = filters;
-            // Attach PropertyChanged handlers for all FilterOptions
+
             foreach (var option in AllFilters())
                 option.PropertyChanged += OnFilterOptionChanged;
 
@@ -164,7 +164,6 @@ namespace WorkoutTrackerAPP.ViewModels
             foreach (var item in itemsToLoad)
             {
                 FilteredExercises.Add(item);
-                //Debug.WriteLine($"{item.Name}");
             }
 
             _currentPage++;

@@ -53,7 +53,7 @@ namespace WorkoutTrackerAPP.ViewModels
         [RelayCommand]
         async Task GoBack()
         {
-            await Shell.Current.GoToAsync("//workouts");
+            await Shell.Current.Navigation.PopAsync();
 
         }
         [RelayCommand]
@@ -150,26 +150,30 @@ namespace WorkoutTrackerAPP.ViewModels
         {
             if (string.IsNullOrWhiteSpace(WorkoutName))
             {
-                await App.Current.Windows[0].Page.DisplayAlertAsync("Error", "Please enter a workout name", "OK");
+                await Shell.Current.CurrentPage.DisplayAlertAsync("Error", "Please enter a workout name", "OK");
                 return;
             }
             if (Groups.Count == 0)
             {
-                await App.Current.Windows[0].Page.DisplayAlertAsync("Error", "Add at least one group", "OK");
+                await Shell.Current.CurrentPage.DisplayAlertAsync("Error", "Add at least one group", "OK");
                 return;
             }
             for (int i = Groups.Count - 1; i >= 0; i--)
             {
                 if (Groups[i].Items.Count == 0)
-                    Groups.RemoveAt(i);
+                {
+                    await Shell.Current.CurrentPage.DisplayAlertAsync("Error", "Groups can't be empty", "OK");
+                    return;
+                }
             }
+            
             var workout = new WorkoutDTO
             {
                 Name = WorkoutName,
                 Groups = Groups.ToList()
             };
             await _workouts.AddWorkoutAsync(workout);
-            await Shell.Current.GoToAsync("//workouts");
+            await Shell.Current.Navigation.PopAsync();
         }
 
         [RelayCommand]
@@ -226,8 +230,8 @@ namespace WorkoutTrackerAPP.ViewModels
 
             var delta = TimeSpan.FromSeconds(10);
 
-            exercise.Duration += delta;        // affects current session
-            exercise.MaxDuration += delta;     // affects workout definition
+            exercise.Duration += delta;        
+            exercise.MaxDuration += delta;     
 
         }
 

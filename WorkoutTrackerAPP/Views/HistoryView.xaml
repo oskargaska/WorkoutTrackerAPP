@@ -7,7 +7,9 @@
              xmlns:filters="clr-namespace:WorkoutTrackerAPP.Filters"
              x:Class="WorkoutTrackerAPP.Views.HistoryView"
              x:DataType="viewModels:HistoryViewModel">
-
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" />
+    </Shell.BackButtonBehavior>
 
     <Grid RowDefinitions="Auto,Auto,*"
           RowSpacing="5">
@@ -97,7 +99,7 @@
 
                         <VerticalStackLayout Spacing="2">
                             <!-- Workout Name -->
-                            <Label FontSize="14" TextColor="{DynamicResource Tertiary}">
+                            <Label FontSize="14" TextColor="{AppThemeBinding Light={DynamicResource Tertiary}, Dark={DynamicResource Primary}}">
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="Workout: " FontAttributes="Bold"/>
@@ -107,7 +109,7 @@
                             </Label>
 
                             <!-- Session time -->
-                            <Label FontSize="12" TextColor="{DynamicResource Tertiary}">
+                            <Label FontSize="12" TextColor="{AppThemeBinding Light={DynamicResource Tertiary}, Dark={DynamicResource Primary}}">
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="Time: " FontAttributes="Bold"/>
@@ -117,7 +119,7 @@
                             </Label>
 
                             <!-- Session duration -->
-                            <Label FontSize="12" TextColor="{DynamicResource Tertiary}">
+                            <Label FontSize="12" TextColor="{AppThemeBinding Light={DynamicResource Tertiary}, Dark={DynamicResource Primary}}">
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="Duration: " FontAttributes="Bold"/>

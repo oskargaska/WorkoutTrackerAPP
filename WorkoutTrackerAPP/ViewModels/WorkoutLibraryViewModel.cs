@@ -9,6 +9,7 @@ using System.Text;
 using WorkoutTrackerAPP.Interfaces;
 using WorkoutTrackerAPP.Messages;
 using WorkoutTrackerAPP.Models;
+using WorkoutTrackerAPP.Views;
 
 namespace WorkoutTrackerAPP.ViewModels
 {
@@ -16,39 +17,33 @@ namespace WorkoutTrackerAPP.ViewModels
     {
         private readonly IWorkouts _workouts;
 
+        private object? _selectedWorkout;
         public ObservableCollection<WorkoutDTO> Workouts => _workouts.Workouts;
 
         public WorkoutLibraryViewModel(IWorkouts workouts)
         {
             _workouts = workouts;
-
-
         }
 
         [RelayCommand]
         async Task GoBack()
         {
-            await Shell.Current.GoToAsync("//main");
+            await Shell.Current.Navigation.PopAsync();
 
         }
 
         [RelayCommand]
         async Task AddNewWorkout()
         {
-
-            //App.Current.Windows[0].Page.DisplayAlertAsync("Add New Workout", "Button has been pressed", "Close");
-
-            await Shell.Current.GoToAsync("///createWorkout");
+            var page = App.Current.Handler.MauiContext.Services.GetRequiredService<CreateWorkoutView>();
+            await Shell.Current.Navigation.PushAsync(page);
 
         }
-
-        
-
 
         [RelayCommand]
         async Task DeleteWorkout(WorkoutDTO workout)
         {
-            var choice = await App.Current.Windows[0].Page.DisplayActionSheetAsync(
+            var choice = await Shell.Current.CurrentPage.DisplayActionSheetAsync(
                 "Do you really want to remove that workout?",
                 "Cancel",
                 null,
@@ -67,12 +62,23 @@ namespace WorkoutTrackerAPP.ViewModels
         [RelayCommand]
         async Task WorkoutSelected(WorkoutDTO workout)
         {
-            await Shell.Current.GoToAsync(
-            "///workout",
-            new Dictionary<string, object>
-            {
-                ["WorkoutId"] = workout.Id
-            });
+            var page = App.Current.Handler.MauiContext.Services.GetRequiredService<ActiveWorkoutView>();
+            var vm = (ActiveWorkoutViewModel)page.BindingContext;
+            vm.WorkoutId = (int)workout.Id;
+            await Shell.Current.Navigation.PushAsync(page);
         }
+
+        public object? SelectedWorkout
+        {
+            get => _selectedWorkout;
+            set
+            {
+                _selectedWorkout = value;
+                OnPropertyChanged();
+                _selectedWorkout = null;
+                OnPropertyChanged();
+            }
+        }
+
     }
 }

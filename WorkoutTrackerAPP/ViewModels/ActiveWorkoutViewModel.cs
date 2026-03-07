@@ -1,12 +1,8 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using Plugin.Maui.Audio;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Text;
-using System.Threading.Tasks;
 using WorkoutTrackerAPP.Interfaces;
 using WorkoutTrackerAPP.Messages;
 using WorkoutTrackerAPP.Models;
@@ -70,7 +66,7 @@ namespace WorkoutTrackerAPP.ViewModels
         private readonly List<WorkoutGroupDTO> _snapshotGroups = new();
         private readonly WorkoutDTO _workoutSnapshot = new();
 
-
+        
         public ActiveWorkoutViewModel(IExercises exercises, IWorkouts workouts, ISessions sessions, IFilters filters)
         {
             _exercises = exercises;
@@ -83,12 +79,10 @@ namespace WorkoutTrackerAPP.ViewModels
             WeakReferenceMessenger.Default.Register<MExerciseSelectedMessage>(this, (recipient, message) =>
             {
                 OnExerciseSelected(message.Exercise, message.IsReps);
-                //Debug.WriteLine($"{message.Exercise.Name}");
             });
             _sessions = sessions;
         }
 
-        // FUNCTIONS TO LOAD A SELECTED WORKOUT
         public int WorkoutId
         {
             set
@@ -107,13 +101,11 @@ namespace WorkoutTrackerAPP.ViewModels
         public void LoadWorkout(WorkoutDTO workout)
         {
             WorkoutName = workout.Name;
-            //Debug.WriteLine($"{WorkoutName}");
             Groups.Clear();
             _originalGroups.Clear();
 
             foreach (var group in workout.Groups)
             {
-                // Deep copy to avoid editing the original
                 var groupCopy = new WorkoutGroupDTO
                 {
                     Name = group.Name
@@ -138,7 +130,6 @@ namespace WorkoutTrackerAPP.ViewModels
 
             foreach (var group in workout.Groups)
             {
-                // Deep copy to avoid editing the original
                 var groupCopy = new WorkoutGroupDTO
                 {
                     Name = group.Name
@@ -162,20 +153,15 @@ namespace WorkoutTrackerAPP.ViewModels
             }
         }
 
-        // FUNCTIOS TO CHANGE PAGE'S FUNCTION
         [RelayCommand]
         async Task GoBack()
         {
             await DisableAllActivitiesInExercises(); 
             await AskIfSaveWorkout();
-            await Shell.Current.GoToAsync("//workouts");
+            await Shell.Current.Navigation.PopAsync();
 
         }
 
-
-
-
-        // FUNCTIONS TO START, STOP AND NAVIGATE THROUGH ACTIVE WORKOUT
 
         [RelayCommand]
         async Task ToggleEditMode()
@@ -234,10 +220,6 @@ namespace WorkoutTrackerAPP.ViewModels
         [RelayCommand]
         async Task CancelEdit()
         {
-
-            //Discard changes, reload original
-            
-
             await ResetGroups();
             await RestartWorkout();
             IsEditMode = false;
@@ -249,7 +231,6 @@ namespace WorkoutTrackerAPP.ViewModels
             Groups.Clear();
             foreach (var group in _snapshotGroups)
             {
-                // Deep copy to avoid editing the original
                 var groupCopy = new WorkoutGroupDTO
                 {
                     Name = group.Name
@@ -287,7 +268,6 @@ namespace WorkoutTrackerAPP.ViewModels
 
             foreach (var group in Groups)
             {
-                // Deep copy to avoid editing the original
                 var groupCopy = new WorkoutGroupDTO
                 {
                     Name = group.Name
@@ -333,13 +313,13 @@ namespace WorkoutTrackerAPP.ViewModels
         {
             if (string.IsNullOrWhiteSpace(WorkoutName))
             {
-                await App.Current.Windows[0].Page.DisplayAlertAsync("Error", "Please enter a workout name", "OK");
+                await Shell.Current.CurrentPage.DisplayAlertAsync("Error", "Please enter a workout name", "OK");
                 return;
             }
 
             if (Groups.Count == 0)
             {
-                await App.Current.Windows[0].Page.DisplayAlertAsync("Error", "Add at least one group", "OK");
+                await Shell.Current.CurrentPage.DisplayAlertAsync("Error", "Add at least one group", "OK");
                 return;
             }
 
@@ -373,22 +353,17 @@ namespace WorkoutTrackerAPP.ViewModels
 
 
 
-        // WORKOUT ITERATION LOGIC
 
         [RelayCommand]
         async Task NextExercise()
         {
-            // Stop current timer
             _timer?.Stop();
 
-            // Deactivate current
             if (_currentExercise != null)
             {
                 _currentExercise.IsActive = false;
             }
                 
-
-            // Move to next
             _currentItemIndex++;
 
             if (_currentItemIndex >= Groups[_currentGroupIndex].Items.Count)
@@ -396,31 +371,28 @@ namespace WorkoutTrackerAPP.ViewModels
                 _currentItemIndex = 0;
                 _currentGroupIndex++;
 
-                // Check if workout is complete
                 if (_currentGroupIndex >= Groups.Count || Groups[_currentGroupIndex].Items.Count == 0)
                 {
                     await CompleteWorkout();
                     return;
                 }
             }
-
+            var player = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("ring.mp3"));
+            player.Play();
+            
             StartCurrentExercise();
         }
 
         [RelayCommand]
         void PreviousExercise()
         {
-            // Stop current timer
             _timer?.Stop();
 
-            // Deactivate current
             if (_currentExercise != null)
                 _currentExercise.IsActive = false;
 
-            // Move to previous
             _currentItemIndex--;
 
-            // Check if we need to move to previous group
             if (_currentItemIndex < 0)
             {
                 _currentGroupIndex--;
@@ -449,15 +421,12 @@ namespace WorkoutTrackerAPP.ViewModels
             if (_currentItemIndex < 0 || _currentItemIndex >= currentGroup.Items.Count)
                 return;
 
-            // Deactivate previous
             if (_currentExercise != null)
                 _currentExercise.IsActive = false;
 
-            // Activate current from the actual Groups collection
             _currentExercise = currentGroup.Items[_currentItemIndex];
             _currentExercise.IsActive = true;
 
-            // Only start timer if duration-based
             if (!_currentExercise.Duration.HasValue)
                 return;
             if (IsWorkoutPaused)
@@ -480,18 +449,9 @@ namespace WorkoutTrackerAPP.ViewModels
             else
             {
                 _timer?.Stop();
-                // Auto-advance to next exercise
                 _ = NextExercise();
             }
         }
-
-        
-
-
-
-
-
-        // FUNCTIONS TO EDIT EXERCISE'S REPS OR DURATION
 
         [RelayCommand]
         void AddSeconds(WorkoutExerciseDTO exercise)
@@ -536,14 +496,6 @@ namespace WorkoutTrackerAPP.ViewModels
             if (exercise.Reps.HasValue && exercise.Reps.Value >= 1)
                 exercise.Reps -= 1;
         }
-
-
-
-
-
-
-
-        // FUNCTIONS TO EDIT THE WORKOUT
 
         [RelayCommand]
         async Task AddGroup()
@@ -673,11 +625,6 @@ namespace WorkoutTrackerAPP.ViewModels
             }
         }
 
-
-
-
-
-        // WORKOUT ENDED OR STOPPED
         [RelayCommand]
         async Task CompleteWorkout()
         {
@@ -695,11 +642,14 @@ namespace WorkoutTrackerAPP.ViewModels
             await SnapshotWorkoutOnComplete();
             await SaveWorkoutAsSession();
 
+            var player = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("ring.mp3"));
+            player.Play();
 
+            await Shell.Current.CurrentPage.DisplayAlertAsync("Complete", "Workout finished!", "OK");
 
             await GoBack();
 
-            await App.Current.Windows[0].Page.DisplayAlertAsync("Complete", "Workout finished!", "OK");
+            
         }
 
         async Task SaveWorkoutAsSession()
@@ -723,7 +673,6 @@ namespace WorkoutTrackerAPP.ViewModels
 
             foreach (var group in Groups)
             {
-                // Deep copy to avoid editing the original
                 
                 var groupCopy = new WorkoutGroupDTO
                 {
@@ -764,7 +713,7 @@ namespace WorkoutTrackerAPP.ViewModels
         {
             if (!IsWorkoutEdited) return;
 
-            var choice = await App.Current.MainPage.DisplayActionSheetAsync(
+            var choice = await Shell.Current.CurrentPage.DisplayActionSheetAsync(
                 "You edited the workout, do you want to save it or not?",
                 "Cancel",
                 null,
@@ -779,7 +728,7 @@ namespace WorkoutTrackerAPP.ViewModels
 
         async Task AskIfSaveWorkoutAsNewOrOld()
         {
-            var choice = await App.Current.MainPage.DisplayActionSheetAsync(
+            var choice = await Shell.Current.CurrentPage.DisplayActionSheetAsync(
                 "Save it as New Workout or overwrite current Workout?",
                 "Cancel",
                 null,

@@ -72,7 +72,6 @@ namespace WorkoutTrackerAPP.ViewModels
 
             foreach (var group in workout.Groups)
             {
-                // Deep copy to avoid editing the original
                 var groupCopy = new WorkoutGroupDTO
                 {
                     Name = group.Name
@@ -99,7 +98,7 @@ namespace WorkoutTrackerAPP.ViewModels
         [RelayCommand]
         async Task GoBack()
         {
-            await Shell.Current.GoToAsync("//history");
+            await Shell.Current.Navigation.PopAsync();
         }
 
     }

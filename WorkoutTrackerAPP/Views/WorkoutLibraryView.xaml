@@ -7,7 +7,9 @@
              xmlns:converters="clr-namespace:WorkoutTrackerAPP.Converters"
              x:Class="WorkoutTrackerAPP.Views.WorkoutLibraryView"          
              x:DataType="viewModels:WorkoutLibraryViewModel">
-    
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" />
+    </Shell.BackButtonBehavior>
     <Grid RowDefinitions="Auto,*">
         <Grid   Grid.Row="0"
                 ColumnDefinitions="3,*,3"
@@ -31,7 +33,6 @@
                     Text="Workout Library"
                     FontSize="Large"
                     FontAttributes="Bold"
-                    TextColor="Black"
                     VerticalOptions="Center"
                     HorizontalOptions="Center"/>
 
@@ -53,6 +54,7 @@
         <CollectionView Grid.Row="1"
                         ItemsSource="{Binding Workouts}"
                         SelectionMode="Single"
+                        SelectedItem="{Binding SelectedWorkout, Mode=TwoWay}"
                         SelectionChangedCommand="{Binding WorkoutSelectedCommand}"
                         SelectionChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}"
                         Margin="10,15">
@@ -62,12 +64,10 @@
                                     VerticalOptions="Center"
                                     Spacing="10">
                     <Label Text="No workouts yet"
-                           FontSize="20"
-                           TextColor="{DynamicResource Tertiary}"
+                           FontSize="20"              
                            HorizontalOptions="Center"/>
                     <Label Text="Tap the + above to create your first workout"
-                           FontSize="14"
-                           TextColor="{DynamicResource Tertiary}"
+                           FontSize="14"     
                            HorizontalOptions="Center"/>
                 </VerticalStackLayout>
             </CollectionView.EmptyView>
@@ -98,7 +98,8 @@
 
                         <!-- Workout card -->
                         <Border Padding="15"
-                                Margin="0,0,0,5">
+                                Margin="0,0,0,5"
+                                BackgroundColor="{AppThemeBinding Light={DynamicResource Primary}, Dark={DynamicResource Forth}}">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup Name="CommonStates">
                                     <VisualState Name="Normal"></VisualState>

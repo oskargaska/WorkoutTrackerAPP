@@ -6,8 +6,7 @@
              xmlns:models="clr-namespace:WorkoutTrackerAPP.Models"
              xmlns:converters="clr-namespace:WorkoutTrackerAPP.Converters"
              x:Class="WorkoutTrackerAPP.Views.ExerciseView"          
-             x:DataType="viewModels:ExerciseViewModel"
-             Shell.BackgroundColor="{DynamicResource Background}">
+             x:DataType="viewModels:ExerciseViewModel">
     
     <Shell.BackButtonBehavior>
         <BackButtonBehavior IsVisible="False" />
@@ -39,7 +38,6 @@
              Text="Exercise"
              FontSize="Large"
              FontAttributes="Bold"
-             TextColor="Black"
              VerticalOptions="Center"
              HorizontalOptions="Center"/>
         </Grid>
@@ -50,8 +48,7 @@
                 <Label Text="{Binding Exercise.Name}"
                        FontSize="24"
                        FontAttributes="Bold"
-                       HorizontalTextAlignment="Center"
-                       TextColor="{DynamicResource Tertiary}"/>
+                       HorizontalTextAlignment="Center"/>
                 
                 <!-- Muscles -->
                 <Border BackgroundColor="{DynamicResource Primary}"

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using WorkoutTrackerAPP.Interfaces;
+using WorkoutTrackerAPP.Views;
 
 namespace WorkoutTrackerAPP.ViewModels
 {
@@ -21,25 +22,28 @@ namespace WorkoutTrackerAPP.ViewModels
         [RelayCommand]
         async Task NavigateToExercises()
         {
-            await Shell.Current.GoToAsync("//exercises");
+            var page = App.Current.Handler.MauiContext.Services.GetRequiredService<ExerciseLibraryView>();
+            await Shell.Current.Navigation.PushAsync(page);
         }
 
         [RelayCommand]
         async Task NavigateToWorkouts()
         {
-            await Shell.Current.GoToAsync("//workouts");
+            var page = App.Current.Handler.MauiContext.Services.GetRequiredService<WorkoutLibraryView>();
+            await Shell.Current.Navigation.PushAsync(page);
         }
 
         [RelayCommand]
         async Task NavigateToHistory()
         {
-            await Shell.Current.GoToAsync("//history");
+            var page = App.Current.Handler.MauiContext.Services.GetRequiredService<HistoryView>();
+            await Shell.Current.Navigation.PushAsync(page);
         }
 
         [RelayCommand]
         async Task ExitApp()
         {
-            bool confirm = await App.Current.Windows[0].Page.DisplayAlertAsync(
+            bool confirm = await Shell.Current.CurrentPage.DisplayAlertAsync(
                 "Exit",
                 "Are you sure you want to exit?",
                 "Yes",

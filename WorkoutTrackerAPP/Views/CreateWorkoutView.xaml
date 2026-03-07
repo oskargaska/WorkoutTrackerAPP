@@ -7,7 +7,9 @@
              xmlns:converters="clr-namespace:WorkoutTrackerAPP.Converters"
              x:Class="WorkoutTrackerAPP.Views.CreateWorkoutView"          
              x:DataType="viewModels:CreateWorkoutViewModel">
-    
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" />
+    </Shell.BackButtonBehavior>
 
     <Grid RowDefinitions="Auto,*">
         
@@ -32,7 +34,6 @@
                     Text="{Binding PageTitle}"
                     FontSize="Large"
                     FontAttributes="Bold"
-                    TextColor="{DynamicResource Tertiary}"
                     VerticalOptions="Center"
                     HorizontalOptions="Center"/>
 
@@ -59,8 +60,6 @@
             <!-- Add Group Button -->
             <Button Grid.Row="1"
                     Text="+ Add Group"
-                    BackgroundColor="{DynamicResource Secondary}"
-                    TextColor="{DynamicResource Tertiary}"
                     Margin="10,5"
                     Command="{Binding AddGroupCommand}"/>
 
@@ -71,7 +70,8 @@
                                      BindableLayout.ItemsSource="{Binding Groups}">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate x:DataType="models:WorkoutGroupDTO">
-                            <Border Padding="10">
+                            <Border Padding="10"
+                                    BackgroundColor="{AppThemeBinding Light={DynamicResource Primary}, Dark={DynamicResource Forth}}">
                                 <Border.StrokeShape>
                                     <RoundRectangle CornerRadius="10"/>
                                 </Border.StrokeShape>
@@ -125,7 +125,7 @@
                                                 <Border Padding="10"
                                                         Margin="5,0"
                                                         StrokeThickness="1"
-                                                        BackgroundColor="{DynamicResource Background}">
+                                                        BackgroundColor="{AppThemeBinding Light={DynamicResource Background}, Dark={DynamicResource Tertiary}}">
                                                     <Border.StrokeShape>
                                                         <RoundRectangle CornerRadius="8"/>
                                                     </Border.StrokeShape>
@@ -137,8 +137,8 @@
                                                               ColumnSpacing="3">
                                                             <Label  Grid.Column="0"
                                                                      Text="{Binding Name}"
-                                                                     FontSize="14"
-                                                                     TextColor="Black"
+                                                                    VerticalOptions="Center"
+                                                                     FontSize="16"
                                                                      FontAttributes="Bold"/>
                                                             <Button Grid.Column="1"
                                                                      Text="↑"
@@ -174,67 +174,84 @@
 
                                                         </Grid>
                                                         <Grid>
-                                                            <HorizontalStackLayout Spacing="5"                   
-                                                                                    IsVisible="{Binding IsRepsVisible}">
-                                                                <Label Text="Repetitions:"
-                                                                        WidthRequest="80"
-                                                                        VerticalOptions="Center"/>
-                                                                <Button Text="-1"
-                                                                         FontSize="Small"
-                                                                         Padding="0"
-                                                                         HeightRequest="30"
-                                                                         WidthRequest="40"
-                                                                         CornerRadius="15"
-                                                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=RemoveRepsCommand}"
-                                                                         CommandParameter="{Binding .}"/>
-                                                                <Label  Text="{Binding Reps}"
-                                                                         WidthRequest="60"
-                                                                         HorizontalOptions="Center"
-                                                                         HorizontalTextAlignment="Center"
-                                                                         VerticalOptions="Center"/>
-                                                                <Button Text="+1"
-                                                                         FontSize="Small"
-                                                                         Padding="0"
-                                                                         HeightRequest="30"
-                                                                         WidthRequest="40"
-                                                                         CornerRadius="15"
-                                                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=AddRepsCommand}"
-                                                                         CommandParameter="{Binding .}"/>
+                                                            <Grid RowDefinitions="30,Auto"
+                                                                  IsVisible="{Binding IsRepsVisible}">
 
-                                                            </HorizontalStackLayout>
-                                                            <HorizontalStackLayout Spacing="5"                                                                              
-                                                                                   IsVisible="{Binding IsDurationVisible}">
+                                                                <Label Grid.Row="0"
+                                                                       Text="Repetitions:"
+                                                                       VerticalOptions="Center"
+                                                                       HorizontalOptions="Start"/>
 
-                                                                <Label  Text="Duration:"
+                                                                <HorizontalStackLayout Grid.Row="1"
+                                                                                      Spacing="10"
+                                                                                      HorizontalOptions="Start">
+                                                                    <Button Text="-1"
+                                                                            FontSize="Small"
+                                                                            Padding="0"
+                                                                            HeightRequest="30"
+                                                                            WidthRequest="40"
+                                                                            CornerRadius="15"
+                                                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=RemoveRepsCommand}"
+                                                                            CommandParameter="{Binding .}"/>
+
+                                                                    <Label Text="{Binding Reps}"
+                                                                           WidthRequest="40"
+                                                                           HorizontalTextAlignment="Center"
+                                                                           VerticalOptions="Center"/>
+
+                                                                    <Button Text="+1"
+                                                                            FontSize="Small"
+                                                                            Padding="0"
+                                                                            HeightRequest="30"
+                                                                            WidthRequest="40"
+                                                                            CornerRadius="15"
+                                                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=AddRepsCommand}"
+                                                                            CommandParameter="{Binding .}"/>
+                                                                </HorizontalStackLayout>
+                                                            </Grid>
+                                                            <Grid RowDefinitions="30,Auto"
+                                                                  IsVisible="{Binding IsDurationVisible}">
+
+                                                                <Label  Grid.Row="0"
+                                                                        Grid.Column="0"
+                                                                        Text="Duration:"
                                                                          WidthRequest="80"
-                                                                         VerticalOptions="Center"/>
-                                                                <Button Text="-10"
+                                                                         VerticalOptions="Center"
+                                                                        HorizontalOptions="Start"/>
+
+                                                                <HorizontalStackLayout  Grid.Row="1"
+                                                                                          Spacing="10"
+                                                                                          HorizontalOptions="Start">
+                                                                    
+                                                                    <Button 
+                                                                        Text="-10"
                                                                          FontSize="Small"
                                                                          Padding="0"
                                                                          HeightRequest="30"
                                                                          WidthRequest="40"
                                                                          CornerRadius="15"
+                                                                        HorizontalOptions="Start"
                                                                          Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=RemoveSecondsCommand}"
                                                                          CommandParameter="{Binding .}"/>
 
-                                                                <Label  Text="{Binding RemainingTimeDisplay}"                                                                    
-                                                                         TextColor="#666"
-                                                                         WidthRequest="60"
+                                                                <Label  
+                                                                        Text="{Binding RemainingTimeDisplay}"                                                                    
+                                                                         WidthRequest="40"
                                                                          VerticalOptions="Center"
                                                                          HorizontalTextAlignment="Center"
                                                                          HorizontalOptions="Center"/>
 
-                                                                <Button Text="+10"
+                                                                <Button 
+                                                                        Text="+10"
                                                                          FontSize="Small"
-                                                                         Padding="0"
-                                                                         HeightRequest="30"
-                                                                         WidthRequest="40"
+                                                                         Padding="0"                                                    
                                                                          CornerRadius="15"
+                                                                        HorizontalOptions="End"
                                                                          Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CreateWorkoutViewModel}}, Path=AddSecondsCommand}"
                                                                          CommandParameter="{Binding .}"/>
+                                                                </HorizontalStackLayout>
 
-
-                                                            </HorizontalStackLayout>
+                                                            </Grid>
                                                             <Grid   ColumnDefinitions="Auto,Auto"
                                                                      Grid.Column="1"
                                                                      HorizontalOptions="End"
@@ -274,6 +291,7 @@
                                                 Text="Add Exercise"
                                                 BackgroundColor="{DynamicResource Secondary}"
                                                 TextColor="{DynamicResource Tertiary}"
+                                                BorderColor="{DynamicResource Tertiary}"
                                                 Margin="5,5,5,0"
                                                 WidthRequest="130"
                                                 HorizontalOptions="Start"                                               
@@ -284,6 +302,7 @@
                                                 Text="Add Break"
                                                 BackgroundColor="{DynamicResource Secondary}"
                                                 TextColor="{DynamicResource Tertiary}"
+                                                BorderColor="{DynamicResource Tertiary}"
                                                 Margin="5,5,5,0"
                                                 WidthRequest="130"
                                                 HorizontalOptions="End"
