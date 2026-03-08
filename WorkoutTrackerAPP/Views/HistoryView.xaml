@@ -45,7 +45,7 @@
         <Border Grid.Row="1"
                 Margin="10,15,10,0">
             <Border.StrokeShape>
-                <RoundRectangle CornerRadius="10"/>
+                <RoundRectangle CornerRadius="20"/>
             </Border.StrokeShape>
 
 
