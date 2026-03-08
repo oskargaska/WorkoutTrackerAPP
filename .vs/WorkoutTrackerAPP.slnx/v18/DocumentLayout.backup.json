@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{D2A022F4-A680-9192-2C90-79BA02CE4357}|WorkoutTrackerAPP\\WorkoutTrackerAPP.csproj|c:\\users\\osgou\\documents\\github\\workouttrackerapp\\workouttrackerapp\\workouttrackerapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{D2A022F4-A680-9192-2C90-79BA02CE4357}|WorkoutTrackerAPP\\WorkoutTrackerAPP.csproj|solutionrelative:workouttrackerapp\\workouttrackerapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2A022F4-A680-9192-2C90-79BA02CE4357}|WorkoutTrackerAPP\\WorkoutTrackerAPP.csproj|c:\\users\\osgou\\documents\\github\\workouttrackerapp\\workouttrackerapp\\resources\\styles\\colors.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D2A022F4-A680-9192-2C90-79BA02CE4357}|WorkoutTrackerAPP\\WorkoutTrackerAPP.csproj|solutionrelative:workouttrackerapp\\resources\\styles\\colors.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D2A022F4-A680-9192-2C90-79BA02CE4357}|WorkoutTrackerAPP\\WorkoutTrackerAPP.csproj|c:\\users\\osgou\\documents\\github\\workouttrackerapp\\workouttrackerapp\\resources\\styles\\styles.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{D2A022F4-A680-9192-2C90-79BA02CE4357}|WorkoutTrackerAPP\\WorkoutTrackerAPP.csproj|solutionrelative:workouttrackerapp\\resources\\styles\\styles.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D2A022F4-A680-9192-2C90-79BA02CE4357}|WorkoutTrackerAPP\\WorkoutTrackerAPP.csproj|c:\\users\\osgou\\documents\\github\\workouttrackerapp\\workouttrackerapp\\platforms\\android\\resources\\values\\colors.xml||{6B79B2C4-8503-4A04-8248-ADCEF2B49CB1}",
       "RelativeMoniker": "D:0:0:{D2A022F4-A680-9192-2C90-79BA02CE4357}|WorkoutTrackerAPP\\WorkoutTrackerAPP.csproj|solutionrelative:workouttrackerapp\\platforms\\android\\resources\\values\\colors.xml||{6B79B2C4-8503-4A04-8248-ADCEF2B49CB1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D2A022F4-A680-9192-2C90-79BA02CE4357}|WorkoutTrackerAPP\\WorkoutTrackerAPP.csproj|c:\\users\\osgou\\documents\\github\\workouttrackerapp\\workouttrackerapp\\resources\\styles\\colors.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{D2A022F4-A680-9192-2C90-79BA02CE4357}|WorkoutTrackerAPP\\WorkoutTrackerAPP.csproj|solutionrelative:workouttrackerapp\\resources\\styles\\colors.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D2A022F4-A680-9192-2C90-79BA02CE4357}|WorkoutTrackerAPP\\WorkoutTrackerAPP.csproj|c:\\users\\osgou\\documents\\github\\workouttrackerapp\\workouttrackerapp\\views\\activeworkoutview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -67,10 +71,6 @@
       "RelativeMoniker": "D:0:0:{D2A022F4-A680-9192-2C90-79BA02CE4357}|WorkoutTrackerAPP\\WorkoutTrackerAPP.csproj|solutionrelative:workouttrackerapp\\viewmodels\\createworkoutviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D2A022F4-A680-9192-2C90-79BA02CE4357}|WorkoutTrackerAPP\\WorkoutTrackerAPP.csproj|c:\\users\\osgou\\documents\\github\\workouttrackerapp\\workouttrackerapp\\workouttrackerapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{D2A022F4-A680-9192-2C90-79BA02CE4357}|WorkoutTrackerAPP\\WorkoutTrackerAPP.csproj|solutionrelative:workouttrackerapp\\workouttrackerapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D2A022F4-A680-9192-2C90-79BA02CE4357}|WorkoutTrackerAPP\\WorkoutTrackerAPP.csproj|c:\\users\\osgou\\documents\\github\\workouttrackerapp\\workouttrackerapp\\workouttrackerapp.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
       "RelativeMoniker": "D:0:0:{D2A022F4-A680-9192-2C90-79BA02CE4357}|WorkoutTrackerAPP\\WorkoutTrackerAPP.csproj|solutionrelative:workouttrackerapp\\workouttrackerapp.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     },
@@ -96,7 +96,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -108,20 +108,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "colors.xml",
-              "DocumentMoniker": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\Platforms\\Android\\Resources\\values\\colors.xml",
-              "RelativeDocumentMoniker": "WorkoutTrackerAPP\\Platforms\\Android\\Resources\\values\\colors.xml",
-              "ToolTip": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\Platforms\\Android\\Resources\\values\\colors.xml",
-              "RelativeToolTip": "WorkoutTrackerAPP\\Platforms\\Android\\Resources\\values\\colors.xml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
-              "WhenOpened": "2026-03-08T09:52:10.243Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Styles.xaml",
               "DocumentMoniker": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\Resources\\Styles\\Styles.xaml",
               "RelativeDocumentMoniker": "WorkoutTrackerAPP\\Resources\\Styles\\Styles.xaml",
@@ -134,45 +121,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ActiveWorkoutView.xaml",
-              "DocumentMoniker": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\Views\\ActiveWorkoutView.xaml",
-              "RelativeDocumentMoniker": "WorkoutTrackerAPP\\Views\\ActiveWorkoutView.xaml",
-              "ToolTip": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\Views\\ActiveWorkoutView.xaml",
-              "RelativeToolTip": "WorkoutTrackerAPP\\Views\\ActiveWorkoutView.xaml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-03-08T09:50:15.953Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "ExerciseViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\ViewModels\\ExerciseViewModel.cs",
-              "RelativeDocumentMoniker": "WorkoutTrackerAPP\\ViewModels\\ExerciseViewModel.cs",
-              "ToolTip": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\ViewModels\\ExerciseViewModel.cs",
-              "RelativeToolTip": "WorkoutTrackerAPP\\ViewModels\\ExerciseViewModel.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAA5wAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-07T12:49:25.843Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ActiveWorkoutViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\ViewModels\\ActiveWorkoutViewModel.cs",
-              "RelativeDocumentMoniker": "WorkoutTrackerAPP\\ViewModels\\ActiveWorkoutViewModel.cs",
-              "ToolTip": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\ViewModels\\ActiveWorkoutViewModel.cs",
-              "RelativeToolTip": "WorkoutTrackerAPP\\ViewModels\\ActiveWorkoutViewModel.cs",
-              "ViewState": "AgIAAHcCAAAAAAAAAAAowHcCAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-07T12:41:42.344Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "CreateWorkoutViewModel.cs",
               "DocumentMoniker": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\ViewModels\\CreateWorkoutViewModel.cs",
               "RelativeDocumentMoniker": "WorkoutTrackerAPP\\ViewModels\\CreateWorkoutViewModel.cs",
@@ -184,7 +133,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "ExercisePickerViewModel.cs",
               "DocumentMoniker": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\ViewModels\\ExercisePickerViewModel.cs",
               "RelativeDocumentMoniker": "WorkoutTrackerAPP\\ViewModels\\ExercisePickerViewModel.cs",
@@ -196,7 +145,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "WorkoutLibraryViewModel.cs",
               "DocumentMoniker": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\ViewModels\\WorkoutLibraryViewModel.cs",
               "RelativeDocumentMoniker": "WorkoutTrackerAPP\\ViewModels\\WorkoutLibraryViewModel.cs",
@@ -220,7 +169,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "ExerciseLibraryView.xaml",
               "DocumentMoniker": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\Views\\ExerciseLibraryView.xaml",
               "RelativeDocumentMoniker": "WorkoutTrackerAPP\\Views\\ExerciseLibraryView.xaml",
@@ -233,7 +182,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "ExerciseLibraryViewModel.cs",
               "DocumentMoniker": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\ViewModels\\ExerciseLibraryViewModel.cs",
               "RelativeDocumentMoniker": "WorkoutTrackerAPP\\ViewModels\\ExerciseLibraryViewModel.cs",
@@ -241,12 +190,11 @@
               "RelativeToolTip": "WorkoutTrackerAPP\\ViewModels\\ExerciseLibraryViewModel.cs",
               "ViewState": "AgIAACIAAAAAAAAAAAAgwCcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-07T10:18:12.529Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-07T10:18:12.529Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Colors.xaml",
               "DocumentMoniker": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\Resources\\Styles\\Colors.xaml",
               "RelativeDocumentMoniker": "WorkoutTrackerAPP\\Resources\\Styles\\Colors.xaml",
@@ -259,7 +207,69 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 0,
+              "Title": "WorkoutTrackerAPP.csproj",
+              "DocumentMoniker": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\WorkoutTrackerAPP.csproj",
+              "RelativeDocumentMoniker": "WorkoutTrackerAPP\\WorkoutTrackerAPP.csproj",
+              "ToolTip": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\WorkoutTrackerAPP.csproj",
+              "RelativeToolTip": "WorkoutTrackerAPP\\WorkoutTrackerAPP.csproj",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAADYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-03-07T10:45:19.232Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ActiveWorkoutViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\ViewModels\\ActiveWorkoutViewModel.cs",
+              "RelativeDocumentMoniker": "WorkoutTrackerAPP\\ViewModels\\ActiveWorkoutViewModel.cs",
+              "ToolTip": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\ViewModels\\ActiveWorkoutViewModel.cs",
+              "RelativeToolTip": "WorkoutTrackerAPP\\ViewModels\\ActiveWorkoutViewModel.cs",
+              "ViewState": "AgIAAHcCAAAAAAAAAAAowHcCAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-07T12:41:42.344Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ExerciseViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\ViewModels\\ExerciseViewModel.cs",
+              "RelativeDocumentMoniker": "WorkoutTrackerAPP\\ViewModels\\ExerciseViewModel.cs",
+              "ToolTip": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\ViewModels\\ExerciseViewModel.cs",
+              "RelativeToolTip": "WorkoutTrackerAPP\\ViewModels\\ExerciseViewModel.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAA5wAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-07T12:49:25.843Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ActiveWorkoutView.xaml",
+              "DocumentMoniker": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\Views\\ActiveWorkoutView.xaml",
+              "RelativeDocumentMoniker": "WorkoutTrackerAPP\\Views\\ActiveWorkoutView.xaml",
+              "ToolTip": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\Views\\ActiveWorkoutView.xaml",
+              "RelativeToolTip": "WorkoutTrackerAPP\\Views\\ActiveWorkoutView.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-08T09:50:15.953Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "colors.xml",
+              "DocumentMoniker": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\Platforms\\Android\\Resources\\values\\colors.xml",
+              "RelativeDocumentMoniker": "WorkoutTrackerAPP\\Platforms\\Android\\Resources\\values\\colors.xml",
+              "ToolTip": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\Platforms\\Android\\Resources\\values\\colors.xml",
+              "RelativeToolTip": "WorkoutTrackerAPP\\Platforms\\Android\\Resources\\values\\colors.xml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
+              "WhenOpened": "2026-03-08T09:52:10.243Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "HistoryViewModel.cs",
               "DocumentMoniker": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\ViewModels\\HistoryViewModel.cs",
               "RelativeDocumentMoniker": "WorkoutTrackerAPP\\ViewModels\\HistoryViewModel.cs",
@@ -271,7 +281,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "WorkoutLibraryView.xaml",
               "DocumentMoniker": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\Views\\WorkoutLibraryView.xaml",
               "RelativeDocumentMoniker": "WorkoutTrackerAPP\\Views\\WorkoutLibraryView.xaml",
@@ -284,7 +294,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "MainViewModel.cs",
               "DocumentMoniker": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\ViewModels\\MainViewModel.cs",
               "RelativeDocumentMoniker": "WorkoutTrackerAPP\\ViewModels\\MainViewModel.cs",
@@ -296,7 +306,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "SessionViewModel.cs",
               "DocumentMoniker": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\ViewModels\\SessionViewModel.cs",
               "RelativeDocumentMoniker": "WorkoutTrackerAPP\\ViewModels\\SessionViewModel.cs",
@@ -308,7 +318,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "CreateWorkoutView.xaml",
               "DocumentMoniker": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\Views\\CreateWorkoutView.xaml",
               "RelativeDocumentMoniker": "WorkoutTrackerAPP\\Views\\CreateWorkoutView.xaml",
@@ -366,19 +376,6 @@
               "ViewState": "AgIAAH4BAAAAAAAAAAAYwKEBAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
               "WhenOpened": "2026-03-07T10:47:37.755Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "WorkoutTrackerAPP.csproj",
-              "DocumentMoniker": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\WorkoutTrackerAPP.csproj",
-              "RelativeDocumentMoniker": "WorkoutTrackerAPP\\WorkoutTrackerAPP.csproj",
-              "ToolTip": "C:\\Users\\osgou\\Documents\\GitHub\\WorkoutTrackerAPP\\WorkoutTrackerAPP\\WorkoutTrackerAPP.csproj",
-              "RelativeToolTip": "WorkoutTrackerAPP\\WorkoutTrackerAPP.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-03-07T10:45:19.232Z",
-              "EditorCaption": ""
             }
           ]
         },
