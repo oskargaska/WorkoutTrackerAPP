@@ -15,6 +15,7 @@ namespace WorkoutTrackerAPP.ViewModels
     public partial class HistoryViewModel : ObservableObject
     {
         private ISessions _sessions;
+        private object? _selectedSession;
 
         public ObservableCollection<SessionDTO> Sessions => _sessions.Sessions;
         public ObservableCollection<SessionDTO> SelectedDaySessions { get; } = new();
@@ -64,5 +65,16 @@ namespace WorkoutTrackerAPP.ViewModels
             await Shell.Current.Navigation.PushAsync(page);
         }
 
+        public object? SelectedSession
+        {
+            get => _selectedSession;
+            set
+            {
+                _selectedSession = value;
+                OnPropertyChanged();
+                _selectedSession = null;
+                OnPropertyChanged();
+            }
+        }
     }
 }

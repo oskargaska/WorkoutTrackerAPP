@@ -86,7 +86,7 @@
                     <DataTemplate x:DataType="models:WorkoutGroupDTO">
                         <Border Padding="10"
                                 Stroke="{AppThemeBinding Light={DynamicResource Tertiary}, Dark={DynamicResource Primary}}"
-                                BackgroundColor="{AppThemeBinding Light={DynamicResource Background}, Dark={DynamicResource Forth}}">
+                                BackgroundColor="{AppThemeBinding Light={DynamicResource Primary}, Dark={DynamicResource Forth}}">
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="12"/>
                             </Border.StrokeShape>
@@ -98,6 +98,7 @@
                                        FontSize="16"
                                        FontAttributes="Bold"
                                        Margin="8"
+                                       
                                        TextColor="{AppThemeBinding Light={DynamicResource Tertiary}, Dark={DynamicResource Primary}}"/>
 
                                 <!-- Items in Group -->
@@ -149,7 +150,7 @@
                                                                    TextColor="{AppThemeBinding Light={DynamicResource Tertiary}, Dark={DynamicResource Primary}}"/>
                                                             
                                                             <Label Grid.Column="1"
-                                                                   Text="{Binding RemainingTimeDisplay}"
+                                                                   Text="{Binding RemainingTimeDisplaySession}"
                                                                    TextColor="{AppThemeBinding Light={DynamicResource Tertiary}, Dark={DynamicResource Primary}}"
                                                                    WidthRequest="60"
                                                                    VerticalOptions="Center"

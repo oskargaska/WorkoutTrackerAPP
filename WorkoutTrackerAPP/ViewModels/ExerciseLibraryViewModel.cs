@@ -28,7 +28,7 @@ namespace WorkoutTrackerAPP.ViewModels
         [ObservableProperty]
         private bool isFilterPanelVisible = false;
 
-        private object? _selectedWorkout;
+        private object? _selectedExercise;
 
 
         public ObservableCollection<ExerciseDTO> FilteredExercises { get; } = new();
@@ -207,12 +207,12 @@ namespace WorkoutTrackerAPP.ViewModels
         }
         public object? SelectedWorkout
         {
-            get => _selectedWorkout;
+            get => _selectedExercise;
             set
             {
-                _selectedWorkout = value;
+                _selectedExercise = value;
                 OnPropertyChanged();
-                _selectedWorkout = null;
+                _selectedExercise = null;
                 OnPropertyChanged();
             }
         }

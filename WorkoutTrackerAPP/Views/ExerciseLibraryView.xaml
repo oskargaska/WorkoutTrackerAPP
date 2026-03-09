@@ -205,7 +205,7 @@
         <CollectionView Grid.Row="3"
                         ItemsSource="{Binding FilteredExercises}"
                         SelectionMode="Single"
-                        SelectedItem="{Binding SelectedWorkout, Mode=TwoWay}"
+                        SelectedItem="{Binding SelectedExercise, Mode=TwoWay}"
                         SelectionChangedCommand="{Binding SelectExerciseCommand}"
                         SelectionChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}"
                         RemainingItemsThreshold="5"

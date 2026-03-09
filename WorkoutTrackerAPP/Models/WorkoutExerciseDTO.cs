@@ -29,7 +29,7 @@ namespace WorkoutTrackerAPP.Models
         public bool IsRepsVisible => Reps.HasValue;
 
         [JsonIgnore]
-        public bool IsDurationVisible => Duration.HasValue;
+        public bool IsDurationVisible => MaxDuration.HasValue;
 
         [JsonIgnore]
         public WorkoutGroupDTO ParentGroup { get; set; }
@@ -41,6 +41,9 @@ namespace WorkoutTrackerAPP.Models
 
         [JsonIgnore]
         public string RemainingTimeDisplay => Duration?.ToString(@"mm\:ss") ?? "00:00";
+
+        [JsonIgnore]
+        public string RemainingTimeDisplaySession => MaxDuration?.ToString(@"mm\:ss") ?? "00:00";
 
         [JsonIgnore]
         public bool IsActualExercise => !string.IsNullOrEmpty(ExerciseId);

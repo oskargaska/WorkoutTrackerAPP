@@ -57,12 +57,13 @@ namespace WorkoutTrackerAPP.ViewModels
 
         public void LoadSession(SessionDTO session)
         {
+            _session = session;
             _workoutSnapshot = session.WorkoutSnapshot;
             if (_workoutSnapshot == null) return;
 
             LoadWorkout(_workoutSnapshot);
-            sessionDate = session.Date;
-            sessionDuration = session.Duration;
+            SessionDate = _session.Date;
+            SessionDuration = _session.Duration;
         }
         public void LoadWorkout(WorkoutDTO workout)
         {

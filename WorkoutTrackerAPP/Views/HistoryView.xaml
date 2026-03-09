@@ -87,6 +87,7 @@
         <CollectionView Grid.Row="2"
                         ItemsSource="{Binding SelectedDaySessions}"
                         SelectionMode="Single"
+                        SelectedItem="{Binding SelectedSession, Mode=TwoWay}"
                         SelectionChangedCommand="{Binding SessionSelectedCommand}"
                         SelectionChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}">
             <CollectionView.ItemTemplate >
